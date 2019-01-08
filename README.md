@@ -1,0 +1,1 @@
+# bnp-crud-ui
