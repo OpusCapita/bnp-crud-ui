@@ -1,0 +1,10 @@
+version: '2'
+services:
+  main:
+    volumes:
+        - ./api:/home/node/bnp-crud-ui/api
+        - ./components:/home/node/bnp-crud-ui/components
+        - ./containers:/home/node/bnp-crud-ui/containers
+        - ./dev:/home/node/bnp-crud-ui/dev
+        - ./system:/home/node/bnp-crud-ui/system
+        - ./lib:/home/node/bnp-crud-ui/lib
