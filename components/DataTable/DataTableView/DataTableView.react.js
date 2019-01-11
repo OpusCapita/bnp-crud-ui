@@ -9,7 +9,7 @@ class DataTableView extends Components.ContextComponent
     render()
     {
         return(
-            <table className="table table-striped table-hover table-bordered table-responsive">
+            <table className="table table-striped table-hover table-bordered">
                 {this.props.children}
             </table>
         )

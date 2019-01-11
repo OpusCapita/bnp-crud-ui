@@ -9,7 +9,24 @@ td.selector {
 {
     height: 52px !important;
 }
+.dataTableRow td {
+    height: 20px !important;
+}
+.dataTableRow td:not(:first-child) {
+    min-width: 120px;
+    max-width: 300px;
+}
+.dataTableRow td:first-child {
+    min-width: 50px !important;
+}
+.dataTableRow td input:focus {
+    outline: none;
+    box-shadow: none;
+    text-shadow: none;
+}
 .dataTableRow .form-control-static {
     padding-left: 13px;
     padding-top: 8px;
+    height: 20px;
+    min-height: 10px;
 }

@@ -8,33 +8,43 @@ class DataTableHeader extends Components.ContextComponent
     {
         super(props);
         
-        //this.state = { 
-        //    columnData: null
-        //};
+        this.state = { 
+            headerData:  {}
+        };
     }
 
-    componentDidMount () 
+    componentDidMount = () =>
     {
-        //this.setState({
-        //  columnData: this.props.columnData
-        //})
+        this.setState({
+            headerData: this.props.headerData
+        });
+    }
+
+    getFields = () => 
+    {
+        let result = [];
+        for(let field in this.props.headerData) {
+            result.push({field});
+        }
+        return result;
     }
 
     render()
     {
+        let rowDataFields = this.getFields();
 
-        let columnData = Object.keys(this.props.columnData[0]);
-
+        console.log(rowDataFields);
+        
         return(
             <thead>
                 <tr>
+                    <th></th>
                     {
-                        columnData.map((data) => 
-                        {
-                            return(
-                                <th>{data}</th>
+                        rowDataFields.map((data) => {
+                            return (
+                                <th>{data.field}</th>
                             )
-                        })
+                        }) 
                     }
                 </tr>
             </thead>

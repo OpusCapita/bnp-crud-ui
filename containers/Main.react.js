@@ -9,7 +9,7 @@ class Main extends Components.ContextComponent
 {
     render()
     {
-        const url = '/user/api/users?include=profile';
+        const url = '/user/api/users';
 
         return(
             <div className="container-fluid">

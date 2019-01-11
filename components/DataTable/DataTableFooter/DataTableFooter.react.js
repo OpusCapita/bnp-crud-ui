@@ -8,7 +8,7 @@ class DataTableFooter extends Components.ContextComponent
     {
         return(
             <tfoot>
-                
+                {this.props.children}
             </tfoot>
         )
     }

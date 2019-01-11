@@ -16,9 +16,16 @@ class DataTableRow extends Components.ContextComponent
         {
             rowStateClass: '',
             isSelected: true,
-            rowData: this.props.rowData
+            rowData: {}
         }
     }
+
+    componentDidMount = () => 
+    {
+        this.setState({
+            rowData: this.props.rowData
+        });
+    } 
 
     handleSelectionChange = (event) =>
     {
@@ -73,22 +80,36 @@ class DataTableRow extends Components.ContextComponent
           }
     }
 
-    onColumnEdited(event) {
-        this.changeRowEditState("edited");
+    onColumnEdited(event) 
+    {
+        this.changeRowEditState("edited");   
+    }
+
+    getFields() 
+    {
+        let result = [];
+        for(let field in this.state.rowData) {
+            result.push({field, value: (this.state.rowData[field] || "").toString()});
+        }
+        return result;
     }
 
     render()
     {
-        let rowData = this.state.rowData;
+        let rowDataFields = this.getFields();
 
         return(
             <tr className={`dataTableRow ${this.state.rowStateClass}`}>
                 <td className="selector">
                     <input type="checkbox" onClick={this.handleSelectionChange.bind(this)} tabIndex="-1"/>
                 </td>
-                
-                <DataTableColumn key={rowData.id} content={rowData.id} editable={this.state.isSelected ? false : true} columnEdited={this.onColumnEdited.bind(this)} />
-                <DataTableColumn key={rowData.customerId} content={rowData.customerId} editable={this.state.isSelected ? false : true} columnEdited={this.onColumnEdited.bind(this)} />
+                {
+                    rowDataFields.map((data) => {
+                        return (
+                            <DataTableColumn content={data.value} field={data.field} editable={this.state.isSelected ? false : true} columnEdited={this.onColumnEdited.bind(this)} />
+                        )
+                    }) 
+                }
 
             </tr>
         )

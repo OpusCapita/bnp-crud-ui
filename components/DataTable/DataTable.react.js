@@ -50,19 +50,33 @@ class DataTable extends Components.ContextComponent
             <div>
                 {
                 <DataTableView>
-                    {/*<DataTableHeader columnData={userData}/>*/}
+                    <DataTableHeader headerData={tableData[0]}/>
                     <DataTableBody>
                         
                     {
                         tableData.map((row, i) => 
                         {
+                            if(i >= 0 && i < 10) {
                             return(
                                 <DataTableRow rowData={row} />
                             )
+                        }
                         })
                     }
                     </DataTableBody>
-                    <DataTableFooter/>
+                    <DataTableFooter>
+                        <tr>
+                            <td colSpan={tableData.length}>
+
+                                <div className="tableDataPagination">
+                                    <span>❮</span>
+                                    <span>{tableData.length / 5} / {tableData.length}</span>
+                                    <span>❯</span>
+                                </div>
+                            
+                            </td>
+                        </tr>
+                    </DataTableFooter>
                 </DataTableView>
                 }
             </div>
