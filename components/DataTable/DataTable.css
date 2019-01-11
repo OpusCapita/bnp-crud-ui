@@ -1,0 +1,15 @@
+
+
+td.selector {
+    width: 40px;
+    text-align: center;
+}
+
+.dataTableRow
+{
+    height: 52px !important;
+}
+.dataTableRow .form-control-static {
+    padding-left: 13px;
+    padding-top: 8px;
+}
