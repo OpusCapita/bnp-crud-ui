@@ -103,10 +103,15 @@ class DataTableRow extends Components.ContextComponent
                 <td className="selector">
                     <input type="checkbox" onClick={this.handleSelectionChange.bind(this)} tabIndex="-1"/>
                 </td>
+                <td className="num">
+                    {
+                        (this.props.rowNum + 1)
+                    }
+                </td>
                 {
-                    rowDataFields.map((data) => {
+                    rowDataFields.map((data, i) => {
                         return (
-                            <DataTableColumn content={data.value} field={data.field} editable={this.state.isSelected ? false : true} columnEdited={this.onColumnEdited.bind(this)} />
+                            <DataTableColumn key={i} content={data.value} field={data.field} editable={this.state.isSelected ? false : true} columnEdited={this.onColumnEdited.bind(this)} />
                         )
                     }) 
                 }

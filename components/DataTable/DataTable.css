@@ -1,18 +1,56 @@
+/* TABLE MENU */
+.dataTableMenu {
 
+}
 
-td.selector {
-    width: 40px;
+/* TABLE AREA */
+.dataTableArea {
+    
+}
+
+/* TABLE CONTENT */
+.dataTableContent {
+    width: 100%;
+    overflow: auto;
+    max-height: 600px;
+    position: relative;
+}
+
+/* TABLE VIEW */
+.dataTableView {
+
+}
+
+/* TABLE BODY */
+.dataTableBody {
+
+}
+
+/* TABLE HEADER */
+.dataTableHeader {
+
+}
+.dataTableHeader .num {
     text-align: center;
 }
 
-.dataTableRow
-{
+/* TABLE ROW */
+.dataTableRow {
     height: 52px !important;
 }
 .dataTableRow td {
     height: 20px !important;
+    white-space:nowrap;
 }
-.dataTableRow td:not(:first-child) {
+.dataTableRow td.selector {
+    width: 40px;
+    text-align: center;
+}
+.dataTableRow td.num {
+    min-width: 40px !important;
+    text-align: center;
+}
+.dataTableRow td:not(:first-child):not(:nth-child(2)) {
     min-width: 120px;
     max-width: 300px;
 }
@@ -26,7 +64,73 @@ td.selector {
 }
 .dataTableRow .form-control-static {
     padding-left: 13px;
-    padding-top: 8px;
+    padding-top: 7px !important;
     height: 20px;
     min-height: 10px;
 }
+
+/* TABLE COLUMN */
+.dataTableColumn {
+
+}
+
+/* TABLE FOOTER */
+.dataTableFooter {
+
+}
+
+/* TABLE PAGINATION */
+.dataTablePagination {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*
+.dataTableView {
+    table-layout: auto !important;
+    position: relative;
+}
+.dataTableBody {
+    position: relative;
+    display: block;
+    z-index: -1000;
+    padding-top: 37px;
+}
+.dataTableHeader {
+    position: fixed;
+    background: white;
+}
+.dataTableFooter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    display: block;
+    border-top: 1px solid #e1e1e8;
+}
+.dataTablePagination .leftArrow,
+.dataTablePagination .showPosition,
+.dataTablePagination .rightArrow {
+    display: inline-block;
+}
+[class*="Arrow"] {
+    height: 34px;
+    width: 34px;
+    text-align: center;
+    line-height: 30px;
+    color: #777;
+}
+[class*="Arrow"]:hover {
+    color: #000;
+    cursor: pointer;
+}
+*/

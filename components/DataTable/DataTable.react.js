@@ -5,13 +5,13 @@ import request from 'superagent';
 import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableBody from './DataTableBody';
-import DataTableColumn from './DataTableColumn';
-import DataTableFooter from './DataTableFooter';
 import DataTableHeader from './DataTableHeader';
-import DataTableRow from './DataTableRow';
 import DataTableView from './DataTableView';
+import DataTableSearchBar from './DataTableSearchBar';
+import DataTablePagination from './DataTablePagination';
 
 import './DataTable.css';
+//import './BootstrapOverwrite.css';
 
 class DataTable extends Components.ContextComponent
 {
@@ -47,38 +47,17 @@ class DataTable extends Components.ContextComponent
         const tableData = this.state.tableData;
 
         return(
-            <div>
+            <div className="dataTableArea">
+                <DataTableSearchBar />
                 {
-                <DataTableView>
-                    <DataTableHeader headerData={tableData[0]}/>
-                    <DataTableBody>
-                        
-                    {
-                        tableData.map((row, i) => 
-                        {
-                            if(i >= 0 && i < 10) {
-                            return(
-                                <DataTableRow rowData={row} />
-                            )
-                        }
-                        })
-                    }
-                    </DataTableBody>
-                    <DataTableFooter>
-                        <tr>
-                            <td colSpan={tableData.length}>
-
-                                <div className="tableDataPagination">
-                                    <span>❮</span>
-                                    <span>{tableData.length / 5} / {tableData.length}</span>
-                                    <span>❯</span>
-                                </div>
-                            
-                            </td>
-                        </tr>
-                    </DataTableFooter>
-                </DataTableView>
+                    <div className="dataTableContent">
+                        <DataTableView>
+                            <DataTableHeader headerData={tableData[0]}/>
+                            <DataTableBody tableData={tableData} showAmount={100}/>
+                        </DataTableView>
+                    </div>
                 }
+                <DataTablePagination length={tableData.length} />
             </div>
         );
     }

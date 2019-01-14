@@ -36,9 +36,10 @@ class DataTableHeader extends Components.ContextComponent
         console.log(rowDataFields);
         
         return(
-            <thead>
+            <thead className={`dataTableHeader`}>
                 <tr>
                     <th></th>
+                    <th className="num">#</th>
                     {
                         rowDataFields.map((data) => {
                             return (

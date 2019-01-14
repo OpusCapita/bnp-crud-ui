@@ -45,7 +45,7 @@ class DataTableColumn extends Components.ContextComponent
 
         const content = this.props.content;
         return(
-            <td>
+            <td className="dataTableColumn">
                 {
                     (this.props.editable === true && this.checkIfShouldBeDisabled() === true) &&
                     <input type="text" className="form-control" defaultValue={content} onChange={this.props.columnEdited} />
