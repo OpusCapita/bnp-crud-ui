@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
@@ -13,7 +12,6 @@ class Main extends Components.ContextComponent
 
         return(
             <DataTable dataUrl={url}/>
-            
         );
     }
 }

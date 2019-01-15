@@ -4,7 +4,7 @@
 }
 
 /* TABLE AREA */
-.dataTableArea {
+.dataTableContainer {
     
 }
 
@@ -17,21 +17,13 @@
 }
 
 /* TABLE VIEW */
-.dataTableView {
+.dataTableArea {
 
 }
 
 /* TABLE BODY */
 .dataTableBody {
 
-}
-
-/* TABLE HEADER */
-.dataTableHeader {
-
-}
-.dataTableHeader .num {
-    text-align: center;
 }
 
 /* TABLE ROW */
@@ -72,6 +64,14 @@
 /* TABLE COLUMN */
 .dataTableColumn {
 
+}
+
+/* TABLE HEADER */
+.dataTableHeader {
+
+}
+.dataTableHeader .num {
+    text-align: center;
 }
 
 /* TABLE FOOTER */
