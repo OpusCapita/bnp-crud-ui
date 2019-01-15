@@ -18,7 +18,8 @@ class DataTable extends Components.ContextComponent
 
         this.state = {
             tableData: [],
-            showNumberOfRows: 10
+            showNumberOfRows: 10,
+            currentPosition: 0
         }
 
         this.handleAmountChange = this.handleAmountChange.bind(this);
@@ -52,6 +53,20 @@ class DataTable extends Components.ContextComponent
             showNumberOfRows: parseInt(event.target.value)
         });
     }
+
+    showPrevPage = () => 
+    {
+        this.setState({
+            currentPosition: this.state.currentPosition - this.state.showNumberOfRows
+        }) 
+    }
+    
+    showNextPage = () => 
+    {
+        this.setState({
+            currentPosition: this.state.currentPosition + this.state.showNumberOfRows
+        }) 
+    }
     
     componentDidMount = () => 
     {
@@ -71,34 +86,35 @@ class DataTable extends Components.ContextComponent
                     <div className="dataTableContent">
                         <table className="table table-striped table-hover table-bordered dataTableView">
                             <DataTableHeader headerData={this.transformData(tableData[0])}/>
-                            <DataTableBody tableData={tableData} numberOfRows={this.state.showNumberOfRows} position={0} />
+                            <DataTableBody tableData={tableData} numberOfRows={this.state.showNumberOfRows} position={this.state.currentPosition} />
                         </table>
                     </div>
                 }
                 <div className="dataTablePagination">
-                <div className="leftArrow">
-                    <i className="glyphicon glyphicon-chevron-left"></i>
-                </div>
-                <div className="showPosition">
-                    <span className="form-inline">
-                        <div className="form-group">
-                            <div className="input-group">
-                                <div className="input-group-addon">Page 1 - Showing</div>
-                                <select value={this.state.showNumberOfRows} onChange={this.handleAmountChange} className="form-control">
-                                    <option value={10}>10</option>
-                                    <option value={25}>25</option>
-                                    <option value={50}>50</option>
-                                    <option value={100}>100</option>
-                                </select>
-                                <div className="input-group-addon">/ {tableData.length}</div>
+                    <div className="leftArrow">
+                        <i className="glyphicon glyphicon-chevron-left" onClick={this.showPrevPage}></i>
+                    </div>
+                    <div className="showPosition">
+                        <span className="form-inline">
+                            <div className="form-group">
+                                <div className="input-group">
+                                    <div className="input-group-addon"><b>Page 1 of {tableData.length / this.state.showNumberOfRows}</b> ({this.state.currentPosition + 1}- {this.state.currentPosition + this.state.showNumberOfRows})</div>
+                                    <select value={this.state.showNumberOfRows} onChange={this.handleAmountChange} className="form-control">
+                                        <option value={10}>10</option>
+                                        <option value={25}>25</option>
+                                        <option value={50}>50</option>
+                                        <option value={100}>100</option>
+                                        <option value={250}>250</option>
+                                    </select>
+                                    <div className="input-group-addon">/ {tableData.length}</div>
+                                </div>
                             </div>
-                        </div>
-                    </span>
+                        </span>
+                    </div>
+                    <div className="rightArrow">
+                        <i className="glyphicon glyphicon-chevron-right" onClick={this.showNextPage}></i>
+                    </div>
                 </div>
-                <div className="rightArrow">
-                    <i className="glyphicon glyphicon-chevron-right"></i>
-                </div>
-            </div>
             </div>
         );
     }
