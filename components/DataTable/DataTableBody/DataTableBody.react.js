@@ -19,8 +19,7 @@ class DataTableBody extends Components.ContextComponent
         super(props);
 
         this.state = {
-            position: this.props.position || 0,
-            numberOfRows: this.props.numberOfRows || 10
+            position: this.props.position || 0
         }
     }
 
@@ -33,7 +32,7 @@ class DataTableBody extends Components.ContextComponent
                 {
                     tableData.map((row, i) => 
                     {
-                        if(i >= this.state.position && i < (this.state.position + this.state.numberOfRows))
+                        if(i >= this.state.position && i < (this.state.position + this.props.numberOfRows))
                         {
                             return(
                                 <DataTableRow key={i} rowNum={i} rowData={row} isLocked={i === 2 ? true : false}/>  

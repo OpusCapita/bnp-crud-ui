@@ -49,7 +49,7 @@ class DataTable extends Components.ContextComponent
     handleAmountChange = (event) => 
     {
         this.setState({
-            showNumberOfRows: event.target.value
+            showNumberOfRows: parseInt(event.target.value)
         });
     }
     
@@ -62,7 +62,7 @@ class DataTable extends Components.ContextComponent
     {
         const tableData = this.state.tableData;
 
-        console.log(tableData);
+        console.log(this.state.showNumberOfRows);
 
         return(
             <div className="dataTableArea">
