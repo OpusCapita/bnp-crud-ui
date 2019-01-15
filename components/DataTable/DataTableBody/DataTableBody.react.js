@@ -36,7 +36,7 @@ class DataTableBody extends Components.ContextComponent
                         if(i >= this.state.position && i < (this.state.position + this.state.amount))
                         {
                             return(
-                                <DataTableRow key={i} rowNum={i} rowData={row} />  
+                                <DataTableRow key={i} rowNum={i} rowData={row} isLocked={i === 2 ? true : false}/>  
                             )
                         }
                     })

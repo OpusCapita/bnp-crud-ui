@@ -22,7 +22,9 @@ class DataTableHeader extends Components.ContextComponent
                     {
                         rowDataFields.map((data, i) => {
                             return (
-                                <th key={i}>{data.field}</th>
+                                <th key={i}>
+                                    {data.field}
+                                </th>
                             )
                         }) 
                     }

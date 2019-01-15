@@ -60,6 +60,15 @@
     height: 20px;
     min-height: 10px;
 }
+.dataTableRow.active,
+.dataTableRow.active td {
+    color: lightgrey;
+    background: #f5f5f5 !important;
+}
+.dataTableRow.active:hover,
+.dataTableRow.active:hover td {
+    background: #f5f5f5 !important;
+}
 
 /* TABLE COLUMN */
 .dataTableColumn {
@@ -68,7 +77,7 @@
 
 /* TABLE HEADER */
 .dataTableHeader {
-
+    position: relative;
 }
 .dataTableHeader .num {
     text-align: center;
@@ -83,7 +92,29 @@
 .dataTablePagination {
 
 }
-
+.dataTablePagination .form-control{
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+.dataTablePagination .leftArrow,
+.dataTablePagination .showPosition,
+.dataTablePagination .rightArrow {
+    display: inline-block;
+}
+[class*="Arrow"] {
+    height: 34px;
+    width: 34px;
+    text-align: center;
+    line-height: 30px;
+    color: #777;
+}
+[class*="Arrow"]:hover {
+    color: #000;
+    cursor: pointer;
+}
 
 
 
@@ -116,21 +147,5 @@
     height: 50px;
     display: block;
     border-top: 1px solid #e1e1e8;
-}
-.dataTablePagination .leftArrow,
-.dataTablePagination .showPosition,
-.dataTablePagination .rightArrow {
-    display: inline-block;
-}
-[class*="Arrow"] {
-    height: 34px;
-    width: 34px;
-    text-align: center;
-    line-height: 30px;
-    color: #777;
-}
-[class*="Arrow"]:hover {
-    color: #000;
-    cursor: pointer;
 }
 */

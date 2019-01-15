@@ -20,16 +20,16 @@ class DataTableColumn extends Components.ContextComponent
         this.state = 
         {
             editable: this.props.editable || false,
-            disabled: false,
+            disabled: this.props.disabled || false,
             originalContent: this.props.content,
-            field: ''
+            fieldType: ''
         }
     }
 
     componentDidMount () 
     {
         this.setState({
-            fieldType: this.props.field
+            fieldType: this.props.fieldType
         })
     }
 
