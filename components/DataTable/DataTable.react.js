@@ -5,7 +5,6 @@ import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableBody from './DataTableBody';
 import DataTableHeader from './DataTableHeader';
-import DataTableSearchBar from './DataTableSearchBar';
 
 import './DataTable.css';
 //import './BootstrapOverwrite.css';
@@ -16,7 +15,8 @@ class DataTable extends Components.ContextComponent
     {
         super(props);
 
-        this.state = {
+        this.state = 
+        {
             tableData: [],
             showNumberOfRows: 10,
             currentPosition: 0,
@@ -42,9 +42,14 @@ class DataTable extends Components.ContextComponent
     transformData = (content) => 
     {
         let result = [];
-        for(let field in content) {
-            result.push({field, value: (content[field] || "").toString()});
+
+        for(let field in content) 
+        {
+            result.push({
+                field, value: (content[field] || "").toString()
+            });
         }
+
         return result;
     }
 
@@ -83,12 +88,20 @@ class DataTable extends Components.ContextComponent
 
         return (
             <div className="dataTablePagination">
-                <div className="leftArrow">
-                    {
-                        (Math.min(tableLength, Math.max(position, 0)) > 0) &&
-                        <i className="glyphicon glyphicon-chevron-left" onClick={this.showPrevPage}></i>
-                    }
-                </div>
+                {
+                    (Math.min(tableLength, Math.max(position, 0)) > 0) ? 
+                    (
+                        <div className="leftArrow" onClick={this.showPrevPage}>
+                            <i className="glyphicon glyphicon-chevron-left"></i>
+                        </div>
+                    )
+                    :
+                    (
+                        <div className="rightArrow inactive">
+                            <i className="glyphicon glyphicon-chevron-left"></i>
+                        </div>
+                    )
+                }
                 <div className="showPosition">
                     <span className="form-inline">
                         <div className="form-group">
@@ -100,7 +113,11 @@ class DataTable extends Components.ContextComponent
                                     </span>
                                 </div>
 
-                                <select value={shownRows} onChange={this.handleAmountChange} className="form-control">
+                                <select 
+                                    className="form-control"
+                                    value={shownRows} 
+                                    onChange={this.handleAmountChange} 
+                                >
                                     <option value={10}>10</option>
                                     <option value={25}>25</option>
                                     <option value={50}>50</option>
@@ -113,19 +130,27 @@ class DataTable extends Components.ContextComponent
                         </div>
                     </span>
                 </div>
-                <div className="rightArrow">
                 {
-                    (Math.min(tableLength, Math.max(maxPosition, 0)) < (tableLength)) &&
-                    <i className="glyphicon glyphicon-chevron-right" onClick={this.showNextPage}></i>
+                    (Math.min(tableLength, Math.max(maxPosition, 0)) < (tableLength)) ? 
+                    (
+                        <div className="rightArrow" onClick={this.showNextPage}>
+                            <i className="glyphicon glyphicon-chevron-right" ></i>
+                        </div>
+                    )
+                    :
+                    (
+                        <div className="rightArrow inactive">
+                            <i className="glyphicon glyphicon-chevron-right"></i>
+                        </div>
+                    )
                 }
-                </div>
             </div>
         );
 
     }
     
     componentDidMount = () => 
-    {   
+    {
         this.loadData();
     }
 
@@ -134,13 +159,19 @@ class DataTable extends Components.ContextComponent
         const tableData = this.state.tableData;
 
         return(
-            <div className="dataTableArea">
-                <DataTableSearchBar />
+            <div className="dataTableContainer">
+                {/*<DataTableSearchBar />*/}
                 {
                     <div className="dataTableContent">
                         <table className="table table-striped table-hover table-bordered dataTableView">
-                            <DataTableHeader headerData={this.transformData(tableData[0])}/>
-                            <DataTableBody tableData={tableData} numberOfRows={this.state.showNumberOfRows} position={this.state.currentPosition} />
+                            <DataTableHeader 
+                                headerData={this.transformData(tableData[0])}
+                            />
+                            <DataTableBody 
+                                tableData={tableData} 
+                                numberOfRows={this.state.showNumberOfRows} 
+                                position={this.state.currentPosition} 
+                            />
                         </table>
                     </div>
                 }

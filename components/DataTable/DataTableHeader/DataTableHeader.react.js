@@ -20,7 +20,8 @@ class DataTableHeader extends Components.ContextComponent
                     <th></th>
                     <th className="num">#</th>
                     {
-                        rowDataFields.map((data, i) => {
+                        rowDataFields.map((data, i) => 
+                        {
                             return (
                                 <th key={i}>
                                     {data.field}

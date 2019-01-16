@@ -15,7 +15,12 @@ class DataTableSearchBar extends Components.ContextComponent
         return(
             <div className="form-inline">
                 <div className="form-group">
-                    <input type="text" className="form-control" id="searchbar" placeholder="Search for..." />
+                    <input 
+                        type="text" 
+                        className="form-control" 
+                        id="searchbar" 
+                        placeholder="Search for..."
+                    />
                 </div>
             </div>
         )

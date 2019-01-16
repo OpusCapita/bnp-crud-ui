@@ -14,11 +14,12 @@ import DataTableRow from '../DataTableRow';
 
 class DataTableBody extends Components.ContextComponent
 {
-    constructor(props, context)
+    constructor(props)
     {
         super(props);
 
-        this.state = {
+        this.state = 
+        {
             position: this.props.position || 0
         }
     }
@@ -35,7 +36,12 @@ class DataTableBody extends Components.ContextComponent
                         if(i >= this.props.position && i < (this.props.position + this.props.numberOfRows))
                         {
                             return(
-                                <DataTableRow key={i} rowNum={i} rowData={row} isLocked={i === 2 ? true : false}/>  
+                                <DataTableRow 
+                                    key={i} 
+                                    rowNum={i} 
+                                    rowData={row} 
+                                    isLocked={i === 2 ? true : false}
+                                />  
                             )
                         }
                     })

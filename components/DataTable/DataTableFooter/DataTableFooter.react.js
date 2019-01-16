@@ -16,7 +16,7 @@ class DataTableFooter extends Components.ContextComponent
     {
         return(
             <section className="dataTableFooter">
-                <DataTablePagination />
+                {/* Pagination goes here... */}
             </section>
         )
     }

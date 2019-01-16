@@ -1,9 +1,4 @@
-/* TABLE MENU */
-.dataTableMenu {
-
-}
-
-/* TABLE AREA */
+/* TABLE CONTAINER */
 .dataTableContainer {
     
 }
@@ -17,8 +12,9 @@
 }
 
 /* TABLE VIEW */
-.dataTableArea {
-
+.dataTableView {
+    table-layout: auto !important;
+    position: relative;
 }
 
 /* TABLE BODY */
@@ -56,8 +52,8 @@
 }
 .dataTableRow .form-control-static {
     padding-left: 13px;
-    padding-top: 7px !important;
-    height: 20px;
+    padding-top: 8px !important;
+    height: 24px;
     min-height: 10px;
 }
 .dataTableRow.active,
@@ -68,6 +64,7 @@
 .dataTableRow.active:hover,
 .dataTableRow.active:hover td {
     background: #f5f5f5 !important;
+    cursor: default;
 }
 
 /* TABLE COLUMN */
@@ -115,6 +112,11 @@
     color: #000;
     cursor: pointer;
 }
+[class*="Arrow"].inactive,
+[class*="Arrow"].inactive:hover {
+    color: #ccc;
+    cursor: default;
+}
 
 
 
@@ -126,19 +128,11 @@
 
 
 /*
-.dataTableView {
-    table-layout: auto !important;
-    position: relative;
-}
 .dataTableBody {
     position: relative;
     display: block;
     z-index: -1000;
     padding-top: 37px;
-}
-.dataTableHeader {
-    position: fixed;
-    background: white;
 }
 .dataTableFooter {
     position: fixed;

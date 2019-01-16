@@ -22,14 +22,16 @@ class DataTableColumn extends Components.ContextComponent
             editable: this.props.editable || false,
             disabled: this.props.disabled || false,
             originalContent: this.props.content,
+            currentContent: '',
             fieldType: ''
         }
     }
 
-    componentDidMount () 
+    componentDidMount = () =>
     {
         this.setState({
-            fieldType: this.props.fieldType
+            fieldType: this.props.fieldType,
+            currentContent: this.props.content
         })
     }
 
@@ -49,19 +51,48 @@ class DataTableColumn extends Components.ContextComponent
         return status;
     }
 
+    checkIfHasBeenEdited = (event) => 
+    {
+        if(this.state.fieldType === "id" && event.target.value == '')
+        {
+            this.props.columnError();
+        }
+        else
+        {
+            this.props.columnEdited();
+        }
+
+        if(event.target.value !== this.state.originalContent)
+        {
+            this.state.currentContent = event.target.value
+        }
+    }
+
     render()
     {
+        let content = this.props.content;
 
-        const content = this.props.content;
+        if(this.state.currentContent !== this.state.originalContent) 
+        {
+            content = this.state.currentContent;
+        }
+
         return(
             <td className="dataTableColumn">
                 {
                     (this.props.editable === true && this.checkIfShouldBeDisabled() === true) &&
-                    <input type="text" className="form-control" defaultValue={content} onChange={this.props.columnEdited} />
+                    <input 
+                        type="text" 
+                        className="form-control" 
+                        defaultValue={content} 
+                        onChange={this.checkIfHasBeenEdited} 
+                    />
                 }
                 {
                     (this.props.editable === false || this.checkIfShouldBeDisabled() === false) &&
-                    <p className="form-control-static">{content}</p>
+                    <p className="form-control-static">
+                        {content}
+                    </p>
                 }
             </td>
         )
