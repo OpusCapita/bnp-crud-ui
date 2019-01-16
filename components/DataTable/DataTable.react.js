@@ -6,6 +6,7 @@ import { Components } from '@opuscapita/service-base-ui';
 import DataTableBody from './DataTableBody';
 import DataTableHeader from './DataTableHeader';
 import DataTableSearchBar from './DataTableSearchBar';
+import DataTablePaginationButton from './DataTablePaginationButton';
 
 import './DataTable.css';
 //import './BootstrapOverwrite.css';
@@ -77,7 +78,7 @@ class DataTable extends Components.ContextComponent
         }) 
     }
 
-    showCurrentPage = (tableLength) => 
+    renderPagination = (tableLength) => 
     {
         const shownRows = this.state.showNumberOfRows;
         const position = this.state.currentPosition;
@@ -89,6 +90,7 @@ class DataTable extends Components.ContextComponent
 
         return (
             <div className="dataTablePagination">
+                {/* <DataTablePaginationButton tableLength={tableLength} currentPosition={this.state.currentPosition}/> */}
                 {
                     (Math.min(tableLength, Math.max(position, 0)) > 0) ? 
                     (
@@ -178,7 +180,7 @@ class DataTable extends Components.ContextComponent
                         </table>
                     </div>
                 }
-                {this.showCurrentPage(tableData.length)}
+                {this.renderPagination(tableData.length)}
             </div>
         );
     }
