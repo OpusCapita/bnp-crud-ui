@@ -39,7 +39,7 @@ class DataTableColumn extends Components.ContextComponent
     {
         let status = '';
 
-        if(this.state.fieldType === "status")
+        if(this.state.fieldType === "status" || this.state.fieldType === "id")
         {
             status = false
         }
@@ -53,7 +53,7 @@ class DataTableColumn extends Components.ContextComponent
 
     checkIfHasBeenEdited = (event) => 
     {
-        if(this.state.fieldType === "id" && event.target.value == '')
+        if(this.state.fieldType === "customerId" && event.target.value == '')
         {
             this.props.columnError();
         }
@@ -85,7 +85,7 @@ class DataTableColumn extends Components.ContextComponent
                         type="text" 
                         className="form-control" 
                         defaultValue={content} 
-                        onChange={this.checkIfHasBeenEdited} 
+                        onChange={this.checkIfHasBeenEdited}
                     />
                 }
                 {

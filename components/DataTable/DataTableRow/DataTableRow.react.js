@@ -2,7 +2,18 @@
     DataTableRow
     --------------------------------------------------------------
     - Rendering of DataTableColumns according to current row, and its options
+    - Check for error in all DataTableColumn childs
     - Determining usage state of current row
+
+    row states:
+    | name        | color     | class     |
+    |-------------------------------------|
+    | saved       | green     | success   |
+    | error       | red       | danger    |
+    | active      | blue      | info      |
+    | edited      | yellow    | warning   |
+    | locked      | grey      | active    |
+    | default     | white     | default   |
 */
 
 import React, { Component } from 'react';
@@ -65,18 +76,6 @@ class DataTableRow extends Components.ContextComponent
 
     changeRowEditState = (state) =>
     {
-
-        /* row states:
-        name        | color     | class
-        ---------------------------------
-        saved       | green     | success
-        error       | red       | danger
-        active      | blue      | info
-        edited      | yellow    | warning
-        locked      | grey      | active
-        default     | white     | default
-        */
-
         switch(state) 
         {
             case 'saved':
@@ -100,7 +99,7 @@ class DataTableRow extends Components.ContextComponent
           }
     }
 
-    onColumnEdited = (event) =>
+    onColumnEdited = () =>
     {
         this.changeRowEditState("edited");
 
@@ -109,7 +108,7 @@ class DataTableRow extends Components.ContextComponent
         })
     }
 
-    onColumnError = (event) =>
+    onColumnError = () =>
     {
         this.changeRowEditState("error");
 
@@ -149,27 +148,26 @@ class DataTableRow extends Components.ContextComponent
                 }
                 </td>
                 <td className="num">
-                    {
-                        (this.props.rowNum + 1)
-                    }
-                </td>
                 {
-                    rowDataFields.map((data, i) => 
-                    {
-                        return (
-                            <DataTableColumn 
-                                key={i} 
-                                content={data.value} 
-                                fieldType={data.field} 
-                                locked={false} 
-                                editable={this.state.isSelected ? false : true} 
-                                columnEdited={this.onColumnEdited.bind(this)} 
-                                columnError={this.onColumnError.bind(this)} 
-                            />
-                        )
-                    }) 
+                    (this.props.rowNum + 1)
                 }
-
+                </td>
+            {
+                rowDataFields.map((data, i) => 
+                {
+                    return (
+                        <DataTableColumn 
+                            key={i}
+                            content={data.value}
+                            fieldType={data.field}
+                            locked={false}
+                            editable={this.state.isSelected ? false : true}
+                            columnEdited={this.onColumnEdited.bind(this)}
+                            columnError={this.onColumnError.bind(this)}
+                        />
+                    )
+                }) 
+            }
             </tr>
         )
     }

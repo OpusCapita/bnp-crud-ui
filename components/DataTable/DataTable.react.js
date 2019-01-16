@@ -5,6 +5,7 @@ import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableBody from './DataTableBody';
 import DataTableHeader from './DataTableHeader';
+import DataTableSearchBar from './DataTableSearchBar';
 
 import './DataTable.css';
 //import './BootstrapOverwrite.css';
@@ -160,10 +161,12 @@ class DataTable extends Components.ContextComponent
 
         return(
             <div className="dataTableContainer">
-                {/*<DataTableSearchBar />*/}
+                <DataTableSearchBar />
                 {
                     <div className="dataTableContent">
-                        <table className="table table-striped table-hover table-bordered dataTableView">
+                        <table 
+                            className={`table ${this.props.striped ? 'table-striped' : ''} table-hover table-bordered dataTableView`}
+                        >
                             <DataTableHeader 
                                 headerData={this.transformData(tableData[0])}
                             />

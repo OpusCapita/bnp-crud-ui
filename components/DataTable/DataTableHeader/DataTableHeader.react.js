@@ -18,12 +18,12 @@ class DataTableHeader extends Components.ContextComponent
             <thead className={`dataTableHeader`}>
                 <tr>
                     <th></th>
-                    <th className="num">#</th>
+                    <th className={"num ascd"}>#</th>
                     {
                         rowDataFields.map((data, i) => 
                         {
                             return (
-                                <th key={i}>
+                                <th key={i}s>
                                     {data.field}
                                 </th>
                             )

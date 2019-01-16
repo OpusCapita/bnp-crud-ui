@@ -11,7 +11,10 @@ class Main extends Components.ContextComponent
         const url = '/user/api/users';
 
         return(
-            <DataTable dataUrl={url}/>
+            <DataTable 
+                dataUrl={url}
+                striped={true}
+            />
         );
     }
 }

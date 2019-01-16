@@ -21,6 +21,8 @@ class DataTableSearchBar extends Components.ContextComponent
                         id="searchbar" 
                         placeholder="Search for..."
                     />
+                    <br />
+                    <br />
                 </div>
             </div>
         )

@@ -79,6 +79,29 @@
 .dataTableHeader .num {
     text-align: center;
 }
+.dataTableHeader tr th:hover {
+    color: #777;
+    cursor: pointer;
+}
+.dataTableHeader tr th.ascd {
+    background: #ddd;
+}
+.dataTableHeader tr th.ascd:before {
+    content: '▲';
+    width: 20px;
+    font-size: 10px;
+    height: 20px;
+    position: relative;
+    margin-right: 5px;
+}
+.dataTableHeader tr th.desc:before {
+    content: '▼';
+    width: 20px;
+    font-size: 10px;
+    height: 20px;
+    position: relative;
+    margin-right: 5px;
+}
 
 /* TABLE FOOTER */
 .dataTableFooter {
