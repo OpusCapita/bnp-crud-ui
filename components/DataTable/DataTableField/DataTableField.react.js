@@ -1,17 +1,17 @@
 /* 
-    DataTableColumn
+    DataTableField
     --------------------------------------------------------------
-    - Rendering of DataTableColumn content
-    - Determining if DataTableColumn should be shown
-    - Determining if DataTableColumn should be editable
-    - Determining if DataTableColumn should be disabled
+    - Rendering of DataTableField content
+    - Determining if DataTableField should be shown
+    - Determining if DataTableField should be editable
+    - Determining if DataTableField should be disabled
 */
 
 import React, { Component } from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
 
-class DataTableColumn extends Components.ContextComponent
+class DataTableField extends Components.ContextComponent
 {
     constructor(props)
     {
@@ -99,4 +99,4 @@ class DataTableColumn extends Components.ContextComponent
     }
 }
 
-export default DataTableColumn;
+export default DataTableField;

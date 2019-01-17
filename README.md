@@ -8,12 +8,12 @@
 - Connect component to API for deleting
 
 ### TABLE:
-- Make columns changable ✓
-- Show changes in columns ✓
-- Show if column has been edited ✓
-- Show if column has errors ✓
+- Make fields changable ✓
+- Show changes in fields ✓
+- Show if fields has been edited ✓
+- Show if fields has errors ✓
 - Make table rows selectable ✓
-- Lock predefined columns ✓
+- Lock predefined fields ✓
 - Lock predefined rows ✓
 - Make table scrollable ✓
 - Make header fixed

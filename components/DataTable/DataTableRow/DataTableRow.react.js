@@ -1,8 +1,8 @@
 /* 
     DataTableRow
     --------------------------------------------------------------
-    - Rendering of DataTableColumns according to current row, and its options
-    - Check for error in all DataTableColumn childs
+    - Rendering of DataTableField according to current row, and its options
+    - Check for error in all DataTableField childs
     - Determining usage state of current row
 
     row states:
@@ -20,7 +20,7 @@ import React, { Component } from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
 
-import DataTableColumn from '../DataTableColumn';
+import DataTableField from '../DataTableField';
 
 class DataTableRow extends Components.ContextComponent
 {
@@ -156,7 +156,7 @@ class DataTableRow extends Components.ContextComponent
                 rowDataFields.map((data, i) => 
                 {
                     return (
-                        <DataTableColumn 
+                        <DataTableField 
                             key={i}
                             content={data.value}
                             fieldType={data.field}
