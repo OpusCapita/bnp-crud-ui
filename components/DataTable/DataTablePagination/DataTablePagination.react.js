@@ -49,6 +49,21 @@ class DataTablePagination extends Components.ContextComponent
         this.props.nextButtonClicked();
     }
 
+    shownRowsOptions = () =>
+    {
+        let options = [];
+
+        for(let i = 25; i < this.props.tableLength; i*=2)
+        {
+            options.push( <option key={i} value={i}>{i}</option>);
+        }
+
+        options.unshift(<option key={0} value={10}>10</option>);
+        options.push(<option key={99999} value={this.props.tableLength}>All</option>);
+        
+        return options;
+    }
+
     render()
     {
         const tableLength = this.props.tableLength;
@@ -82,11 +97,7 @@ class DataTablePagination extends Components.ContextComponent
                                     value={shownRows} 
                                     onChange={this.onShownRowsChanged}
                                 >
-                                    <option value={10}>10</option>
-                                    <option value={25}>25</option>
-                                    <option value={50}>50</option>
-                                    <option value={100}>100</option>
-                                    <option value={250}>250</option>
+                                    {this.shownRowsOptions()}
                                 </select>
 
                                 <div className="input-group-addon">/ {tableLength}</div>

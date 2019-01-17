@@ -133,7 +133,7 @@ class DataTableRow extends Components.ContextComponent
 
     render()
     {
-        let rowDataFields = this.getFields();
+        const rowDataFields = this.getFields();
 
         return(
             <tr className={`dataTableRow ${this.state.rowStateClass} ${this.state.isLocked ? 'unselectable' : ''}`}>

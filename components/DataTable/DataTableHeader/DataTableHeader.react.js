@@ -12,7 +12,7 @@ class DataTableHeader extends Components.ContextComponent
 {
     render()
     {
-        let rowDataFields = this.props.headerData;
+        const rowDataFields = this.props.headerData;
         
         return(
             <thead className={`dataTableHeader unselectable`}>

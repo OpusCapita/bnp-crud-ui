@@ -26,7 +26,7 @@ class DataTableBody extends Components.ContextComponent
 
     render()
     {
-        let tableData = this.props.tableData;
+        const tableData = this.props.tableData;
 
         return(
             <tbody className="dataTableBody">
