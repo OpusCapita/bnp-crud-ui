@@ -7,12 +7,13 @@
 import React, { Component } from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
+import translations from '../i18n';
 
 import DataTablePaginationButton from '../DataTablePaginationButton';
 
 class DataTablePagination extends Components.ContextComponent
 {
-    constructor(props)
+    constructor(props, context)
     {
         super(props);
 
@@ -20,6 +21,8 @@ class DataTablePagination extends Components.ContextComponent
             shownRowsAmount: this.props.shownRowsAmount,
             currentPage: 1
         }
+
+        context.i18n.register('CrudUI', translations);
     }
 
     onShownRowsChanged = (event) => 
@@ -66,6 +69,8 @@ class DataTablePagination extends Components.ContextComponent
 
     render()
     {
+        const { i18n } = this.context;
+        
         const tableLength = this.props.tableLength;
         const shownRows = this.state.shownRowsAmount;
         const currentPosition = this.props.currentPosition;
@@ -88,7 +93,7 @@ class DataTablePagination extends Components.ContextComponent
                             <div className="input-group">
                                 <div className="input-group-addon">
                                     <span>
-                                        <b>Page {currentPage} of {availiblePages}</b>&nbsp;
+                                        <b>{i18n.getMessage('CrudUI.Pagination.Page')} {currentPage} of {availiblePages}</b>&nbsp;
                                         ({minPosition} - {maxPosition})
                                     </span>
                                 </div>

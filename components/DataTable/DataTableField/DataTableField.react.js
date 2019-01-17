@@ -39,7 +39,7 @@ class DataTableField extends Components.ContextComponent
     {
         let status = '';
 
-        if(this.state.fieldType === "status" || this.state.fieldType === "id")
+        if(this.state.fieldType === "status" || this.state.fieldType === "id" || this.state.fieldType === "profile")
         {
             status = false
         }
