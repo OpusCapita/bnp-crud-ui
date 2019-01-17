@@ -136,7 +136,7 @@ class DataTableRow extends Components.ContextComponent
         let rowDataFields = this.getFields();
 
         return(
-            <tr className={`dataTableRow ${this.state.rowStateClass}`}>
+            <tr className={`dataTableRow ${this.state.rowStateClass} ${this.state.isLocked ? 'unselectable' : ''}`}>
                 <td className="selector">
                 {
                     (this.state.isLocked === false) &&

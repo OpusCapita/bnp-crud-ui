@@ -10,11 +10,7 @@ class Test extends Components.ContextComponent
 {
     render()
     {
-        return(
-            <div>
-                <Main />
-            </div>
-        );
+        return <Main />;
     }
 }
 

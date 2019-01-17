@@ -15,7 +15,7 @@ class DataTableHeader extends Components.ContextComponent
         let rowDataFields = this.props.headerData;
         
         return(
-            <thead className={`dataTableHeader`}>
+            <thead className={`dataTableHeader unselectable`}>
                 <tr>
                     <th></th>
                     <th className={"num ascd"}>#</th>

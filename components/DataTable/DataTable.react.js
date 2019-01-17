@@ -6,7 +6,7 @@ import { Components } from '@opuscapita/service-base-ui';
 import DataTableBody from './DataTableBody';
 import DataTableHeader from './DataTableHeader';
 import DataTableSearchBar from './DataTableSearchBar';
-import DataTablePaginationButton from './DataTablePaginationButton';
+import DataTablePagination from './DataTablePagination';
 
 import './DataTable.css';
 //import './BootstrapOverwrite.css';
@@ -21,8 +21,7 @@ class DataTable extends Components.ContextComponent
         {
             tableData: [],
             showNumberOfRows: 10,
-            currentPosition: 0,
-            currentPage: 1
+            currentPosition: 0
         }
 
         this.handleAmountChange = this.handleAmountChange.bind(this);
@@ -66,7 +65,6 @@ class DataTable extends Components.ContextComponent
     {
         this.setState({
             currentPosition: this.state.currentPosition - this.state.showNumberOfRows,
-            currentPage: this.state.currentPage - 1
         }) 
     }
     
@@ -74,82 +72,7 @@ class DataTable extends Components.ContextComponent
     {
         this.setState({
             currentPosition: this.state.currentPosition + this.state.showNumberOfRows,
-            currentPage: this.state.currentPage + 1
         }) 
-    }
-
-    renderPagination = (tableLength) => 
-    {
-        const shownRows = this.state.showNumberOfRows;
-        const position = this.state.currentPosition;
-
-        let minPosition = this.state.currentPosition + 1;
-        let maxPosition = this.state.currentPosition + this.state.showNumberOfRows;
-        
-        let numberOfAvailiblePages = tableLength / this.state.showNumberOfRows;
-
-        return (
-            <div className="dataTablePagination">
-                {/* <DataTablePaginationButton tableLength={tableLength} currentPosition={this.state.currentPosition}/> */}
-                {
-                    (Math.min(tableLength, Math.max(position, 0)) > 0) ? 
-                    (
-                        <div className="leftArrow" onClick={this.showPrevPage}>
-                            <i className="glyphicon glyphicon-chevron-left"></i>
-                        </div>
-                    )
-                    :
-                    (
-                        <div className="rightArrow inactive">
-                            <i className="glyphicon glyphicon-chevron-left"></i>
-                        </div>
-                    )
-                }
-                <div className="showPosition">
-                    <span className="form-inline">
-                        <div className="form-group">
-                            <div className="input-group">
-                                <div className="input-group-addon">
-                                    <span>
-                                        <b>Page {this.state.currentPage} of {numberOfAvailiblePages}</b>&nbsp;
-                                        ({minPosition} - {maxPosition})
-                                    </span>
-                                </div>
-
-                                <select 
-                                    className="form-control"
-                                    value={shownRows} 
-                                    onChange={this.handleAmountChange} 
-                                >
-                                    <option value={10}>10</option>
-                                    <option value={25}>25</option>
-                                    <option value={50}>50</option>
-                                    <option value={100}>100</option>
-                                    <option value={250}>250</option>
-                                </select>
-
-                                <div className="input-group-addon">/ {tableLength}</div>
-                            </div>
-                        </div>
-                    </span>
-                </div>
-                {
-                    (Math.min(tableLength, Math.max(maxPosition, 0)) < (tableLength)) ? 
-                    (
-                        <div className="rightArrow" onClick={this.showNextPage}>
-                            <i className="glyphicon glyphicon-chevron-right" ></i>
-                        </div>
-                    )
-                    :
-                    (
-                        <div className="rightArrow inactive">
-                            <i className="glyphicon glyphicon-chevron-right"></i>
-                        </div>
-                    )
-                }
-            </div>
-        );
-
     }
     
     componentDidMount = () => 
@@ -180,7 +103,15 @@ class DataTable extends Components.ContextComponent
                         </table>
                     </div>
                 }
-                {this.renderPagination(tableData.length)}
+                <DataTablePagination 
+                    tableLength={tableData.length}
+                    shownRowsAmount={this.state.showNumberOfRows}
+                    currentPosition={this.state.currentPosition}
+                    currentPage={this.state.currentPage}
+                    prevButtonClicked={this.showPrevPage.bind(this)}
+                    nextButtonClicked={this.showNextPage.bind(this)}
+                    shownRowsAmountChanged={this.handleAmountChange.bind(this)}
+                />
             </div>
         );
     }
