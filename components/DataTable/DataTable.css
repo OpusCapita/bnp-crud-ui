@@ -67,9 +67,37 @@
     cursor: default;
 }
 
-/* TABLE COLUMN */
-.dataTableColumn {
+/* TABLE FIELD */
+.dataTableField {
+    position: relative;
+}
 
+.dataTableField.edited:before {
+    content: '';
+    border-top: 5px solid #f0ad4e;
+    border-right: 5px solid #f0ad4e;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    top: 0;
+    right: 0;
+}
+
+.dataTableField.error:before {
+    content: '';
+    border-top: 5px solid #d9534f;
+    border-right: 5px solid #d9534f;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent;
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    top: 0;
+    right: 0;
 }
 
 /* TABLE HEADER */

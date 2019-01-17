@@ -13,14 +13,24 @@ import { Components } from '@opuscapita/service-base-ui';
 
 class DataTableField extends Components.ContextComponent
 {
+    static defaultProps = 
+    {
+        editable: false,
+        disabled: false,
+        originalContent: [ ],
+        fieldType: ''
+    }
+    
     constructor(props)
     {
         super(props);
 
         this.state = 
         {
-            editable: this.props.editable || false,
-            disabled: this.props.disabled || false,
+            editable: this.props.editable,
+            disabled: this.props.disabled,
+            hasBeenEdited: false,
+            hasError: false,
             originalContent: this.props.content,
             currentContent: '',
             fieldType: ''
@@ -55,16 +65,24 @@ class DataTableField extends Components.ContextComponent
     {
         if(this.state.fieldType === "customerId" && event.target.value == '')
         {
+            this.setState({
+                hasError: true
+            });
+
             this.props.columnError();
         }
         else
         {
+
             this.props.columnEdited();
         }
 
         if(event.target.value !== this.state.originalContent)
         {
-            this.state.currentContent = event.target.value
+            this.setState({
+                currentContent: event.target.value,
+                hasBeenEdited: true
+            });
         }
     }
 
@@ -78,7 +96,7 @@ class DataTableField extends Components.ContextComponent
         }
 
         return(
-            <td className="dataTableColumn">
+            <td className={`dataTableField ${this.state.hasBeenEdited ? 'edited' : ''} ${this.state.hasError ? 'error' : ''}`}>
                 {
                     (this.props.editable === true && this.checkIfShouldBeDisabled() === true) &&
                     <input 

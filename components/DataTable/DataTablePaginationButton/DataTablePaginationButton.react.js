@@ -10,13 +10,18 @@ import { Components } from '@opuscapita/service-base-ui';
 
 class DataTablePaginationButton extends Components.ContextComponent
 {
+    static defaultProps = 
+    {
+        direction: 'prev'
+    }
+
     constructor(props)
     {
         super(props);
 
         this.state = 
         {
-            direction: 'prev' || this.props.direction // prev | next
+            direction: this.props.direction // prev | next
         }
     }
 

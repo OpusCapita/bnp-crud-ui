@@ -13,6 +13,11 @@ import DataTablePaginationButton from '../DataTablePaginationButton';
 
 class DataTablePagination extends Components.ContextComponent
 {
+    static defaultProps = 
+    {
+        shownRowsAmount: 10
+    }
+    
     constructor(props, context)
     {
         super(props);

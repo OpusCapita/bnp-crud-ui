@@ -24,6 +24,10 @@ import DataTableField from '../DataTableField';
 
 class DataTableRow extends Components.ContextComponent
 {
+    static defaultProps = 
+    {
+        isLocked: false
+    }
 
     constructor(props, context)
     {
@@ -33,7 +37,7 @@ class DataTableRow extends Components.ContextComponent
         {
             rowStateClass: '',
             isSelected: true,
-            isLocked: this.props.isLocked || false,
+            isLocked: this.props.isLocked,
             isEdited: false,
             isError: false,
             rowData: {}
@@ -56,7 +60,7 @@ class DataTableRow extends Components.ContextComponent
     {
         this.setState({isSelected: !this.state.isSelected});
 
-        if(this.state.isSelected === true && this.state.isEdited === false)
+        if((this.state.isSelected === true && this.state.isEdited === false) && this.state.isError === false) 
         {
             this.changeRowEditState("active");
         }
