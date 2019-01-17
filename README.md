@@ -1,6 +1,6 @@
 # bnp-crud-ui
 
-## Todo-list (Open for discussion)
+## Roadmap (Open for discussion)
 ### API:
 - Connect component to API for creating
 - Connect component to API for reading ✓
@@ -23,6 +23,4 @@
 - Make page-element-amount changable ✓
 - Previous and next page buttons ✓
 - Show current page ✓
-
-### FUNTIONALITY:
-- Create component for each section of dataTable
+- Create component for pagination ✓

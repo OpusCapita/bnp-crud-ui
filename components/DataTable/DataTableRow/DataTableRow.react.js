@@ -50,7 +50,7 @@ class DataTableRow extends Components.ContextComponent
         {
             this.changeRowEditState("locked");
         }
-    } 
+    }
 
     handleSelectionChange = (event) =>
     {
