@@ -1,19 +1,20 @@
 /* 
     DataTableRow
-    --------------------------------------------------------------
+    -----------------------------------------------------------------------
     - Rendering of DataTableField according to current row, and its options
     - Check for error in all DataTableField childs
     - Determining usage state of current row
 
-    row states:
-    | name        | color     | class     |
-    |-------------------------------------|
-    | saved       | green     | success   |
-    | error       | red       | danger    |
-    | active      | blue      | info      |
-    | edited      | yellow    | warning   |
-    | locked      | grey      | active    |
-    | default     | white     | default   |
+    ╔═╡ ROW STATES ╞═╤═════════════════╤═════════════════════╗
+    ║ state-name     │ state-color     │ bootstrap-class     ║
+    ╠════════════════╪═════════════════╪═════════════════════╣
+    ║ saved          │ green           │ success             ║
+    ║ error          │ red             │ danger              ║
+    ║ active         │ blue            │ info                ║
+    ║ edited         │ yellow          │ warning             ║
+    ║ locked         │ grey            │ active              ║
+    ║ default        │ white           │ default             ║
+    ╚════════════════╧═════════════════╧═════════════════════╝
 */
 
 import React, { Component } from 'react';
@@ -138,10 +139,11 @@ class DataTableRow extends Components.ContextComponent
     render()
     {
         const rowDataFields = this.getFields();
+        const rowNum = this.props.rowNum;
 
         return(
             <tr className={`dataTableRow ${this.state.rowStateClass} ${this.state.isLocked ? 'unselectable' : ''}`}>
-                <td className="selector">
+                <td id={`field_${rowNum}-0`} className="selector">
                 {
                     (this.state.isLocked === false) &&
                     <input 
@@ -151,7 +153,7 @@ class DataTableRow extends Components.ContextComponent
                     />
                 }
                 </td>
-                <td className="num">
+                <td id={`field_${rowNum}-1`} className="num">
                 {
                     (this.props.rowNum + 1)
                 }
@@ -162,6 +164,8 @@ class DataTableRow extends Components.ContextComponent
                     return (
                         <DataTableField 
                             key={i}
+                            rowNum={rowNum}
+                            fieldNum={i}
                             content={data.value}
                             fieldType={data.field}
                             locked={false}

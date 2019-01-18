@@ -1,6 +1,6 @@
 /* 
     DataTableField
-    --------------------------------------------------------------
+    --------------------------------------------------
     - Rendering of DataTableField content
     - Determining if DataTableField should be shown
     - Determining if DataTableField should be editable
@@ -89,6 +89,8 @@ class DataTableField extends Components.ContextComponent
     render()
     {
         let content = this.props.content;
+        const rowNum = this.props.rowNum;
+        const fieldNum = this.props.fieldNum;
 
         if(this.state.currentContent !== this.state.originalContent) 
         {
@@ -96,7 +98,7 @@ class DataTableField extends Components.ContextComponent
         }
 
         return(
-            <td className={`dataTableField ${this.state.hasBeenEdited ? 'edited' : ''} ${this.state.hasError ? 'error' : ''}`}>
+            <td id={`field_${rowNum}-${fieldNum + 2}`} className={`dataTableField ${this.state.hasBeenEdited ? 'edited' : ''} ${this.state.hasError ? 'error' : ''}`}>
                 {
                     (this.props.editable === true && this.checkIfShouldBeDisabled() === true) &&
                     <input 

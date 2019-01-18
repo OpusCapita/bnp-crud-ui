@@ -19,7 +19,9 @@
 
 /* TABLE BODY */
 .dataTableBody {
-
+    display: block;
+    position: relative;
+    margin-top: 37px;
 }
 
 /* TABLE ROW */
@@ -102,7 +104,11 @@
 
 /* TABLE HEADER */
 .dataTableHeader {
-    position: relative;
+    position: absolute;
+    z-index: 50000;
+    background: white;
+    border-top: 1px solid red;
+    margin-top: -1px;
 }
 .dataTableHeader .num {
     text-align: center;

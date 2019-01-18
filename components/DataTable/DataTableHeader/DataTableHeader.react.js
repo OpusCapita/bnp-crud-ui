@@ -1,12 +1,14 @@
 /* 
     DataTableHeader
-    --------------------------------------------------------------
+    ------------------------------------------
     - Rendering of Headers and sorting options
 */
 
 import React, { Component } from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
+
+import DataTableHeaderField from '../DataTableHeaderField';
 
 class DataTableHeader extends Components.ContextComponent
 {
@@ -17,15 +19,13 @@ class DataTableHeader extends Components.ContextComponent
         return(
             <thead className={`dataTableHeader unselectable`}>
                 <tr>
-                    <th></th>
-                    <th className={"num ascd"}>#</th>
+                    <DataTableHeaderField fieldNum={0} title={""} />
+                    <DataTableHeaderField fieldNum={1} title={"#"} />
                     {
                         rowDataFields.map((data, i) => 
                         {
                             return (
-                                <th key={i}>
-                                    {data.field}
-                                </th>
+                                <DataTableHeaderField key={i} fieldNum={i + 2} title={data.field} />
                             )
                         }) 
                     }

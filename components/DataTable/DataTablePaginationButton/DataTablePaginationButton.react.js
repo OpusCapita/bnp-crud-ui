@@ -1,6 +1,6 @@
 /* 
     DataTablePaginationButton
-    --------------------------------------------------------------
+    ----------------------------------------
     - Rendering of DataTablePaginationButton
 */
 

@@ -1,6 +1,6 @@
 /* 
     DataTableBody
-    --------------------------------------------------------------
+    ------------------------------------------------------------
     - Rendering of selected amount of DataTableRows
     - Sorting of DataTableRows
     - Showing element pages according to amount of DataTableRows
