@@ -16,7 +16,7 @@
 - Lock predefined fields ✓
 - Lock predefined rows ✓
 - Make table scrollable ✓
-- Make header fixed
+- Make header fixed ✓
 - Make table searchable
 
 ### PAGINATION:
