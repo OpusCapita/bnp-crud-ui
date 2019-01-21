@@ -43,8 +43,11 @@ class DataTableHeaderField extends Components.ContextComponent
         const headerFieldNumber = this.state.headerFieldNumber;
 
         return(
-            <th id={`header_${headerFieldNumber}`} style={this.handleWidth()}>
-                {headerFieldTitle}
+            <th id={`header_${headerFieldNumber}`} className="dataTableHeaderField" >
+                &nsbp;
+                <span>
+                    {headerFieldTitle}&nbsp;
+                </span>
             </th>
         )
     }

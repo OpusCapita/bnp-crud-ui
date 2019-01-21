@@ -61,17 +61,9 @@ class DataTableRow extends Components.ContextComponent
     {
         this.setState({isSelected: !this.state.isSelected});
 
-        if((this.state.isSelected === true && this.state.isEdited === false) && this.state.isError === false) 
+        if((this.state.isSelected === true)) 
         {
             this.changeRowEditState("active");
-        }
-        else if((this.state.isSelected === true || this.state.isSelected === false) && this.state.isEdited === true)
-        {
-            this.changeRowEditState("edited");
-        }
-        else if((this.state.isSelected === true || this.state.isSelected === false) && this.state.isError === true)
-        {
-            this.changeRowEditState("error");
         }
         else
         {
@@ -106,8 +98,6 @@ class DataTableRow extends Components.ContextComponent
 
     onColumnEdited = () =>
     {
-        this.changeRowEditState("edited");
-
         this.setState({
             isEdited: true
         })
@@ -115,8 +105,6 @@ class DataTableRow extends Components.ContextComponent
 
     onColumnError = () =>
     {
-        this.changeRowEditState("error");
-
         this.setState({
             isError: true
         })
@@ -143,7 +131,7 @@ class DataTableRow extends Components.ContextComponent
 
         return(
             <tr className={`dataTableRow ${this.state.rowStateClass} ${this.state.isLocked ? 'unselectable' : ''}`}>
-                <td id={`field_${rowNum}-0`} className="selector">
+                <td id={`field_${rowNum}-0`} className={`selector dataTableField`}>
                 {
                     (this.state.isLocked === false) &&
                     <input 
@@ -153,7 +141,7 @@ class DataTableRow extends Components.ContextComponent
                     />
                 }
                 </td>
-                <td id={`field_${rowNum}-1`} className="num">
+                <td id={`field_${rowNum}-1`} className={`num dataTableField`}>
                 {
                     (this.props.rowNum + 1)
                 }

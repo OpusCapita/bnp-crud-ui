@@ -18,7 +18,7 @@ class DataTableHeader extends Components.ContextComponent
         
         return(
             <thead className={`dataTableHeader unselectable`}>
-                <tr>
+                <tr className="dataTableHeaderRow">
                     <DataTableHeaderField fieldNum={0} title={""} />
                     <DataTableHeaderField fieldNum={1} title={"#"} />
                     {

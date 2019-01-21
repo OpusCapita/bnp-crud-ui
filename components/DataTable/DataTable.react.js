@@ -3,13 +3,12 @@ import request from 'superagent';
 
 import { Components } from '@opuscapita/service-base-ui';
 
+
 import DataTableBody from './DataTableBody';
 import DataTableHeader from './DataTableHeader';
-import DataTableSearchBar from './DataTableSearchBar';
 import DataTablePagination from './DataTablePagination';
 
 import './DataTable.css';
-//import './BootstrapOverwrite.css';
 
 class DataTable extends Components.ContextComponent
 {
@@ -85,8 +84,9 @@ class DataTable extends Components.ContextComponent
         const tableData = this.state.tableData;
 
         return(
-            <div className="dataTableContainer">
-                <DataTableSearchBar />
+            <div>
+            <section className="dataTableContainer">
+                {/* <DataTableSearchBar /> */}
                 {
                     <div className="dataTableContent">
                         <table 
@@ -103,16 +103,18 @@ class DataTable extends Components.ContextComponent
                         </table>
                     </div>
                 }
-                <DataTablePagination 
-                    tableLength={tableData.length}
-                    shownRowsAmount={this.state.showNumberOfRows}
-                    currentPosition={this.state.currentPosition}
-                    currentPage={this.state.currentPage}
-                    prevButtonClicked={this.showPrevPage.bind(this)}
-                    nextButtonClicked={this.showNextPage.bind(this)}
-                    shownRowsAmountChanged={this.handleAmountChange.bind(this)}
-                />
-            </div>
+        </section>
+        <br />
+        <DataTablePagination 
+            tableLength={tableData.length}
+            shownRowsAmount={this.state.showNumberOfRows}
+            currentPosition={this.state.currentPosition}
+            currentPage={this.state.currentPage}
+            prevButtonClicked={this.showPrevPage.bind(this)}
+            nextButtonClicked={this.showNextPage.bind(this)}
+            shownRowsAmountChanged={this.handleAmountChange.bind(this)}
+        />
+        </div>
         );
     }
 }
