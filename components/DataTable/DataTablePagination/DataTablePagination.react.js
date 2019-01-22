@@ -99,7 +99,8 @@ class DataTablePagination extends Components.ContextComponent
                                 <div className="input-group-addon">
                                     <span>
                                         <b>{i18n.getMessage('CrudUI.Pagination.Page')} {currentPage} of {availiblePages}</b>&nbsp;
-                                        ({minPosition} - {maxPosition})
+                                        ({Math.min(tableLength, Math.max(minPosition, 0))} - {Math.min(tableLength, Math.max(maxPosition, 0))})
+
                                     </span>
                                 </div>
                                 <select 
