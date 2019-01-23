@@ -17,8 +17,8 @@
         }
     }
 
-    &:hover {
-        background: #777;
+    &:hover span {
+        background: #eee;
         cursor: pointer;
     }
     & span {
@@ -36,8 +36,8 @@
         border-bottom: 1px solid #ddd;
     }
 
-    &.ascd,
-    &.desc {
+    & span.ascd,
+    & span.desc {
         padding: 10px 25px 10px 10px;
 
         &:before {
@@ -48,10 +48,10 @@
             margin-right: 5px;
         }
     }
-    &.ascd:before {
+    & span.ascd:before {
         content: '▲';
     }
-    &.desc:before {
+    & span.desc:before {
         content: '▼';
     }
 

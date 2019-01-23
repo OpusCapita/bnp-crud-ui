@@ -20,8 +20,8 @@ class DataTableHeaderField extends Components.ContextComponent
 
         this.state = 
         {
-            widthStyle: {},
-            headerFieldNumber: this.props.fieldNum
+            headerFieldNumber: this.props.fieldNum,
+            direction: this.props.direction || 'ascd'
         }
     }
 
@@ -33,9 +33,20 @@ class DataTableHeaderField extends Components.ContextComponent
         return(
             <th id={`header_${headerFieldNumber}`} className="dataTableHeaderField" >
                 &nsbp;
-                <span>
-                    {headerFieldTitle}&nbsp;
-                </span>
+                {
+                    (headerFieldNumber != 0 || headerFieldNumber != 1) ? 
+                    (
+                        <span className={this.props.direction}>
+                            {headerFieldTitle}&nbsp;
+                        </span>
+                    )
+                    :
+                    (
+                        <span>
+                            {headerFieldTitle}&nbsp;
+                        </span>
+                    )
+                }
             </th>
         )
     }

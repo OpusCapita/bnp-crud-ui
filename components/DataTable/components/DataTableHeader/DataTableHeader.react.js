@@ -22,12 +22,12 @@ class DataTableHeader extends Components.ContextComponent
             <thead className={`dataTableHeader unselectable`}>
                 <tr className="dataTableHeaderRow">
                     <DataTableHeaderField fieldNum={0} title={""} />
-                    <DataTableHeaderField fieldNum={1} title={"#"} />
+                    <DataTableHeaderField fieldNum={1} title={"#"}/>
                     {
                         rowDataFields.map((data, i) => 
                         {
                             return (
-                                <DataTableHeaderField key={i} fieldNum={i + 2} title={data.field} />
+                                <DataTableHeaderField key={i} fieldNum={i + 2} title={data.field} direction={'desc'}/>
                             )
                         }) 
                     }
