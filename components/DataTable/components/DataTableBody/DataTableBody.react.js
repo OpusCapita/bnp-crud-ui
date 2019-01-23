@@ -6,7 +6,7 @@
     - Showing element pages according to amount of DataTableRows
 */
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
 

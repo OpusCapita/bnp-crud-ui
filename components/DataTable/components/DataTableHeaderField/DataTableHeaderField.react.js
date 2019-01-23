@@ -6,7 +6,7 @@
     - Determine width of DataTableHeaderField
 */
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
 

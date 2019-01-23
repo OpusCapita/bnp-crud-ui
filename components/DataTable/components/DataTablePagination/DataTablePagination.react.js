@@ -4,7 +4,7 @@
     - Rendering of Headers and sorting options
 */
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
 import translations from '../../i18n';

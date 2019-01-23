@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import request from 'superagent';
 
 import { Components } from '@opuscapita/service-base-ui';
