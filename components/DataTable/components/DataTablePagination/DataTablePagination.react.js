@@ -68,7 +68,7 @@ class DataTablePagination extends Components.ContextComponent
             options.push( <option key={i} value={i}>{i}</option>);
         }
 
-        options.unshift(<option key={0} value={10}>10</option>);
+        options.unshift(<option key={0} value={this.props.shownRowsAmount}>{this.props.shownRowsAmount}</option>);
         options.push(<option key={99999} value={this.props.tableLength}>All</option>);
         
         return options;
@@ -100,7 +100,7 @@ class DataTablePagination extends Components.ContextComponent
                             <div className="input-group">
                                 <div className="input-group-addon">
                                     <span>
-                                        <b>{i18n.getMessage('CrudUI.Pagination.Page')} {currentPage} {i18n.getMessage('CrudUI.Pagination.Of')} {availiblePages}</b>&nbsp;
+                                        <b>{i18n.getMessage('CrudUI.Pagination.Page')} {Math.round(currentPage)} {i18n.getMessage('CrudUI.Pagination.Of')} {Math.round(availiblePages)}</b>&nbsp;
                                         ({Math.min(tableLength, Math.max(minPosition, 0))} - {Math.min(tableLength, Math.max(maxPosition, 0))})
                                     </span>
                                 </div>

@@ -20,7 +20,7 @@ class DataTable extends Components.ContextComponent
         this.state = 
         {
             tableData: [],
-            showNumberOfRows: 10,
+            showNumberOfRows: this.props.rows || 10,
             currentPosition: 0
         }
 
@@ -99,7 +99,7 @@ class DataTable extends Components.ContextComponent
                             <DataTableBody 
                                 tableData={tableData} 
                                 numberOfRows={this.state.showNumberOfRows} 
-                                position={this.state.currentPosition} 
+                                position={this.state.currentPosition}
                             />
                         </table>
                     </div>

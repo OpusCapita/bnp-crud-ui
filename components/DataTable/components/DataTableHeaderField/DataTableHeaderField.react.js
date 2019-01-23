@@ -25,20 +25,6 @@ class DataTableHeaderField extends Components.ContextComponent
         }
     }
 
-    handleWidth = () =>
-    {
-        const templateField = document.getElementById(`field_0-${this.props.fieldNum}`);
-
-        console.log(templateField);
-
-        const styleSheet = 
-        {
-            minWidth: 100
-        };
-
-        return styleSheet;
-    }
-
     render()
     {
         const headerFieldTitle = this.props.title;
