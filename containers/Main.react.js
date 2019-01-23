@@ -14,6 +14,7 @@ class Main extends Components.ContextComponent
             <DataTable 
                 dataUrl={url}
                 striped={true}
+                hovered={true}
                 rows={10}
             />
         );

@@ -91,7 +91,7 @@ class DataTable extends Components.ContextComponent
                 {
                     <div className="dataTableContent">
                         <table 
-                            className={`table ${this.props.striped ? 'table-striped' : ''} table-hover table-bordered dataTableView`}
+                            className={`table ${this.props.striped ? 'table-striped' : ''} ${this.props.hovered ? 'table-hover' : ''} table-bordered dataTableView`}
                         >
                             <DataTableHeader 
                                 headerData={this.transformData(tableData[0])}
