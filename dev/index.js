@@ -2,6 +2,7 @@
 
 const Logger = require('ocbesbn-logger'); // Logger
 const server = require('@opuscapita/web-init'); // Web server
+//const db = require('@opuscapita/db-init');
 //const configService = require('@opuscapita/config');
 
 const logger = new Logger();
@@ -46,6 +47,7 @@ server.init({
     });
 })
 */
+
 .catch((e) => {
     server.end();
     throw e;

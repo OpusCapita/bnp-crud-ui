@@ -11,6 +11,8 @@ import React, { Component } from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
 
+import './DataTableField.less';
+
 class DataTableField extends Components.ContextComponent
 {
     static defaultProps = 

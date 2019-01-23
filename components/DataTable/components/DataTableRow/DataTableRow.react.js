@@ -23,11 +23,14 @@ import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableField from '../DataTableField';
 
+import './DataTableRow.less';
+
 class DataTableRow extends Components.ContextComponent
 {
     static defaultProps = 
     {
-        isLocked: false
+        isLocked: false,
+        isHidden: false
     }
 
     constructor(props, context)
@@ -39,6 +42,7 @@ class DataTableRow extends Components.ContextComponent
             rowStateClass: '',
             isSelected: true,
             isLocked: this.props.isLocked,
+            isHidden: false,
             isEdited: false,
             isError: false,
             rowData: {}
@@ -130,7 +134,7 @@ class DataTableRow extends Components.ContextComponent
         const rowNum = this.props.rowNum;
 
         return(
-            <tr className={`dataTableRow ${this.state.rowStateClass} ${this.state.isLocked ? 'unselectable' : ''}`}>
+            <tr className={`dataTableRow ${this.state.rowStateClass} ${this.state.isLocked ? 'unselectable' : ''} ${this.props.isHidden ? 'hidden' : ''}`}>
                 <td id={`field_${rowNum}-0`} className={`selector dataTableField`}>
                 {
                     (this.state.isLocked === false) &&

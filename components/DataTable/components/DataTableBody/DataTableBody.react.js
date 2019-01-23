@@ -12,6 +12,8 @@ import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableRow from '../DataTableRow';
 
+import './DataTableBody.less';
+
 class DataTableBody extends Components.ContextComponent
 {
     static defaultProps = 
@@ -46,6 +48,19 @@ class DataTableBody extends Components.ContextComponent
                                     rowNum={i} 
                                     rowData={row} 
                                     isLocked={i === 2 ? true : false}
+                                    isHidden={false}
+                                />  
+                            )
+                        }
+                        else
+                        {
+                            return(
+                                <DataTableRow 
+                                    key={i} 
+                                    rowNum={i} 
+                                    rowData={row} 
+                                    isLocked={i === 2 ? true : false}
+                                    isHidden={true}
                                 />  
                             )
                         }

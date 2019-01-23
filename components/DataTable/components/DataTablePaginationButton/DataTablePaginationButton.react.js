@@ -8,6 +8,8 @@ import React, { Component } from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
 
+import './DataTablePaginationButton.less';
+
 class DataTablePaginationButton extends Components.ContextComponent
 {
     static defaultProps = 

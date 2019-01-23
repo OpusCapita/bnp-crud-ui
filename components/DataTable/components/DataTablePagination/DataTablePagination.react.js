@@ -7,9 +7,11 @@
 import React, { Component } from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
-import translations from '../i18n';
+import translations from '../../i18n';
 
 import DataTablePaginationButton from '../DataTablePaginationButton';
+
+import './DataTablePagination.less';
 
 class DataTablePagination extends Components.ContextComponent
 {
@@ -98,9 +100,8 @@ class DataTablePagination extends Components.ContextComponent
                             <div className="input-group">
                                 <div className="input-group-addon">
                                     <span>
-                                        <b>{i18n.getMessage('CrudUI.Pagination.Page')} {currentPage} of {availiblePages}</b>&nbsp;
+                                        <b>{i18n.getMessage('CrudUI.Pagination.Page')} {currentPage} {i18n.getMessage('CrudUI.Pagination.Of')} {availiblePages}</b>&nbsp;
                                         ({Math.min(tableLength, Math.max(minPosition, 0))} - {Math.min(tableLength, Math.max(maxPosition, 0))})
-
                                     </span>
                                 </div>
                                 <select 

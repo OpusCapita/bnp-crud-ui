@@ -1,0 +1,63 @@
+.dataTableHeaderField {
+
+    height: 0;
+    line-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: transparent;
+    border: none;
+    white-space: nowrap;
+    border-bottom-width: 1px;
+
+    &:first-child {
+        border-left: 1px solid transparent;
+
+        & span {
+            border-left: 1px solid transparent;
+        }
+    }
+
+    &:hover {
+        background: #777;
+        cursor: pointer;
+    }
+    & span {
+        display: block;
+        position: absolute;
+        background: #fff;
+        width: 100%;
+        color: black;
+        padding: 10px 25px 10px 25px;
+        z-index: 5;
+        top: 0;
+        margin-left: -9px;
+        line-height: normal;
+        border-left: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+
+    &.ascd,
+    &.desc {
+        padding: 10px 25px 10px 10px;
+
+        &:before {
+            width: 20px;
+            font-size: 10px;
+            height: 20px;
+            position: relative;
+            margin-right: 5px;
+        }
+    }
+    &.ascd:before {
+        content: '▲';
+    }
+    &.desc:before {
+        content: '▼';
+    }
+
+    &.num {
+        & span {
+            padding: 10px 21px !important;
+        }
+    }
+}

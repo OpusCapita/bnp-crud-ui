@@ -10,6 +10,8 @@ import React, { Component } from 'react';
 
 import { Components } from '@opuscapita/service-base-ui';
 
+import './DataTableheaderField.less';
+
 class DataTableHeaderField extends Components.ContextComponent
 {
     constructor(props)

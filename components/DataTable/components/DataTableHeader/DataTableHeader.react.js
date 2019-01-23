@@ -10,6 +10,8 @@ import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableHeaderField from '../DataTableHeaderField';
 
+import './DataTableHeader.less';
+
 class DataTableHeader extends Components.ContextComponent
 {
     render()

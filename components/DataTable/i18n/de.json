@@ -1,4 +1,5 @@
 {
     "CrudUI.Pagination.Page": "Seite",
+    "CrudUI.Pagination.Of": "von",
     "CrudUI.SearchBar.Placeholder": "Suchen nach..."
 }

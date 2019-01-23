@@ -4,11 +4,12 @@ import request from 'superagent';
 import { Components } from '@opuscapita/service-base-ui';
 
 
-import DataTableBody from './DataTableBody';
-import DataTableHeader from './DataTableHeader';
-import DataTablePagination from './DataTablePagination';
+import DataTableBody from './components/DataTableBody';
+import DataTableHeader from './components/DataTableHeader';
+import DataTableMenu from './components/DataTableMenu';
+import DataTablePagination from './components/DataTablePagination';
 
-import './DataTable.css';
+import './DataTable.less';
 
 class DataTable extends Components.ContextComponent
 {
@@ -85,8 +86,8 @@ class DataTable extends Components.ContextComponent
 
         return(
             <div>
-            <section className="dataTableContainer">
-                {/* <DataTableSearchBar /> */}
+                <DataTableMenu />
+                <section className="dataTableContainer">
                 {
                     <div className="dataTableContent">
                         <table 
@@ -103,17 +104,17 @@ class DataTable extends Components.ContextComponent
                         </table>
                     </div>
                 }
-        </section>
-        <br />
-        <DataTablePagination 
-            tableLength={tableData.length}
-            shownRowsAmount={this.state.showNumberOfRows}
-            currentPosition={this.state.currentPosition}
-            currentPage={this.state.currentPage}
-            prevButtonClicked={this.showPrevPage.bind(this)}
-            nextButtonClicked={this.showNextPage.bind(this)}
-            shownRowsAmountChanged={this.handleAmountChange.bind(this)}
-        />
+                </section>
+            <br />
+            <DataTablePagination 
+                tableLength={tableData.length}
+                shownRowsAmount={this.state.showNumberOfRows}
+                currentPosition={this.state.currentPosition}
+                currentPage={this.state.currentPage}
+                prevButtonClicked={this.showPrevPage.bind(this)}
+                nextButtonClicked={this.showNextPage.bind(this)}
+                shownRowsAmountChanged={this.handleAmountChange.bind(this)}
+            />
         </div>
         );
     }
