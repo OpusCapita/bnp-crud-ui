@@ -35,35 +35,23 @@ class DataTableBody extends Components.ContextComponent
     {
         const tableData = this.props.tableData;
 
+        const checkShowingAmount = this.props.position + this.props.numberOfRows;
+
         return(
             <tbody className="dataTableBody">
                 {
-                    tableData.map((row, i) => 
+                    tableData
+                        .map((row, i) => 
                     {
-                        if(i >= this.props.position && i < (this.props.position + this.props.numberOfRows))
-                        {
-                            return(
-                                <DataTableRow 
-                                    key={i} 
-                                    rowNum={i} 
-                                    rowData={row} 
-                                    isLocked={i === 2 ? true : false}
-                                    isHidden={false}
-                                />  
-                            )
-                        }
-                        else
-                        {
-                            return(
-                                <DataTableRow 
-                                    key={i} 
-                                    rowNum={i} 
-                                    rowData={row} 
-                                    isLocked={i === 2 ? true : false}
-                                    isHidden={true}
-                                />  
-                            )
-                        }
+                        return(
+                            <DataTableRow 
+                                key={i} 
+                                rowNum={i} 
+                                rowData={row} 
+                                isLocked={i === 2 ? true : false}
+                                isHidden={(i >= this.props.position) && (i < checkShowingAmount) ? false : true}
+                            /> 
+                        )
                     })
                 }
             </tbody>

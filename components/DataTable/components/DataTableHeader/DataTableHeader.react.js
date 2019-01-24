@@ -14,6 +14,23 @@ import './DataTableHeader.less';
 
 class DataTableHeader extends Components.ContextComponent
 {
+    constructor(props)
+    {
+        super(props);
+
+        this.state = 
+        {
+            sortedRow: 0
+        }
+    }
+
+    changeSorted = (index) => 
+    {
+        this.setState({
+            sortedRow: index
+        })
+    }
+
     render()
     {
         const rowDataFields = this.props.headerData;
@@ -27,7 +44,14 @@ class DataTableHeader extends Components.ContextComponent
                         rowDataFields.map((data, i) => 
                         {
                             return (
-                                <DataTableHeaderField key={i} fieldNum={i + 2} title={data.field} direction={(data.field == 'id') ? 'ascd' : 'desc'}/>
+                                <DataTableHeaderField 
+                                    key={i} 
+                                    fieldNum={i + 2} 
+                                    title={data.field} 
+                                    direction={'ascd'} 
+                                    sorted={(i === this.state.sortedRow) ? true : false}
+                                    onCheckSorting={this.changeSorted.bind(this, i)}
+                                />
                             )
                         }) 
                     }
