@@ -18,13 +18,13 @@ class DataTableHeader extends Components.ContextComponent
     {
         super(props);
 
-        this.state = 
+        this.state =
         {
             sortedRow: 0
         }
     }
 
-    changeSorted = (index) => 
+    changeSorted = (index) =>
     {
         this.setState({
             sortedRow: index
@@ -34,21 +34,21 @@ class DataTableHeader extends Components.ContextComponent
     render()
     {
         const rowDataFields = this.props.headerData;
-        
+
         return(
             <thead className={`dataTableHeader unselectable`}>
                 <tr className="dataTableHeaderRow">
                     <DataTableHeaderField fieldNum={0} title={""} />
                     <DataTableHeaderField fieldNum={1} title={"#"} />
                     {
-                        rowDataFields.map((data, i) => 
+                        rowDataFields.map((data, i) =>
                         {
                             return (
-                                <DataTableHeaderField 
-                                    key={i} 
-                                    fieldNum={i + 2} 
-                                    title={data.field} 
-                                    direction={'ascd'} 
+                                <DataTableHeaderField
+                                    key={i}
+                                    fieldNum={i + 2}
+                                    title={data.field}
+                                    direction={'ascd'}
                                     sorted={(i === this.state.sortedRow) ? true : false}
                                     onCheckSorting={this.changeSorted.bind(this, i)}
                                 />

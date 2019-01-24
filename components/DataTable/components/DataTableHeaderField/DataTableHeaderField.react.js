@@ -18,7 +18,7 @@ class DataTableHeaderField extends Components.ContextComponent
     {
         super(props);
 
-        this.state = 
+        this.state =
         {
             headerFieldNumber: this.props.fieldNum,
             direction: this.props.direction || '',
@@ -26,17 +26,17 @@ class DataTableHeaderField extends Components.ContextComponent
         }
     }
 
-    checkSorting = () => 
+    checkSorting = () =>
     {
         this.props.onCheckSorting();
 
-        if(this.props.sorted === true) 
+        if(this.props.sorted === true)
         {
             this.changeDirection();
         }
     }
 
-    changeDirection = () => 
+    changeDirection = () =>
     {
         if(this.state.direction === 'ascd')
         {
@@ -52,7 +52,7 @@ class DataTableHeaderField extends Components.ContextComponent
         }
     }
 
-    getFieldType = () => 
+    getFieldType = () =>
     {
         return 'string';
     }
@@ -67,8 +67,8 @@ class DataTableHeaderField extends Components.ContextComponent
                 &nsbp;
                 {
                     (headerFieldNumber !== 0 && headerFieldNumber !== 1) ? (
-                        <span 
-                            className={this.props.sorted ? `${this.state.direction}-${this.getFieldType()}` : 'unsorted'} 
+                        <span
+                            className={this.props.sorted ? `${this.state.direction}-${this.getFieldType()}` : 'unsorted'}
                             onClick={this.checkSorting}
                         >
                             {headerFieldTitle}&nbsp;

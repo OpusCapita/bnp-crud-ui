@@ -48,7 +48,8 @@ server.init({
 })
 */
 
-.catch((e) => {
+.catch((e) =>
+{
     server.end();
     throw e;
 });

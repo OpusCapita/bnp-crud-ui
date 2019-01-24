@@ -27,7 +27,7 @@ import './DataTableRow.less';
 
 class DataTableRow extends Components.ContextComponent
 {
-    static defaultProps = 
+    static defaultProps =
     {
         isLocked: false,
         isHidden: false
@@ -37,7 +37,7 @@ class DataTableRow extends Components.ContextComponent
     {
         super(props);
 
-        this.state = 
+        this.state =
         {
             rowStateClass: '',
             isSelected: true,
@@ -49,7 +49,7 @@ class DataTableRow extends Components.ContextComponent
         }
     }
 
-    componentDidMount = () => 
+    componentDidMount = () =>
     {
         this.setState({
             rowData: this.props.rowData
@@ -65,7 +65,7 @@ class DataTableRow extends Components.ContextComponent
     {
         this.setState({isSelected: !this.state.isSelected});
 
-        if((this.state.isSelected === true)) 
+        if((this.state.isSelected === true))
         {
             this.changeRowEditState("active");
         }
@@ -77,27 +77,27 @@ class DataTableRow extends Components.ContextComponent
 
     changeRowEditState = (state) =>
     {
-        switch(state) 
+        switch(state)
         {
             case 'saved':
-                this.setState({ rowStateClass: 'success' })
+                this.setState({ rowStateClass: 'success' });
                 break;
             case 'error':
-                this.setState({ rowStateClass: 'danger' })
+                this.setState({ rowStateClass: 'danger' });
                 break;
             case 'active':
-                this.setState({ rowStateClass: 'info' })
+                this.setState({ rowStateClass: 'info' });
                 break;
             case 'edited':
-                this.setState({ rowStateClass: 'warning' })
+                this.setState({ rowStateClass: 'warning' });
                 break;
             case 'locked':
-                this.setState({ rowStateClass: 'active' })
+                this.setState({ rowStateClass: 'active' });
                 break;
             case 'default':
             default:
-                this.setState({ rowStateClass: '' })
-          }
+                this.setState({ rowStateClass: '' });
+        }
     }
 
     onColumnEdited = () =>
@@ -138,9 +138,9 @@ class DataTableRow extends Components.ContextComponent
                 <td id={`field_${rowNum}-0`} className={`selector dataTableField`}>
                 {
                     (this.state.isLocked === false) &&
-                    <input 
-                        type="checkbox" 
-                        onClick={this.handleSelectionChange.bind(this)} 
+                    <input
+                        type="checkbox"
+                        onClick={this.handleSelectionChange.bind(this)}
                         tabIndex="-1"
                     />
                 }
@@ -151,10 +151,10 @@ class DataTableRow extends Components.ContextComponent
                 }
                 </td>
             {
-                rowDataFields.map((data, i) => 
+                rowDataFields.map((data, i) =>
                 {
                     return (
-                        <DataTableField 
+                        <DataTableField
                             key={i}
                             rowNum={rowNum}
                             fieldNum={i}
@@ -166,7 +166,7 @@ class DataTableRow extends Components.ContextComponent
                             columnError={this.onColumnError.bind(this)}
                         />
                     )
-                }) 
+                })
             }
             </tr>
         )

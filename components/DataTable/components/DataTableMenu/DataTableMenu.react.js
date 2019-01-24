@@ -20,7 +20,7 @@ class DataTableMenu extends Components.ContextComponent
 
         context.i18n.register('CrudUI', translations);
     }
-    
+
     render()
     {
         const { i18n } = this.context;
@@ -29,10 +29,10 @@ class DataTableMenu extends Components.ContextComponent
             <div className="dataTableMenu">
                 <div className="form-inline">
                     <div className="form-group">
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            id="searchbar" 
+                        <input
+                            type="text"
+                            className="form-control"
+                            id="searchbar"
                             placeholder={i18n.getMessage('CrudUI.Menu.SearchBar.Placeholder')}
                         />
                         {/* 

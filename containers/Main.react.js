@@ -11,7 +11,7 @@ class Main extends Components.ContextComponent
         const url = '/user/api/users';
 
         return(
-            <DataTable 
+            <DataTable
                 dataUrl={url}
                 striped={true}
                 hovered={true}

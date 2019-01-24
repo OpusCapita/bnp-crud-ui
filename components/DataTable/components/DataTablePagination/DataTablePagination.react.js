@@ -15,11 +15,11 @@ import './DataTablePagination.less';
 
 class DataTablePagination extends Components.ContextComponent
 {
-    static defaultProps = 
+    static defaultProps =
     {
         shownRowsAmount: 10
     }
-    
+
     constructor(props, context)
     {
         super(props);
@@ -32,7 +32,7 @@ class DataTablePagination extends Components.ContextComponent
         context.i18n.register('CrudUI', translations);
     }
 
-    onShownRowsChanged = (event) => 
+    onShownRowsChanged = (event) =>
     {
         this.setState({
             shownRowsAmount: parseInt(event.target.value)
@@ -41,7 +41,7 @@ class DataTablePagination extends Components.ContextComponent
         this.props.shownRowsAmountChanged(event);
     }
 
-    onPrevButtonClicked = () => 
+    onPrevButtonClicked = () =>
     {
         this.setState({
             currentPage: this.state.currentPage - 1
@@ -50,7 +50,7 @@ class DataTablePagination extends Components.ContextComponent
         this.props.prevButtonClicked();
     }
     
-    onNextButtonClicked = () => 
+    onNextButtonClicked = () =>
     {
         this.setState({
             currentPage: this.state.currentPage + 1
@@ -88,10 +88,10 @@ class DataTablePagination extends Components.ContextComponent
 
         return (
             <div className="dataTablePagination unselectable">
-                <DataTablePaginationButton 
-                    direction={'prev'} 
-                    tableLength={tableLength} 
-                    currentPosition={currentPosition} 
+                <DataTablePaginationButton
+                    direction={'prev'}
+                    tableLength={tableLength}
+                    currentPosition={currentPosition}
                     prevClicked={this.onPrevButtonClicked}
                 />
                 <div className="showPosition">
@@ -104,9 +104,9 @@ class DataTablePagination extends Components.ContextComponent
                                         ({Math.min(tableLength, Math.max(minPosition, 0))} - {Math.min(tableLength, Math.max(maxPosition, 0))})
                                     </span>
                                 </div>
-                                <select 
+                                <select
                                     className="form-control"
-                                    value={shownRows} 
+                                    value={shownRows}
                                     onChange={this.onShownRowsChanged}
                                 >
                                     {this.shownRowsOptions()}
@@ -117,9 +117,9 @@ class DataTablePagination extends Components.ContextComponent
                         </div>
                     </span>
                 </div>
-                <DataTablePaginationButton 
-                    direction={'next'} 
-                    tableLength={tableLength} 
+                <DataTablePaginationButton
+                    direction={'next'}
+                    tableLength={tableLength}
                     currentPosition={maxPosition}
                     nextClicked={this.onNextButtonClicked}
                 />

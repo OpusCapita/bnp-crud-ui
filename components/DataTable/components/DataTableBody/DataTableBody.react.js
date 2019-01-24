@@ -16,16 +16,16 @@ import './DataTableBody.less';
 
 class DataTableBody extends Components.ContextComponent
 {
-    static defaultProps = 
+    static defaultProps =
     {
         position: 0
     }
-    
+
     constructor(props)
     {
         super(props);
 
-        this.state = 
+        this.state =
         {
             position: this.props.position
         }
@@ -41,16 +41,16 @@ class DataTableBody extends Components.ContextComponent
             <tbody className="dataTableBody">
                 {
                     tableData
-                        .map((row, i) => 
+                        .map((row, i) =>
                     {
                         return(
-                            <DataTableRow 
-                                key={i} 
-                                rowNum={i} 
-                                rowData={row} 
+                            <DataTableRow
+                                key={i}
+                                rowNum={i}
+                                rowData={row}
                                 isLocked={i === 2 ? true : false}
                                 isHidden={(i >= this.props.position) && (i < checkShowingAmount) ? false : true}
-                            /> 
+                            />
                         )
                     })
                 }

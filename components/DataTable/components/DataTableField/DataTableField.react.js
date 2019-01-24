@@ -15,19 +15,19 @@ import './DataTableField.less';
 
 class DataTableField extends Components.ContextComponent
 {
-    static defaultProps = 
+    static defaultProps =
     {
         editable: false,
         disabled: false,
         originalContent: [ ],
         fieldType: ''
     }
-    
+
     constructor(props)
     {
         super(props);
 
-        this.state = 
+        this.state =
         {
             editable: this.props.editable,
             disabled: this.props.disabled,
@@ -53,7 +53,7 @@ class DataTableField extends Components.ContextComponent
 
         if(this.state.fieldType === "status" || this.state.fieldType === "id" || this.state.fieldType === "profile")
         {
-            status = false
+            status = false;
         }
         else
         {
@@ -63,7 +63,7 @@ class DataTableField extends Components.ContextComponent
         return status;
     }
 
-    checkIfHasBeenEdited = (event) => 
+    checkIfHasBeenEdited = (event) =>
     {
         if(this.state.fieldType === "customerId" && event.target.value == '')
         {
@@ -75,7 +75,6 @@ class DataTableField extends Components.ContextComponent
         }
         else
         {
-
             this.props.columnEdited();
         }
 
@@ -94,7 +93,7 @@ class DataTableField extends Components.ContextComponent
         const rowNum = this.props.rowNum;
         const fieldNum = this.props.fieldNum;
 
-        if(this.state.currentContent !== this.state.originalContent) 
+        if(this.state.currentContent !== this.state.originalContent)
         {
             content = this.state.currentContent;
         }
@@ -103,10 +102,10 @@ class DataTableField extends Components.ContextComponent
             <td id={`field_${rowNum}-${fieldNum + 2}`} className={`dataTableField ${this.state.hasBeenEdited ? 'edited' : ''} ${this.state.hasError ? 'error' : ''}`}>
                 {
                     (this.props.editable === true && this.checkIfShouldBeDisabled() === true) &&
-                    <input 
-                        type="text" 
-                        className="form-control" 
-                        defaultValue={content} 
+                    <input
+                        type="text"
+                        className="form-control"
+                        defaultValue={content}
                         onChange={this.checkIfHasBeenEdited}
                     />
                 }

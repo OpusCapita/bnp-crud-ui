@@ -3,7 +3,6 @@ import request from 'superagent';
 
 import { Components } from '@opuscapita/service-base-ui';
 
-
 import DataTableBody from './components/DataTableBody';
 import DataTableHeader from './components/DataTableHeader';
 import DataTableMenu from './components/DataTableMenu';
@@ -17,7 +16,7 @@ class DataTable extends Components.ContextComponent
     {
         super(props);
 
-        this.state = 
+        this.state =
         {
             tableData: [],
             showNumberOfRows: this.props.rows || 10,
@@ -35,16 +34,16 @@ class DataTable extends Components.ContextComponent
         {
             this.setState({
                 tableData: response.body
-            }) 
+            });
         })
         .catch(errors => null);
     }
 
-    transformData = (content) => 
+    transformData = (content) =>
     {
         let result = [];
 
-        for(let field in content) 
+        for(let field in content)
         {
             result.push({
                 field, value: (content[field] || "").toString()
@@ -54,28 +53,28 @@ class DataTable extends Components.ContextComponent
         return result;
     }
 
-    handleAmountChange = (event) => 
+    handleAmountChange = (event) =>
     {
         this.setState({
             showNumberOfRows: parseInt(event.target.value)
         });
     }
 
-    showPrevPage = () => 
+    showPrevPage = () =>
     {
         this.setState({
-            currentPosition: this.state.currentPosition - this.state.showNumberOfRows,
-        }) 
+            currentPosition: this.state.currentPosition - this.state.showNumberOfRows
+        });
     }
     
-    showNextPage = () => 
+    showNextPage = () =>
     {
         this.setState({
-            currentPosition: this.state.currentPosition + this.state.showNumberOfRows,
-        }) 
+            currentPosition: this.state.currentPosition + this.state.showNumberOfRows
+        });
     }
     
-    componentDidMount = () => 
+    componentDidMount = () =>
     {
         this.loadData();
     }
@@ -90,15 +89,15 @@ class DataTable extends Components.ContextComponent
                 <section className="dataTableContainer">
                 {
                     <div className="dataTableContent">
-                        <table 
+                        <table
                             className={`table ${this.props.striped ? 'table-striped' : ''} ${this.props.hovered ? 'table-hover' : ''} table-bordered dataTableView`}
                         >
-                            <DataTableHeader 
+                            <DataTableHeader
                                 headerData={this.transformData(tableData[0])}
                             />
-                            <DataTableBody 
-                                tableData={tableData} 
-                                numberOfRows={this.state.showNumberOfRows} 
+                            <DataTableBody
+                                tableData={tableData}
+                                numberOfRows={this.state.showNumberOfRows}
                                 position={this.state.currentPosition}
                             />
                         </table>
@@ -106,7 +105,7 @@ class DataTable extends Components.ContextComponent
                 }
                 </section>
             <br />
-            <DataTablePagination 
+            <DataTablePagination
                 tableLength={tableData.length}
                 shownRowsAmount={this.state.showNumberOfRows}
                 currentPosition={this.state.currentPosition}

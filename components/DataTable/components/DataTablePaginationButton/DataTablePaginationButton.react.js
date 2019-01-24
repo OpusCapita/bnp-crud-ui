@@ -12,7 +12,7 @@ import './DataTablePaginationButton.less';
 
 class DataTablePaginationButton extends Components.ContextComponent
 {
-    static defaultProps = 
+    static defaultProps =
     {
         direction: 'prev'
     }
@@ -21,44 +21,46 @@ class DataTablePaginationButton extends Components.ContextComponent
     {
         super(props);
 
-        this.state = 
+        this.state =
         {
             direction: this.props.direction // prev | next
         }
     }
 
-    prevButtonClicked = () => 
+    prevButtonClicked = () =>
     {
         this.props.prevClicked();
     }
 
-    nextButtonClicked = () => 
+    nextButtonClicked = () =>
     {
         this.props.nextClicked();
     }
 
     createArrowButton = () =>
     {
-        if(this.props.direction === 'prev') 
+        if(this.props.direction === 'prev')
         {
             const usable = (Math.min(this.props.tableLength, Math.max(this.props.currentPosition, 0)) > 0);
 
             return (
                 <div 
-                    className={`leftArrow ${usable ? '' : 'inactive'}`} 
-                    onClick={usable ? this.prevButtonClicked : ''}>
+                    className={`leftArrow ${usable ? '' : 'inactive'}`}
+                    onClick={usable ? this.prevButtonClicked : ''}
+                >
                     <i className={`glyphicon glyphicon-chevron-left`}></i>
                 </div>
             )
-        } 
+        }
         else if(this.props.direction === 'next')
         {
             const usable = (Math.min(this.props.tableLength, Math.max(this.props.currentPosition, 0)) < (this.props.tableLength));
 
             return (
-                <div 
-                    className={`rightArrow ${usable ? '' : 'inactive'}`} 
-                    onClick={usable ? this.nextButtonClicked : ''}>
+                <div
+                    className={`rightArrow ${usable ? '' : 'inactive'}`}
+                    onClick={usable ? this.nextButtonClicked : ''}
+                >
                     <i className={`glyphicon glyphicon-chevron-right`}></i>
                 </div>
             )

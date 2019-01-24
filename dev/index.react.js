@@ -14,7 +14,7 @@ class Test extends Components.ContextComponent
     }
 }
 
-const layout = 
+const layout =
 <Containers.ServiceLayout serviceName="bnp-crud-ui">
     <Route path="/" component={Test} />
 </Containers.ServiceLayout>
