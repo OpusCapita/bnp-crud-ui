@@ -27,7 +27,7 @@ class DataTableHeader extends Components.ContextComponent
                         rowDataFields.map((data, i) => 
                         {
                             return (
-                                <DataTableHeaderField key={i} fieldNum={i + 2} title={data.field} direction={'desc'}/>
+                                <DataTableHeaderField key={i} fieldNum={i + 2} title={data.field} direction={(data.field == 'id') ? 'ascd' : 'desc'}/>
                             )
                         }) 
                     }

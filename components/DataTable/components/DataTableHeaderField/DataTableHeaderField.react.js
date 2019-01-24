@@ -21,8 +21,29 @@ class DataTableHeaderField extends Components.ContextComponent
         this.state = 
         {
             headerFieldNumber: this.props.fieldNum,
-            direction: this.props.direction || 'ascd'
+            direction: this.props.direction || ''
         }
+    }
+
+    changeDirection = (event) => 
+    {
+        if(this.state.direction === 'ascd')
+        {
+            this.setState({
+                direction: 'desc'
+            });
+        }
+        else if (this.state.direction === 'desc')
+        {
+            this.setState({
+                direction: 'ascd'
+            });
+        }
+    }
+
+    getFieldType = () => 
+    {
+        return 'string';
     }
 
     render()
@@ -31,21 +52,12 @@ class DataTableHeaderField extends Components.ContextComponent
         const headerFieldNumber = this.state.headerFieldNumber;
 
         return(
-            <th id={`header_${headerFieldNumber}`} className="dataTableHeaderField" >
+            <th id={`header_${headerFieldNumber}`} className="dataTableHeaderField">
                 &nsbp;
                 {
-                    (headerFieldNumber != 0 || headerFieldNumber != 1) ? 
-                    (
-                        <span className={this.props.direction}>
-                            {headerFieldTitle}&nbsp;
-                        </span>
-                    )
-                    :
-                    (
-                        <span>
-                            {headerFieldTitle}&nbsp;
-                        </span>
-                    )
+                    <span className={`${this.state.direction}-${this.getFieldType()}`} onClick={this.changeDirection}>
+                        {headerFieldTitle}&nbsp;
+                    </span>
                 }
             </th>
         )

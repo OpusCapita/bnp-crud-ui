@@ -121,7 +121,7 @@ class DataTableRow extends Components.ContextComponent
         for(let field in this.state.rowData) 
         {
             result.push({
-                field, value: (this.state.rowData[field] || "").toString()
+                field, value: (this.state.rowData[field] || '').toString()
             });
         }
 
