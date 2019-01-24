@@ -39,7 +39,7 @@ class DataTableHeader extends Components.ContextComponent
             <thead className={`dataTableHeader unselectable`}>
                 <tr className="dataTableHeaderRow">
                     <DataTableHeaderField fieldNum={0} title={""} />
-                    <DataTableHeaderField fieldNum={1} title={"#"}/>
+                    <DataTableHeaderField fieldNum={1} title={"#"} />
                     {
                         rowDataFields.map((data, i) => 
                         {
@@ -53,7 +53,7 @@ class DataTableHeader extends Components.ContextComponent
                                     onCheckSorting={this.changeSorted.bind(this, i)}
                                 />
                             )
-                        }) 
+                        })
                     }
                 </tr>
             </thead>
