@@ -26,17 +26,9 @@ class DataTableField extends Components.ContextComponent
             hasBeenEdited: false,
             hasError: false,
             originalContent: this.props.content || [  ],
-            currentContent: '',
-            fieldType: ''
+            currentContent: this.props.content || '',
+            fieldType: this.props.fieldType || ''
         }
-    }
-
-    componentDidMount = () =>
-    {
-        this.setState({
-            fieldType: this.props.fieldType,
-            currentContent: this.props.content
-        })
     }
 
     checkIfShouldBeDisabled = () =>
