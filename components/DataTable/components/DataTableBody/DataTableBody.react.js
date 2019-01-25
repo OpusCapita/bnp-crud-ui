@@ -29,8 +29,8 @@ class DataTableBody extends Components.ContextComponent
     render()
     {
         const tableData = this.props.tableData;
-
         const checkShowingAmount = this.props.position + this.props.numberOfRows;
+        const lockedRows = this.props.lockedRows;
 
         return(
             <tbody className="dataTableBody">
@@ -43,7 +43,7 @@ class DataTableBody extends Components.ContextComponent
                                 key={ i }
                                 rowNum={ i }
                                 rowData={ row }
-                                isLocked={ i === 2 ? true : false }
+                                isLocked={ (lockedRows.indexOf(i) != -1) ? true : false }
                                 isHidden={ (i >= this.props.position) && (i < checkShowingAmount) ? false : true }
                             />
                         )

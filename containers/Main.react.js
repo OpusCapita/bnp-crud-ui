@@ -17,6 +17,7 @@ class Main extends Components.ContextComponent
                 hovered={ true }
                 shownRows={ 10 }
                 initiallySorted={ 0 }
+                lockedRows={ [0, 4, 6, 7, 9] }
             />
         );
     }

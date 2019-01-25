@@ -108,6 +108,7 @@ class DataTable extends Components.ContextComponent
                                 tableData={ tableData }
                                 numberOfRows={ this.state.showNumberOfRows }
                                 position={ this.state.currentPosition }
+                                lockedRows={ this.props.lockedRows }
                             />
                             <DataTableHeader
                                 headerData={ this.transformData(tableData[0]) }
