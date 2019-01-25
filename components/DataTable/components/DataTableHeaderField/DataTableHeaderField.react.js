@@ -64,11 +64,10 @@ class DataTableHeaderField extends Components.ContextComponent
 
         return(
             <th id={`header_${headerFieldNumber}`} className="dataTableHeaderField">
-                &nsbp;
                 {
                     (headerFieldNumber !== 0 && headerFieldNumber !== 1) ? (
                         <span
-                            className={this.props.sorted ? `${this.state.direction}-${this.getFieldType()}` : 'unsorted'}
+                            className={this.props.sorted ? `${this.props.position}  ${this.state.direction}-${this.getFieldType()}` : `${this.props.position} unsorted`}
                             onClick={this.checkSorting}
                         >
                             {headerFieldTitle}&nbsp;
@@ -76,7 +75,7 @@ class DataTableHeaderField extends Components.ContextComponent
                     )
                     :
                     (
-                        <span>
+                        <span className={`${this.props.position}`}>
                             {headerFieldTitle}&nbsp;
                         </span>
                     )

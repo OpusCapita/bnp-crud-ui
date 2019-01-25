@@ -38,8 +38,8 @@ class DataTableHeader extends Components.ContextComponent
         return(
             <thead className={`dataTableHeader unselectable`}>
                 <tr className="dataTableHeaderRow">
-                    <DataTableHeaderField fieldNum={0} title={""} />
-                    <DataTableHeaderField fieldNum={1} title={"#"} />
+                    <DataTableHeaderField position={this.props.position} fieldNum={0} title={""} />
+                    <DataTableHeaderField position={this.props.position} fieldNum={1} title={"#"} />
                     {
                         rowDataFields.map((data, i) =>
                         {
@@ -51,6 +51,7 @@ class DataTableHeader extends Components.ContextComponent
                                     direction={'ascd'}
                                     sorted={(i === this.state.sortedRow) ? true : false}
                                     onCheckSorting={this.changeSorted.bind(this, i)}
+                                    position={this.props.position}
                                 />
                             )
                         })

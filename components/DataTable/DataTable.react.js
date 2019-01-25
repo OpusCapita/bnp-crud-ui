@@ -94,11 +94,16 @@ class DataTable extends Components.ContextComponent
                         >
                             <DataTableHeader
                                 headerData={this.transformData(tableData[0])}
+                                position={'top'}
                             />
                             <DataTableBody
                                 tableData={tableData}
                                 numberOfRows={this.state.showNumberOfRows}
                                 position={this.state.currentPosition}
+                            />
+                            <DataTableHeader
+                                headerData={this.transformData(tableData[0])}
+                                position={'bottom'}
                             />
                         </table>
                     </div>
