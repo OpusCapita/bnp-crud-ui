@@ -5,6 +5,19 @@
     - Check for error in all DataTableField childs
     - Determining usage state of current row
 
+    ╔═╡ COMPONENT PROPERTIES ╞═╤═══════════════════════════════════════════════╗
+    ║ name                     │ description                                   ║
+    ╠══════════════════════════╪═══════════════════════════════════════════════╣
+    ║ rowStateClass            │ Component class according to current editing  ║
+    ║                          | state.                                        ║
+    ║ isSelected               │ Is the current row selected?                  ║
+    ║ isLocked                 │ Is the current row locked for editing?        ║
+    ║ isHidden                 │ Is the current row visible?                   ║
+    ║ isEdited                 │ Has the current row been edited?              ║
+    ║ rowData                  │ Data for the current row to display.          ║
+    ║ rowNum                   │ ID numbler of current row.                    ║
+    ╚══════════════════════════╧═══════════════════════════════════════════════╝
+
     ╔═╡ ROW STATES ╞═╤═════════════════╤═════════════════════╗
     ║ state-name     │ state-color     │ bootstrap-class     ║
     ╠════════════════╪═════════════════╪═════════════════════╣
@@ -27,12 +40,6 @@ import './DataTableRow.less';
 
 class DataTableRow extends Components.ContextComponent
 {
-    static defaultProps =
-    {
-        isLocked: false,
-        isHidden: false
-    }
-
     constructor(props, context)
     {
         super(props);
@@ -41,7 +48,7 @@ class DataTableRow extends Components.ContextComponent
         {
             rowStateClass: '',
             isSelected: true,
-            isLocked: this.props.isLocked,
+            isLocked: this.props.isLocked || false,
             isHidden: false,
             isEdited: false,
             isError: false,

@@ -15,17 +15,12 @@ import './DataTablePagination.less';
 
 class DataTablePagination extends Components.ContextComponent
 {
-    static defaultProps =
-    {
-        shownRowsAmount: 10
-    }
-
     constructor(props, context)
     {
         super(props);
 
         this.state = {
-            shownRowsAmount: this.props.shownRowsAmount,
+            shownRowsAmount: this.props.shownRowsAmount || 10,
             currentPage: 1
         }
 

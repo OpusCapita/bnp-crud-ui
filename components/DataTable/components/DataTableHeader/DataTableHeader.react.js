@@ -18,10 +18,7 @@ class DataTableHeader extends Components.ContextComponent
     {
         super(props);
 
-        this.state =
-        {
-            sortedRow: this.props.sorting
-        }
+        this.state = {}
     }
 
     changeSorted = (index) =>

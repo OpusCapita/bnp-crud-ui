@@ -20,7 +20,7 @@ class DataTableHeaderField extends Components.ContextComponent
 
         this.state =
         {
-            headerFieldNumber: this.props.fieldNum,
+            headerFieldNumber: this.props.fieldNum || 0,
             direction: this.props.direction || ''
         }
     }

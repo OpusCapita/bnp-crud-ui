@@ -12,18 +12,13 @@ import './DataTablePaginationButton.less';
 
 class DataTablePaginationButton extends Components.ContextComponent
 {
-    static defaultProps =
-    {
-        direction: 'prev'
-    }
-
     constructor(props)
     {
         super(props);
 
         this.state =
         {
-            direction: this.props.direction // prev | next
+            direction: this.props.direction || 'prev' // prev | next
         }
     }
 

@@ -14,26 +14,18 @@ import { Components } from '@opuscapita/service-base-ui';
 import './DataTableField.less';
 
 class DataTableField extends Components.ContextComponent
-{
-    static defaultProps =
-    {
-        editable: false,
-        disabled: false,
-        originalContent: [ ],
-        fieldType: ''
-    }
-
+{   
     constructor(props)
     {
         super(props);
 
         this.state =
         {
-            editable: this.props.editable,
-            disabled: this.props.disabled,
+            editable: this.props.editable || false,
+            disabled: this.props.disabled || false,
             hasBeenEdited: false,
             hasError: false,
-            originalContent: this.props.content,
+            originalContent: this.props.content || [  ],
             currentContent: '',
             fieldType: ''
         }

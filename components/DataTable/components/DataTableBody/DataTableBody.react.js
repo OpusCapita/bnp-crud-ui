@@ -16,18 +16,13 @@ import './DataTableBody.less';
 
 class DataTableBody extends Components.ContextComponent
 {
-    static defaultProps =
-    {
-        position: 0
-    }
-
     constructor(props)
     {
         super(props);
 
         this.state =
         {
-            position: this.props.position
+            position: this.props.position || 0
         }
     }
 
