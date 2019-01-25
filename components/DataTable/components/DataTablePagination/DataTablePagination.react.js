@@ -68,7 +68,7 @@ class DataTablePagination extends Components.ContextComponent
             options.push( <option key={i} value={i}>{i}</option>);
         }
 
-        options.unshift(<option key={0} value={this.props.shownRowsAmount}>{this.props.shownRowsAmount}</option>);
+        options.unshift(<option key={0} value={10}>{10}</option>);
         options.push(<option key={99999} value={this.props.tableLength}>All</option>);
         
         return options;
