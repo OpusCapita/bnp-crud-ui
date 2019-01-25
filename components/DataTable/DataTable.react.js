@@ -23,8 +23,6 @@ class DataTable extends Components.ContextComponent
             currentPosition: 0,
             currentSorting: this.props.initiallySorted || 0
         }
-
-        this.handleAmountChange = this.handleAmountChange.bind(this);
     }
 
     loadData = () =>
