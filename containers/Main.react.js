@@ -15,7 +15,8 @@ class Main extends Components.ContextComponent
                 dataUrl={ url }
                 striped={ true }
                 hovered={ true }
-                rows={ 10 }
+                shownRows={ 10 }
+                initiallySorted={ 0 }
             />
         );
     }

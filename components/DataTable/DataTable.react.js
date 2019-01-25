@@ -19,9 +19,9 @@ class DataTable extends Components.ContextComponent
         this.state =
         {
             tableData: [  ],
-            showNumberOfRows: this.props.rows || 10,
+            showNumberOfRows: this.props.shownRows || 10,
             currentPosition: 0,
-            currentSorting: 3
+            currentSorting: this.props.initiallySorted || 0
         }
 
         this.handleAmountChange = this.handleAmountChange.bind(this);

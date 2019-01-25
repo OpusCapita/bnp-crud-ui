@@ -66,7 +66,7 @@ class DataTableHeaderField extends Components.ContextComponent
                 {
                     (headerFieldNumber !== 0 && headerFieldNumber !== 1) ? (
                         <span
-                            className={ this.props.sorted ? `${ this.props.position }  ${ this.state.direction }-${ this.getFieldType() }` : `${ this.props.position } unsorted` }
+                            className={ this.props.sorted ? `${ this.props.position } ${ this.state.direction }-${ this.getFieldType() }` : `${ this.props.position } unsorted` }
                             onClick={ this.checkSorting }
                         >
                             {headerFieldTitle}&nbsp;
