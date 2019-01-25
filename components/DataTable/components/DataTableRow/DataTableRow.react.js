@@ -45,7 +45,7 @@ class DataTableRow extends Components.ContextComponent
             isHidden: false,
             isEdited: false,
             isError: false,
-            rowData: {}
+            rowData: {  }
         }
     }
 
@@ -57,7 +57,7 @@ class DataTableRow extends Components.ContextComponent
 
         if (this.state.isLocked === true)
         {
-            this.changeRowEditState("locked");
+            this.changeRowEditState('locked');
         }
     }
 
@@ -67,11 +67,11 @@ class DataTableRow extends Components.ContextComponent
 
         if((this.state.isSelected === true))
         {
-            this.changeRowEditState("active");
+            this.changeRowEditState('active');
         }
         else
         {
-            this.changeRowEditState("default");
+            this.changeRowEditState('default');
         }
     }
 
@@ -134,18 +134,18 @@ class DataTableRow extends Components.ContextComponent
         const rowNum = this.props.rowNum;
 
         return(
-            <tr className={`dataTableRow ${this.state.rowStateClass} ${this.state.isLocked ? 'unselectable' : ''} ${this.props.isHidden ? 'hidden' : ''}`}>
-                <td id={`field_${rowNum}-0`} className={`selector dataTableField`}>
+            <tr className={ `dataTableRow ${ this.state.rowStateClass } ${ this.state.isLocked ? 'unselectable' : '' } ${ this.props.isHidden ? 'hidden' : '' }` }>
+                <td id={ `field_${ rowNum }-0` } className="selector dataTableField">
                 {
                     (this.state.isLocked === false) &&
                     <input
                         type="checkbox"
-                        onClick={this.handleSelectionChange.bind(this)}
+                        onClick={ this.handleSelectionChange.bind(this) }
                         tabIndex="-1"
                     />
                 }
                 </td>
-                <td id={`field_${rowNum}-1`} className={`num dataTableField`}>
+                <td id={ `field_${ rowNum }-1` } className="num dataTableField">
                 {
                     (this.props.rowNum + 1)
                 }
@@ -155,15 +155,15 @@ class DataTableRow extends Components.ContextComponent
                 {
                     return (
                         <DataTableField
-                            key={i}
-                            rowNum={rowNum}
-                            fieldNum={i}
-                            content={data.value}
-                            fieldType={data.field}
-                            locked={false}
-                            editable={this.state.isSelected ? false : true}
-                            columnEdited={this.onColumnEdited.bind(this)}
-                            columnError={this.onColumnError.bind(this)}
+                            key={ i }
+                            rowNum={ rowNum }
+                            fieldNum={ i }
+                            content={ data.value }
+                            fieldType={ data.field }
+                            locked={ false }
+                            editable={ this.state.isSelected ? false : true }
+                            columnEdited={ this.onColumnEdited.bind(this) }
+                            columnError={ this.onColumnError.bind(this) }
                         />
                     )
                 })

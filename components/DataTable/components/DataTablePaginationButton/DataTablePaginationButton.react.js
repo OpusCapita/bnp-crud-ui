@@ -45,10 +45,10 @@ class DataTablePaginationButton extends Components.ContextComponent
 
             return (
                 <div 
-                    className={`leftArrow ${usable ? '' : 'inactive'}`}
-                    onClick={usable ? this.prevButtonClicked : ''}
+                    className={ `leftArrow ${ usable ? '' : 'inactive' }` }
+                    onClick={ usable ? this.prevButtonClicked : '' }
                 >
-                    <i className={`glyphicon glyphicon-chevron-left`}></i>
+                    <i className="glyphicon glyphicon-chevron-left"></i>
                 </div>
             )
         }
@@ -58,10 +58,10 @@ class DataTablePaginationButton extends Components.ContextComponent
 
             return (
                 <div
-                    className={`rightArrow ${usable ? '' : 'inactive'}`}
-                    onClick={usable ? this.nextButtonClicked : ''}
+                    className={ `rightArrow ${ usable ? '' : 'inactive' }` }
+                    onClick={ usable ? this.nextButtonClicked : '' }
                 >
-                    <i className={`glyphicon glyphicon-chevron-right`}></i>
+                    <i className="glyphicon glyphicon-chevron-right"></i>
                 </div>
             )
         }
@@ -71,7 +71,7 @@ class DataTablePaginationButton extends Components.ContextComponent
     {
         return(
             <span>
-                {this.createArrowButton()}
+                { this.createArrowButton() }
             </span>
         )
     }

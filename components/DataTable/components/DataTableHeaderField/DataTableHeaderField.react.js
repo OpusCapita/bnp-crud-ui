@@ -63,20 +63,20 @@ class DataTableHeaderField extends Components.ContextComponent
         const headerFieldNumber = this.state.headerFieldNumber;
 
         return(
-            <th id={`header_${headerFieldNumber}`} className="dataTableHeaderField">
+            <th id={ `header_${ headerFieldNumber }` } className="dataTableHeaderField">
                 {
                     (headerFieldNumber !== 0 && headerFieldNumber !== 1) ? (
                         <span
-                            className={this.props.sorted ? `${this.props.position}  ${this.state.direction}-${this.getFieldType()}` : `${this.props.position} unsorted`}
-                            onClick={this.checkSorting}
+                            className={ this.props.sorted ? `${ this.props.position }  ${ this.state.direction }-${ this.getFieldType() }` : `${ this.props.position } unsorted` }
+                            onClick={ this.checkSorting }
                         >
                             {headerFieldTitle}&nbsp;
                         </span>
                     )
                     :
                     (
-                        <span className={`${this.props.position}`}>
-                            {headerFieldTitle}&nbsp;
+                        <span className={ `${this.props.position}` }>
+                            { headerFieldTitle }&nbsp;
                         </span>
                     )
                 }

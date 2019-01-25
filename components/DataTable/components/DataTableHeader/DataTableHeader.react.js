@@ -36,22 +36,22 @@ class DataTableHeader extends Components.ContextComponent
         const rowDataFields = this.props.headerData;
 
         return(
-            <thead className={`dataTableHeader unselectable`}>
+            <thead className="dataTableHeader unselectable">
                 <tr className="dataTableHeaderRow">
-                    <DataTableHeaderField position={this.props.position} fieldNum={0} title={""} />
-                    <DataTableHeaderField position={this.props.position} fieldNum={1} title={"#"} />
+                    <DataTableHeaderField position={ this.props.position } fieldNum={ 0 } title={ '' } />
+                    <DataTableHeaderField position={ this.props.position } fieldNum={ 1 } title={ '#' } />
                     {
                         rowDataFields.map((data, i) =>
                         {
                             return (
                                 <DataTableHeaderField
-                                    key={i}
-                                    fieldNum={i + 2}
-                                    title={data.field}
-                                    direction={'ascd'}
-                                    sorted={(i === this.state.sortedRow) ? true : false}
-                                    onCheckSorting={this.changeSorted.bind(this, i)}
-                                    position={this.props.position}
+                                    key={ i }
+                                    fieldNum={ i + 2 }
+                                    title={ data.field }
+                                    direction={ 'ascd' }
+                                    sorted={ (i === this.state.sortedRow) ? true : false }
+                                    onCheckSorting={ this.changeSorted.bind(this, i) }
+                                    position={ this.props.position }
                                 />
                             )
                         })

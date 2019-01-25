@@ -65,11 +65,11 @@ class DataTablePagination extends Components.ContextComponent
 
         for(let i = 25; i < this.props.tableLength; i*=2)
         {
-            options.push( <option key={i} value={i}>{i}</option>);
+            options.push( <option key={ i } value={ i }>{ i }</option>);
         }
 
-        options.unshift(<option key={0} value={10}>{10}</option>);
-        options.push(<option key={99999} value={this.props.tableLength}>All</option>);
+        options.unshift(<option key={ 0 } value={ 10 }>{ 10 }</option>);
+        options.push(<option key={ 99999 } value={ this.props.tableLength }>All</option>);
         
         return options;
     }
@@ -89,10 +89,10 @@ class DataTablePagination extends Components.ContextComponent
         return (
             <div className="dataTablePagination unselectable">
                 <DataTablePaginationButton
-                    direction={'prev'}
-                    tableLength={tableLength}
-                    currentPosition={currentPosition}
-                    prevClicked={this.onPrevButtonClicked}
+                    direction={ 'prev' }
+                    tableLength={ tableLength }
+                    currentPosition={ currentPosition }
+                    prevClicked={ this.onPrevButtonClicked }
                 />
                 <div className="showPosition">
                     <span className="form-inline">
@@ -100,28 +100,30 @@ class DataTablePagination extends Components.ContextComponent
                             <div className="input-group">
                                 <div className="input-group-addon">
                                     <span>
-                                        <b>{i18n.getMessage('CrudUI.Pagination.Page')} {Math.round(currentPage)} {i18n.getMessage('CrudUI.Pagination.Of')} {Math.round(availiblePages)}</b>&nbsp;
-                                        ({Math.min(tableLength, Math.max(minPosition, 0))} - {Math.min(tableLength, Math.max(maxPosition, 0))})
+                                        <b>{ i18n.getMessage('CrudUI.Pagination.Page') } { Math.round(currentPage) } { i18n.getMessage('CrudUI.Pagination.Of') } { Math.round(availiblePages) }</b>&nbsp;
+                                        (
+                                            { Math.min(tableLength, Math.max(minPosition, 0)) } - { Math.min(tableLength, Math.max(maxPosition, 0)) }
+                                        )
                                     </span>
                                 </div>
                                 <select
                                     className="form-control"
-                                    value={shownRows}
-                                    onChange={this.onShownRowsChanged}
+                                    value={ shownRows }
+                                    onChange={ this.onShownRowsChanged }
                                 >
-                                    {this.shownRowsOptions()}
+                                    { this.shownRowsOptions() }
                                 </select>
 
-                                <div className="input-group-addon">/ {tableLength}</div>
+                                <div className="input-group-addon">/ { tableLength }</div>
                             </div>
                         </div>
                     </span>
                 </div>
                 <DataTablePaginationButton
-                    direction={'next'}
-                    tableLength={tableLength}
-                    currentPosition={maxPosition}
-                    nextClicked={this.onNextButtonClicked}
+                    direction={ 'next' }
+                    tableLength={ tableLength }
+                    currentPosition={ maxPosition }
+                    nextClicked={ this.onNextButtonClicked }
                 />
             </div>
         )

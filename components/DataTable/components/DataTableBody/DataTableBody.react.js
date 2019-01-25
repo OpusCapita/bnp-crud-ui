@@ -45,11 +45,11 @@ class DataTableBody extends Components.ContextComponent
                     {
                         return(
                             <DataTableRow
-                                key={i}
-                                rowNum={i}
-                                rowData={row}
-                                isLocked={i === 2 ? true : false}
-                                isHidden={(i >= this.props.position) && (i < checkShowingAmount) ? false : true}
+                                key={ i }
+                                rowNum={ i }
+                                rowData={ row }
+                                isLocked={ i === 2 ? true : false }
+                                isHidden={ (i >= this.props.position) && (i < checkShowingAmount) ? false : true }
                             />
                         )
                     })

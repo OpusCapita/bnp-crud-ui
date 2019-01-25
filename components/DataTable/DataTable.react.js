@@ -18,9 +18,10 @@ class DataTable extends Components.ContextComponent
 
         this.state =
         {
-            tableData: [],
+            tableData: [  ],
             showNumberOfRows: this.props.rows || 10,
-            currentPosition: 0
+            currentPosition: 0,
+            currentSorting: 1
         }
 
         this.handleAmountChange = this.handleAmountChange.bind(this);
@@ -46,7 +47,7 @@ class DataTable extends Components.ContextComponent
         for(let field in content)
         {
             result.push({
-                field, value: (content[field] || "").toString()
+                field, value: (content[field] || '').toString()
             });
         }
 
@@ -90,20 +91,22 @@ class DataTable extends Components.ContextComponent
                 {
                     <div className="dataTableContent">
                         <table
-                            className={`table ${this.props.striped ? 'table-striped' : ''} ${this.props.hovered ? 'table-hover' : ''} table-bordered dataTableView`}
+                            className={ `table ${ this.props.striped ? 'table-striped' : '' } ${ this.props.hovered ? 'table-hover' : '' } table-bordered dataTableView` }
                         >
                             <DataTableHeader
-                                headerData={this.transformData(tableData[0])}
-                                position={'top'}
+                                headerData={ this.transformData(tableData[0]) }
+                                position={ 'top' }
+                                sorting={ this.state.currentSorting }
                             />
                             <DataTableBody
-                                tableData={tableData}
-                                numberOfRows={this.state.showNumberOfRows}
-                                position={this.state.currentPosition}
+                                tableData={ tableData }
+                                numberOfRows={ this.state.showNumberOfRows }
+                                position={ this.state.currentPosition }
                             />
                             <DataTableHeader
-                                headerData={this.transformData(tableData[0])}
-                                position={'bottom'}
+                                headerData={ this.transformData(tableData[0]) }
+                                position={ 'bottom' }
+                                sorting={ this.state.currentSorting }
                             />
                         </table>
                     </div>
@@ -111,13 +114,13 @@ class DataTable extends Components.ContextComponent
                 </section>
             <br />
             <DataTablePagination
-                tableLength={tableData.length}
-                shownRowsAmount={this.state.showNumberOfRows}
-                currentPosition={this.state.currentPosition}
-                currentPage={this.state.currentPage}
-                prevButtonClicked={this.showPrevPage.bind(this)}
-                nextButtonClicked={this.showNextPage.bind(this)}
-                shownRowsAmountChanged={this.handleAmountChange.bind(this)}
+                tableLength={ tableData.length }
+                shownRowsAmount={ this.state.showNumberOfRows }
+                currentPosition={ this.state.currentPosition }
+                currentPage={ this.state.currentPage }
+                prevButtonClicked={ this.showPrevPage.bind(this) }
+                nextButtonClicked={ this.showNextPage.bind(this) }
+                shownRowsAmountChanged={ this.handleAmountChange.bind(this) }
             />
         </div>
         );

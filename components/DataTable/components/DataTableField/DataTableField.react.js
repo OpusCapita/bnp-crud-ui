@@ -51,7 +51,7 @@ class DataTableField extends Components.ContextComponent
     {
         let status = '';
 
-        if(this.state.fieldType === "status" || this.state.fieldType === "id" || this.state.fieldType === "profile")
+        if(this.state.fieldType === 'status' || this.state.fieldType === 'id' || this.state.fieldType === 'profile')
         {
             status = false;
         }
@@ -65,7 +65,7 @@ class DataTableField extends Components.ContextComponent
 
     checkIfHasBeenEdited = (event) =>
     {
-        if(this.state.fieldType === "customerId" && event.target.value == '')
+        if(this.state.fieldType === 'customerId' && event.target.value == '')
         {
             this.setState({
                 hasError: true
@@ -99,20 +99,20 @@ class DataTableField extends Components.ContextComponent
         }
 
         return(
-            <td id={`field_${rowNum}-${fieldNum + 2}`} className={`dataTableField ${this.state.hasBeenEdited ? 'edited' : ''} ${this.state.hasError ? 'error' : ''}`}>
+            <td id={ `field_${ rowNum }-${ fieldNum + 2 }` } className={ `dataTableField ${this.state.hasBeenEdited ? 'edited' : '' } ${this.state.hasError ? 'error' : '' }` }>
                 {
                     (this.props.editable === true && this.checkIfShouldBeDisabled() === true) &&
                     <input
                         type="text"
                         className="form-control"
-                        defaultValue={content}
-                        onChange={this.checkIfHasBeenEdited}
+                        defaultValue={ content }
+                        onChange={ this.checkIfHasBeenEdited }
                     />
                 }
                 {
                     (this.props.editable === false || this.checkIfShouldBeDisabled() === false) &&
                     <p className="form-control-static">
-                        {content}
+                        { content }
                     </p>
                 }
             </td>

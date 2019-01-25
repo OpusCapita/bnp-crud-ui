@@ -12,10 +12,10 @@ class Main extends Components.ContextComponent
 
         return(
             <DataTable
-                dataUrl={url}
-                striped={true}
-                hovered={true}
-                rows={10}
+                dataUrl={ url }
+                striped={ true }
+                hovered={ true }
+                rows={ 10 }
             />
         );
     }

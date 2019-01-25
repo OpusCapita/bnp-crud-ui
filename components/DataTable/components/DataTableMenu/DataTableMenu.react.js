@@ -33,11 +33,11 @@ class DataTableMenu extends Components.ContextComponent
                             type="text"
                             className="form-control"
                             id="searchbar"
-                            placeholder={i18n.getMessage('CrudUI.Menu.SearchBar.Placeholder')}
+                            placeholder={ i18n.getMessage('CrudUI.Menu.SearchBar.Placeholder') }
                         />
                         {/* 
-                            <button type="submit" className="btn btn-default">
-                                <span className="glyphicon glyphicon-plus"></span> {i18n.getMessage('CrudUI.Menu.Create')}
+                            <button type='submit' className='btn btn-default'>
+                                <span className='glyphicon glyphicon-plus'></span> { i18n.getMessage('CrudUI.Menu.Create') }
                             </button>
                          */}
                         {/* Other Option-Buttons */}
