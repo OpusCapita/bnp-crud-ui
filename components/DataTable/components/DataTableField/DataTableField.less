@@ -5,33 +5,39 @@
     padding: 10px 25px;
     white-space:nowrap;
 
-    &:first-child {
+    &:first-child
+    {
         border-left: 1px solid transparent;
     }
 
-    &:not(:first-child):not(:nth-child(2)) p {
+    &:not(:first-child):not(:nth-child(2)) p
+    {
         min-width: 150px;
     }
 
-    &:nth-child(2) p {
+    &:nth-child(2) p
+    {
         min-width: 30px;
     }
 
-    & input:focus {
+    & input:focus
+    {
         outline: none;
         box-shadow: none;
         text-shadow: none;
     }
 
     &.num,
-    &.selector {
+    &.selector
+    {
         width: 50px !important;
         text-align: center;
     }
 
     &.edited:before,
     &.error:before,
-    &.saved:before {
+    &.saved:before
+    {
         content: '';
         border-bottom: 5px solid transparent;
         border-left: 5px solid transparent;
@@ -43,15 +49,18 @@
         right: 0;
     }
     
-    &.edited:before {
+    &.edited:before
+    {
         border-top: 5px solid #FECA1D;
         border-right: 5px solid #FECA1D;
     }
-    &.error:before {
+    &.error:before
+    {
         border-top: 5px solid #DD2515;
         border-right: 5px solid #DD2515;
     }
-    &.saved:before {
+    &.saved:before
+    {
         border-top: 5px solid #3AA57B;
         border-right: 5px solid #3AA57B;
     }

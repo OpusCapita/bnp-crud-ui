@@ -1,30 +1,29 @@
-html, body {
-    margin:0;
-    padding:0;
-    height:100%;
-}
-
-.dataTableContainer {
+.dataTableContainer
+{
     position: relative;
     border: 1px solid #ddd;
     overflow: hidden;
 
-    & .unselectable {
+    & .unselectable
+    {
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
     }
-    & .dataTableContent {
+    & .dataTableContent
+    {
         overflow-y: auto;
 
-        & .dataTableView {
+        & .dataTableView
+        {
             table-layout: auto !important;
             border-spacing: 0;
             width: 100%;
             margin-bottom: 0;
 
-            & .form-control-static {
+            & .form-control-static
+            {
                 padding-top: 8px;
                 padding-bottom: 8px;
                 margin-bottom: 0;

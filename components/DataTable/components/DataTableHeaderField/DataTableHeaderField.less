@@ -1,32 +1,25 @@
-.dataTableHeaderField {
+.dataTableHeaderField
+{
     padding: 0 !important;
     border: none !important;
-    
-    /* 
-    height: 0;
-    line-height: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    color: transparent;
-    border: none;
-    white-space: nowrap;
-    border-bottom-width: 1px;
-    */
 
-    &:first-child {
+    &:first-child
+    {
         border-left: none !important;
 
-        & span {
+        & span
+        {
             border-left: none !important;
         }
     }
 
-    &:not(:first-child):not(:nth-child(2)):hover span {
+    &:not(:first-child):not(:nth-child(2)):hover span
+    {
         background: #eee;
         cursor: pointer;
     }
-    & span {
-        
+    & span
+    {    
         display: block;
         background: #fff;
         width: 100%;
@@ -35,10 +28,13 @@
         z-index: 5;
         line-height: normal;
         border-left: 1px solid #ddd;
-        &.top {
+
+        &.top
+        {
             border-bottom: 1px solid #ddd;
         }
-        &.bottom {
+        &.bottom
+        {
             border-top: 1px solid #ddd;
         }
         
@@ -46,10 +42,12 @@
 
     & span.unsorted,
     & span[class*="ascd"],
-    & span[class*="desc"] {
+    & span[class*="desc"]
+    {
         padding: 10px 25px 10px 10px;
 
-        &:before {
+        &:before
+        {
             font-family: 'Glyphicons Halflings';
             width: 20px;
             font-size: 12px;
@@ -58,30 +56,39 @@
             margin-right: 5px;
         }
     }
-    & span.unsorted:before {
+    & span.unsorted:before
+    {
         content: '';
     }
-    & span.ascd-string:before {
+    & span.ascd-string:before
+    {
         content: '';
     }
-    & span.desc-string:before {
+    & span.desc-string:before
+    {
         content: '';
     }
-    & span.ascd-number:before {
+    & span.ascd-number:before
+    {
         content: '';
     }
-    & span.desc-number:before {
+    & span.desc-number:before
+    {
         content: '';
     }
-    & span.ascd-attribute:before {
+    & span.ascd-attribute:before
+    {
         content: '';
     }
-    & span.desc-attribute:before {
+    & span.desc-attribute:before
+    {
         content: '';
     }
 
-    &.num {
-        & span {
+    &.num
+    {
+        & span
+        {
             padding: 10px 21px !important;
         }
     }
