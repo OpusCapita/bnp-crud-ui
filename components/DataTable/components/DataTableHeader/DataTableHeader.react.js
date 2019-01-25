@@ -20,15 +20,13 @@ class DataTableHeader extends Components.ContextComponent
 
         this.state =
         {
-            sortedRow: 0
+            sortedRow: this.props.sorting
         }
     }
 
     changeSorted = (index) =>
     {
-        this.setState({
-            sortedRow: index
-        })
+        this.props.sortingChange(index);
     }
 
     render()
@@ -49,7 +47,7 @@ class DataTableHeader extends Components.ContextComponent
                                     fieldNum={ i + 2 }
                                     title={ data.field }
                                     direction={ 'ascd' }
-                                    sorted={ (i === this.state.sortedRow) ? true : false }
+                                    sorted={ (i === this.props.sorting) ? true : false }
                                     onCheckSorting={ this.changeSorted.bind(this, i) }
                                     position={ this.props.position }
                                 />

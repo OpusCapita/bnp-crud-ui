@@ -21,8 +21,7 @@ class DataTableHeaderField extends Components.ContextComponent
         this.state =
         {
             headerFieldNumber: this.props.fieldNum,
-            direction: this.props.direction || '',
-            sorted: this.props.sorted || false
+            direction: this.props.direction || ''
         }
     }
 

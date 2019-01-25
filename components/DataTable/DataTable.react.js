@@ -21,7 +21,7 @@ class DataTable extends Components.ContextComponent
             tableData: [  ],
             showNumberOfRows: this.props.rows || 10,
             currentPosition: 0,
-            currentSorting: 1
+            currentSorting: 3
         }
 
         this.handleAmountChange = this.handleAmountChange.bind(this);
@@ -74,6 +74,13 @@ class DataTable extends Components.ContextComponent
             currentPosition: this.state.currentPosition + this.state.showNumberOfRows
         });
     }
+
+    sortingChange = (index) => 
+    {
+        this.setState({
+            currentSorting: index
+        });
+    }
     
     componentDidMount = () =>
     {
@@ -97,6 +104,7 @@ class DataTable extends Components.ContextComponent
                                 headerData={ this.transformData(tableData[0]) }
                                 position={ 'top' }
                                 sorting={ this.state.currentSorting }
+                                sortingChange={ this.sortingChange.bind(this) }
                             />
                             <DataTableBody
                                 tableData={ tableData }
@@ -107,6 +115,7 @@ class DataTable extends Components.ContextComponent
                                 headerData={ this.transformData(tableData[0]) }
                                 position={ 'bottom' }
                                 sorting={ this.state.currentSorting }
+                                sortingChange={ this.sortingChange.bind(this) }
                             />
                         </table>
                     </div>
