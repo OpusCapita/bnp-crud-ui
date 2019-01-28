@@ -170,6 +170,8 @@ class DataTableRow extends Components.ContextComponent
                             editable={ this.state.isSelected ? false : true }
                             columnEdited={ this.onColumnEdited.bind(this) }
                             columnError={ this.onColumnError.bind(this) }
+                            lockedColumns={ this.props.lockedColumns }
+                            notEmptyColumns={ this.props.notEmptyColumns }
                         />
                     )
                 })

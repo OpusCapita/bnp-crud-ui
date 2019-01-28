@@ -21,7 +21,7 @@ class DataTable extends Components.ContextComponent
             tableData: [  ],
             showNumberOfRows: this.props.shownRows || 10,
             currentPosition: 0,
-            currentSorting: this.props.initiallySorted || 'id'
+            currentSorting: this.props.initiallySortedColumn || 'id'
         }
     }
 
@@ -115,6 +115,8 @@ class DataTable extends Components.ContextComponent
                                 numberOfRows={ this.state.showNumberOfRows }
                                 position={ this.state.currentPosition }
                                 lockedRows={ this.props.lockedRows }
+                                lockedColumns={ this.props.lockedColumns }
+                                notEmptyColumns={ this.props.notEmptyColumns }
                             />
                             <DataTableHeader
                                 headerData={ this.transformData(tableData[ 0 ]) }

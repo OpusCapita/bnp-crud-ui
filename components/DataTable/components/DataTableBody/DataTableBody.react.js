@@ -85,6 +85,8 @@ class DataTableBody extends Components.ContextComponent
                                 rowData={ row }
                                 isLocked={ (this.state.lockedRowValues.indexOf(row[ this.state.lockedRowField ]) != -1) ? true : false }
                                 isHidden={ (i >= this.props.position) && (i < checkShowingAmount) ? false : true }
+                                lockedColumns={ this.props.lockedColumns }
+                                notEmptyColumns={ this.props.notEmptyColumns }
                             />
                         )
                     })

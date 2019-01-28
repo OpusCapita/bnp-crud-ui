@@ -35,7 +35,7 @@ class DataTableField extends Components.ContextComponent
     {
         let status = '';
 
-        if(this.state.fieldType === 'status' || this.state.fieldType === 'id' || this.state.fieldType === 'profile')
+        if(this.props.lockedColumns.indexOf(this.state.fieldType) != -1)
         {
             status = false;
         }
@@ -49,7 +49,7 @@ class DataTableField extends Components.ContextComponent
 
     checkIfHasBeenEdited = (event) =>
     {
-        if(this.state.fieldType === 'customerId' && event.target.value == '')
+        if(this.props.notEmptyColumns.indexOf(this.state.fieldType) != -1 && event.target.value == '')
         {
             this.setState({
                 hasError: true

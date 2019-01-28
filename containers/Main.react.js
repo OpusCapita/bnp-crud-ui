@@ -20,12 +20,18 @@ class Main extends Components.ContextComponent
                     }
                 }
                 shownRows={ 10 }
-                initiallySorted={ 'id' }
+                initiallySortedColumn={ 'id' }
                 lockedRows={ 
                     {
-                        field: "customerId",
-                        value: [ "acme_us", "acme_de" ]
+                        field: 'customerId',
+                        value: [ 'acme_us', 'acme_de' ]
                     } 
+                }
+                lockedColumns={
+                    [ 'id', 'status', 'profile' ]
+                }
+                notEmptyColumns={
+                    [ 'customerId', 'createdBy' ]
                 }
             />
         );
