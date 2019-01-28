@@ -117,7 +117,7 @@ class DataTable extends Components.ContextComponent
                                 lockedRows={ this.props.lockedRows }
                             />
                             <DataTableHeader
-                                headerData={ this.transformData(tableData[0]) }
+                                headerData={ this.transformData(tableData[ 0 ]) }
                                 position={ 'bottom' }
                                 sorting={ this.state.currentSorting }
                                 sortingChange={ this.sortingChange.bind(this) }

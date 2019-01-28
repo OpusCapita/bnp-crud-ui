@@ -35,16 +35,16 @@ class DataTableBody extends Components.ContextComponent
         
         let dataList = Object
         .keys(dataBody)
-        .filter(key => dataBody[key][dataKey])
-        .map(key => dataBody[key]);
+        .filter(key => dataBody[ key ][ dataKey ])
+        .map(key => dataBody[ key ]);
         
         if(dataSorting === "ascd")
         {
-            dataList.sort((a, b) => a[dataKey].localeCompare(b[dataKey]));
+            dataList.sort((a, b) => a[ dataKey ].localeCompare(b[ dataKey ]));
         }
         else if(dataSorting === "desc")
         {
-            dataList.sort((a, b) => b[dataKey].localeCompare(a[dataKey]));
+            dataList.sort((a, b) => b[ dataKey ].localeCompare(a[ dataKey ]));
         }
 
         return dataList
@@ -57,7 +57,7 @@ class DataTableBody extends Components.ContextComponent
         })
     }
 
-    componentWillReceiveProps = (nextProps) => 
+    componentWillReceiveProps = (nextProps) =>
     {
         if(nextProps.currentlySorted !== this.props.currentlySorted)
         {
@@ -83,7 +83,7 @@ class DataTableBody extends Components.ContextComponent
                                 key={ i }
                                 rowNum={ i }
                                 rowData={ row }
-                                isLocked={ (this.state.lockedRowValues.indexOf(row[this.state.lockedRowField]) != -1) ? true : false }
+                                isLocked={ (this.state.lockedRowValues.indexOf(row[ this.state.lockedRowField ]) != -1) ? true : false }
                                 isHidden={ (i >= this.props.position) && (i < checkShowingAmount) ? false : true }
                             />
                         )

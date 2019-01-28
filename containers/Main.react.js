@@ -13,7 +13,12 @@ class Main extends Components.ContextComponent
         return(
             <DataTable
                 dataUrl={ url }
-                styles={ { striped: true, hovered: true } }
+                styles={ 
+                    { 
+                        striped: true, 
+                        hovered: true 
+                    }
+                }
                 shownRows={ 10 }
                 initiallySorted={ 'id' }
                 lockedRows={ 
