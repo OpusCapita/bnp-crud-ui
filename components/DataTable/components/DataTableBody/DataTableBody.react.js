@@ -26,6 +26,26 @@ class DataTableBody extends Components.ContextComponent
         }
     }
 
+    sortData = (dataBody, dataKey, dataSorting) => 
+    {
+        
+        let dataList = Object
+        .keys(dataBody)
+        .filter(key => dataBody[key][dataKey])
+        .map(key => dataBody[key]);
+        
+        if(dataSorting === "ascd")
+        {
+            dataList.sort((a, b) => a[dataKey].localeCompare(b[dataKey]));
+        }
+        else if(dataSorting === "desc")
+        {
+            dataList.sort((a, b) => b[dataKey].localeCompare(a[dataKey]));
+        }
+
+        return dataList;
+    }
+
     render()
     {
         const tableData = this.props.tableData;
@@ -35,7 +55,7 @@ class DataTableBody extends Components.ContextComponent
         return(
             <tbody className="dataTableBody">
                 {
-                    tableData
+                    this.sortData(tableData, "customerId","ascd")
                         .map((row, i) =>
                     {
                         return(
