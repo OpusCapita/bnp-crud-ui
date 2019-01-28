@@ -15,8 +15,13 @@ class Main extends Components.ContextComponent
                 dataUrl={ url }
                 styles={ { striped: true, hovered: true } }
                 shownRows={ 10 }
-                initiallySorted={ 0 }
-                lockedRows={ [ 0, 2, 6, 7, 9, 13 ] }
+                initiallySorted={ 'id' }
+                lockedRows={ 
+                    {
+                        field: "customerId",
+                        value: [ "acme_us", "acme_de" ]
+                    } 
+                }
             />
         );
     }

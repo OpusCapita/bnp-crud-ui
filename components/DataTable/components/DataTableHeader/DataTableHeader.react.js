@@ -52,8 +52,8 @@ class DataTableHeader extends Components.ContextComponent
                                     fieldNum={ i + 2 }
                                     title={ data.field }
                                     direction={ 'ascd' }
-                                    sorted={ (i === this.props.sorting) ? true : false }
-                                    onCheckSorting={ this.changeSorted.bind(this, i) }
+                                    sorted={ (data.field === this.props.sorting) ? true : false }
+                                    onCheckSorting={ this.changeSorted.bind(this, data.field) }
                                     position={ this.props.position }
                                 />
                             )

@@ -21,7 +21,7 @@ class DataTable extends Components.ContextComponent
             tableData: [  ],
             showNumberOfRows: this.props.shownRows || 10,
             currentPosition: 0,
-            currentSorting: this.props.initiallySorted || 0
+            currentSorting: this.props.initiallySorted || 'id'
         }
     }
 
@@ -110,6 +110,7 @@ class DataTable extends Components.ContextComponent
                                 sortingChange={ this.sortingChange.bind(this) }
                             />
                             <DataTableBody
+                                currentlySorted={ this.state.currentSorting }
                                 tableData={ tableData }
                                 numberOfRows={ this.state.showNumberOfRows }
                                 position={ this.state.currentPosition }
