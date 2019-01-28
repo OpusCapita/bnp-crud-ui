@@ -22,15 +22,17 @@ class DataTableBody extends Components.ContextComponent
 
         this.state =
         {
-            sortedTableData: [  ],
+            sortedTableData: this.props.tableData || [  ],
             position: this.props.position || 0,
             lockedRowField: this.props.lockedRows.field || "id",
             lockedRowValues: this.props.lockedRows.value || [  ]
         }
     }
 
-    sortData = (dataBody, dataKey, dataSorting) => 
+    sortData = (dataKey, dataSorting) => 
     {   
+        const dataBody = this.props.tableData;
+        
         let dataList = Object
         .keys(dataBody)
         .filter(key => dataBody[key][dataKey])
@@ -51,28 +53,30 @@ class DataTableBody extends Components.ContextComponent
     componentDidMount = () =>
     {
         this.setState({
-            sortedTableData: this.sortData(this.props.tableData, this.props.currentlySorted, "ascd")
+            sortedTableData: this.sortData(this.props.currentlySorted, "ascd")
         })
     }
 
-    componentWillReceiveProps = (nextprops) => 
+    componentWillReceiveProps = (nextProps) => 
     {
-        this.setState({
-            sortedTableData: this.sortData(this.props.tableData, nextprops.currentlySorted, "ascd")
-        });
+        if(nextProps.currentlySorted !== this.props.currentlySorted)
+        {
+            this.setState({
+                sortedTableData: this.sortData(nextProps.currentlySorted, "ascd")
+            });
+        }
     }
 
     render()
     {
         const checkShowingAmount = this.props.position + this.props.numberOfRows;
-        const lockedRows = this.props.lockedRows;
 
-        const usedData = this.state.sortedTableData;
+        const sortedData = this.state.sortedTableData;
 
         return(
             <tbody className="dataTableBody">
                 {
-                    usedData.map((row, i) =>
+                    sortedData.map((row, i) =>
                     {
                         return(
                             <DataTableRow
