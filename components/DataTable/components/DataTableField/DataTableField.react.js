@@ -83,7 +83,14 @@ class DataTableField extends Components.ContextComponent
         }
 
         return(
-            <td id={ `field_${ rowNum }-${ fieldNum + 2 }` } className={ `dataTableField ${this.state.hasBeenEdited ? 'edited' : '' } ${this.state.hasError ? 'error' : '' }` }>
+            <td 
+                id={ `field_${ rowNum }-${ fieldNum + 2 }` } 
+                className={ 
+                    `dataTableField 
+                    ${this.state.hasBeenEdited ? 'edited' : '' } 
+                    ${this.state.hasError ? 'error' : '' }` 
+                }
+            >
                 {
                     (this.props.editable === true && this.checkIfShouldBeDisabled() === true) &&
                     <input

@@ -18,7 +18,7 @@ class DataTableHeader extends Components.ContextComponent
     {
         super(props);
 
-        this.state = {}
+        this.state = {  }
     }
 
     changeSorted = (index) =>
@@ -33,8 +33,16 @@ class DataTableHeader extends Components.ContextComponent
         return(
             <thead className="dataTableHeader unselectable">
                 <tr className="dataTableHeaderRow">
-                    <DataTableHeaderField position={ this.props.position } fieldNum={ 0 } title={ '' } />
-                    <DataTableHeaderField position={ this.props.position } fieldNum={ 1 } title={ '#' } />
+                    <DataTableHeaderField 
+                        position={ this.props.position } 
+                        fieldNum={ 0 } 
+                        title={ '' } 
+                    />
+                    <DataTableHeaderField 
+                        position={ this.props.position } 
+                        fieldNum={ 1 } 
+                        title={ '#' } 
+                    />
                     {
                         rowDataFields.map((data, i) =>
                         {

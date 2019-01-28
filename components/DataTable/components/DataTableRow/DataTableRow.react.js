@@ -49,7 +49,6 @@ class DataTableRow extends Components.ContextComponent
             rowStateClass: '',
             isSelected: true,
             isLocked: this.props.isLocked || false,
-            isHidden: false,
             isEdited: false,
             isError: false,
             rowData: {  }

@@ -96,10 +96,15 @@ class DataTable extends Components.ContextComponent
                 {
                     <div className="dataTableContent">
                         <table
-                            className={ `table ${ this.props.striped ? 'table-striped' : '' } ${ this.props.hovered ? 'table-hover' : '' } table-bordered dataTableView` }
+                            className={ 
+                                `table 
+                                ${ this.props.styles.striped ? 'table-striped' : '' } 
+                                ${ this.props.styles.hovered ? 'table-hover' : '' } 
+                                table-bordered dataTableView` 
+                            }
                         >
                             <DataTableHeader
-                                headerData={ this.transformData(tableData[0]) }
+                                headerData={ this.transformData(tableData[ 0 ]) }
                                 position={ 'top' }
                                 sorting={ this.state.currentSorting }
                                 sortingChange={ this.sortingChange.bind(this) }
