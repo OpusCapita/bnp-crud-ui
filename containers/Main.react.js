@@ -12,19 +12,19 @@ export default class Main extends Components.ContextComponent
         return(
             <DataTable
                 dataUrl={ url }
-                styles={ 
-                    { 
-                        striped: true, 
-                        hovered: true 
+                styles={
+                    {
+                        striped: true,
+                        hovered: true
                     }
                 }
                 shownRows={ 10 }
                 initiallySortedColumn={ 'id' }
-                lockedRows={ 
+                lockedRows={
                     {
                         field: 'customerId',
                         value: [ 'acme_us', 'acme_de' ]
-                    } 
+                    }
                 }
                 lockedColumns={
                     [ 'id', 'status', 'profile' ]

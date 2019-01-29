@@ -77,19 +77,18 @@ export default class DataTableHeaderField extends Components.ContextComponent
 
     render()
     {
-        const { 
-            title, 
-            fieldNum, 
-            sorted, 
-            position 
-        } = this.props;
+        const { title, fieldNum, sorted, position } = this.props
+        const { direction } = this.state;
 
         return(
-            <th id={ `header_${ fieldNum }` } className="dataTableHeaderField">
+            <th 
+                id={ `header_${ fieldNum }` } 
+                className="dataTableHeaderField"
+            >
                 {
                     (fieldNum !== 0 && fieldNum !== 1) ? (
                         <span
-                            className={ sorted ? `${ position } ${ this.state.direction }-${ this.getFieldType() }` : `${ position } unsorted` }
+                            className={ sorted ? `${ position } ${ direction }-${ this.getFieldType() }` : `${ position } unsorted` }
                             onClick={ this.checkSorting }
                         >
                             { title }&nbsp;

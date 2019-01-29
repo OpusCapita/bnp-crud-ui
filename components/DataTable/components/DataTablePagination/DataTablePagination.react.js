@@ -91,16 +91,12 @@ export default class DataTablePagination extends Components.ContextComponent
     render()
     {
         const { i18n } = this.context;
-        const { 
-            tableLength, 
-            currentPosition 
-        } = this.props;
+        const { tableLength, currentPosition } = this.props;
+        const { shownRowsAmount, currentPage } = this.state;
 
-        const shownRows = this.state.shownRowsAmount;
         const minPosition = currentPosition + 1;
-        const maxPosition = currentPosition + shownRows;
-        const availiblePages = tableLength / shownRows;
-        const currentPage = this.state.currentPage;
+        const maxPosition = currentPosition + shownRowsAmount;
+        const availiblePages = tableLength / shownRowsAmount;
 
         return (
             <div className="dataTablePagination unselectable">
@@ -124,7 +120,7 @@ export default class DataTablePagination extends Components.ContextComponent
                                 </div>
                                 <select
                                     className="form-control"
-                                    value={ shownRows }
+                                    value={ shownRowsAmount }
                                     onChange={ this.onShownRowsChanged }
                                 >
                                     { this.shownRowsOptions() }

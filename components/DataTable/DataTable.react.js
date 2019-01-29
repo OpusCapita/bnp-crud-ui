@@ -108,13 +108,9 @@ export default class DataTable extends Components.ContextComponent
 
     render = () =>
     {
-        const { 
-            styles, 
-            lockedRows, 
-            lockedColumns, 
-            notEmptyColumns 
-        } = this.props;
-
+        const { styles, lockedRows, lockedColumns, notEmptyColumns } = this.props;
+        const { currentSorting, currentPosition, showNumberOfRows, currentPage } = this.state;
+        
         const tableData = this.state.tableData;
 
         return(
@@ -134,14 +130,14 @@ export default class DataTable extends Components.ContextComponent
                             <DataTableHeader
                                 headerData={ this.transformData(tableData[ 0 ]) }
                                 position={ 'top' }
-                                sorting={ this.state.currentSorting }
+                                sorting={ currentSorting }
                                 sortingChange={ this.sortingChange.bind(this) }
                             />
                             <DataTableBody
-                                currentlySorted={ this.state.currentSorting }
+                                currentlySorted={ currentSorting }
                                 tableData={ tableData }
-                                numberOfRows={ this.state.showNumberOfRows }
-                                position={ this.state.currentPosition }
+                                numberOfRows={ showNumberOfRows }
+                                position={ currentPosition }
                                 lockedRows={ lockedRows }
                                 lockedColumns={ lockedColumns }
                                 notEmptyColumns={ notEmptyColumns }
@@ -149,7 +145,7 @@ export default class DataTable extends Components.ContextComponent
                             <DataTableHeader
                                 headerData={ this.transformData(tableData[ 0 ]) }
                                 position={ 'bottom' }
-                                sorting={ this.state.currentSorting }
+                                sorting={ currentSorting }
                                 sortingChange={ this.sortingChange.bind(this) }
                             />
                         </table>
@@ -159,9 +155,9 @@ export default class DataTable extends Components.ContextComponent
             <br />
             <DataTablePagination
                 tableLength={ tableData.length }
-                shownRowsAmount={ this.state.showNumberOfRows }
-                currentPosition={ this.state.currentPosition }
-                currentPage={ this.state.currentPage }
+                shownRowsAmount={ showNumberOfRows }
+                currentPosition={ currentPosition }
+                currentPage={ currentPage }
                 prevButtonClicked={ this.showPrevPage.bind(this) }
                 nextButtonClicked={ this.showNextPage.bind(this) }
                 shownRowsAmountChanged={ this.handleAmountChange.bind(this) }

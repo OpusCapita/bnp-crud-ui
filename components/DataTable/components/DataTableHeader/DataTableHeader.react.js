@@ -40,11 +40,7 @@ export default class DataTableHeader extends Components.ContextComponent
 
     render()
     {
-        const {
-            headerData,
-            sorting,
-            position
-        } = this.props;
+        const { headerData, sorting, position } = this.props;
 
         return(
             <thead className="dataTableHeader unselectable">

@@ -50,11 +50,7 @@ export default class DataTablePaginationButton extends Components.ContextCompone
 
     createArrowButton = () =>
     {
-        const { 
-            tableLength, 
-            currentPosition, 
-            direction 
-        } = this.props;
+        const { tableLength, currentPosition, direction } = this.props;
 
         if(direction === 'prev')
         {

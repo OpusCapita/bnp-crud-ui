@@ -90,16 +90,11 @@ export default class DataTableBody extends Components.ContextComponent
 
     render()
     {
-        const {
-            position,
-            numberOfRows,
-            lockedColumns,
-            notEmptyColumns
-        } = this.props;
+        const { position, numberOfRows, lockedColumns, notEmptyColumns } = this.props;
+        const { sortedTableData, lockedRowField, lockedRowValues } = this.state;
 
         const checkShowingAmount = position + numberOfRows;
-
-        const sortedData = this.state.sortedTableData;
+        const sortedData = sortedTableData;
 
         return(
             <tbody className="dataTableBody">
@@ -111,7 +106,7 @@ export default class DataTableBody extends Components.ContextComponent
                                 key={ i }
                                 rowNum={ i }
                                 rowData={ row }
-                                isLocked={ (this.state.lockedRowValues.indexOf(row[ this.state.lockedRowField ]) != -1) ? true : false }
+                                isLocked={ (lockedRowValues.indexOf(row[ lockedRowField ]) != -1) ? true : false }
                                 isHidden={ (i >= position) && (i < checkShowingAmount) ? false : true }
                                 lockedColumns={ lockedColumns }
                                 notEmptyColumns={ notEmptyColumns }

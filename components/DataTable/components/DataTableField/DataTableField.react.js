@@ -99,17 +99,14 @@ export default class DataTableField extends Components.ContextComponent
 
     render()
     {
+        const { rowNum, fieldNum, editable } = this.props;
+        const { currentContent, originalContent, hasBeenEdited, hasError } = this.state;
+        
         let content = this.props.content;
 
-        const {
-            rowNum,
-            fieldNum,
-            editable
-        } = this.props;
-
-        if(this.state.currentContent !== this.state.originalContent)
+        if(currentContent !== originalContent)
         {
-            content = this.state.currentContent;
+            content = currentContent;
         }
 
         return(
@@ -117,8 +114,8 @@ export default class DataTableField extends Components.ContextComponent
                 id={ `field_${ rowNum }-${ fieldNum + 2 }` } 
                 className={ 
                     `dataTableField 
-                    ${this.state.hasBeenEdited ? 'edited' : '' } 
-                    ${this.state.hasError ? 'error' : '' }` 
+                    ${ hasBeenEdited ? 'edited' : '' } 
+                    ${ hasError ? 'error' : '' }` 
                 }
             >
                 {

@@ -155,20 +155,19 @@ export default class DataTableRow extends Components.ContextComponent
 
     render()
     {
-        const { 
-            rowNum, 
-            isHidden, 
-            lockedColumns, 
-            notEmptyColumns 
-        } = this.props;
+        const { rowNum, isHidden, lockedColumns, notEmptyColumns } = this.props;
+        const { rowStateClass, isLocked, isSelected } = this.state;
 
         const rowDataFields = this.getFields();
 
         return(
-            <tr className={ `dataTableRow ${ this.state.rowStateClass } ${ this.state.isLocked ? 'unselectable' : '' } ${ isHidden ? 'hidden' : '' }` }>
-                <td id={ `field_${ rowNum }-0` } className="selector dataTableField">
+            <tr className={ `dataTableRow ${ rowStateClass } ${ isLocked ? 'unselectable' : '' } ${ isHidden ? 'hidden' : '' }` }>
+                <td 
+                    id={ `field_${ rowNum }-0` } 
+                    className="selector dataTableField"
+                >
                 {
-                    (this.state.isLocked === false) &&
+                    (isLocked === false) &&
                     <input
                         type="checkbox"
                         onClick={ this.handleSelectionChange.bind(this) }
@@ -176,7 +175,10 @@ export default class DataTableRow extends Components.ContextComponent
                     />
                 }
                 </td>
-                <td id={ `field_${ rowNum }-1` } className="num dataTableField">
+                <td 
+                    id={ `field_${ rowNum }-1` } 
+                    className="num dataTableField"
+                >
                 {
                     (rowNum + 1)
                 }
@@ -192,7 +194,7 @@ export default class DataTableRow extends Components.ContextComponent
                             content={ data.value }
                             fieldType={ data.field }
                             locked={ false }
-                            editable={ this.state.isSelected ? false : true }
+                            editable={ isSelected ? false : true }
                             columnEdited={ this.onColumnEdited.bind(this) }
                             columnError={ this.onColumnError.bind(this) }
                             lockedColumns={ lockedColumns }
