@@ -1,12 +1,3 @@
-/* 
-    DataTableField
-    --------------------------------------------------
-    - Rendering of DataTableField content
-    - Determining if DataTableField should be shown
-    - Determining if DataTableField should be editable
-    - Determining if DataTableField should be disabled
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';

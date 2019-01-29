@@ -1,10 +1,3 @@
-/* 
-    DataTableMenu
-    ----------------------------------
-    - DataTable search functionalities
-    - Other Menu functions, i.e. Creating a new entry?
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';

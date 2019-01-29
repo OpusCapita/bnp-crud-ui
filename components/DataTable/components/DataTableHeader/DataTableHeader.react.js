@@ -1,9 +1,3 @@
-/* 
-    DataTableHeader
-    ------------------------------------------
-    - Rendering of Headers and sorting options
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';

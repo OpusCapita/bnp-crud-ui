@@ -1,9 +1,3 @@
-/* 
-    DataTablePaginationButton
-    ----------------------------------------
-    - Rendering of DataTablePaginationButton
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';

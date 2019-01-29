@@ -1,11 +1,3 @@
-/* 
-    DataTableBody
-    ------------------------------------------------------------
-    - Rendering of selected amount of DataTableRows
-    - Sorting of DataTableRows
-    - Showing element pages according to amount of DataTableRows
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';

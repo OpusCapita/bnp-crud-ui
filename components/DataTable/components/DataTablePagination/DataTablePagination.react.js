@@ -1,15 +1,10 @@
-/* 
-    DataTableHeader
-    ------------------------------------------
-    - Rendering of Headers and sorting options
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import translations from '../../i18n';
 import DataTablePaginationButton from '../DataTablePaginationButton';
+import DataTablePaginationPosition from '../DataTablePaginationPosition';
 import './DataTablePagination.less';
 
 export default class DataTablePagination extends Components.ContextComponent
@@ -73,30 +68,10 @@ export default class DataTablePagination extends Components.ContextComponent
         this.props.nextButtonClicked();
     }
 
-    shownRowsOptions = () =>
-    {
-        let options = [];
-
-        for(let i = 25; i < this.props.tableLength; i*=2)
-        {
-            options.push( <option key={ i } value={ i }>{ i }</option>);
-        }
-
-        options.unshift(<option key={ 0 } value={ 10 }>{ 10 }</option>);
-        options.push(<option key={ 99999 } value={ this.props.tableLength }>All</option>);
-        
-        return options;
-    }
-
     render()
     {
-        const { i18n } = this.context;
         const { tableLength, currentPosition } = this.props;
         const { shownRowsAmount, currentPage } = this.state;
-
-        const minPosition = currentPosition + 1;
-        const maxPosition = currentPosition + shownRowsAmount;
-        const availiblePages = tableLength / shownRowsAmount;
 
         return (
             <div className="dataTablePagination unselectable">
@@ -106,35 +81,19 @@ export default class DataTablePagination extends Components.ContextComponent
                     currentPosition={ currentPosition }
                     prevClicked={ this.onPrevButtonClicked }
                 />
-                <div className="showPosition">
-                    <span className="form-inline">
-                        <div className="form-group">
-                            <div className="input-group">
-                                <div className="input-group-addon">
-                                    <span>
-                                        <b>{ i18n.getMessage('CrudUI.Pagination.Page') } { Math.round(currentPage) } { i18n.getMessage('CrudUI.Pagination.Of') } { Math.round(availiblePages) }</b>&nbsp;
-                                        (
-                                            { Math.min(tableLength, Math.max(minPosition, 0)) } - { Math.min(tableLength, Math.max(maxPosition, 0)) }
-                                        )
-                                    </span>
-                                </div>
-                                <select
-                                    className="form-control"
-                                    value={ shownRowsAmount }
-                                    onChange={ this.onShownRowsChanged }
-                                >
-                                    { this.shownRowsOptions() }
-                                </select>
+                
+                <DataTablePaginationPosition
+                    tableLength={ tableLength }
+                    currentPage={ currentPage }
+                    currentPosition={ currentPosition }
+                    shownRowsAmount={ shownRowsAmount }
+                    shownRowsAmountChanged={ this.onShownRowsChanged.bind(this) }
+                />
 
-                                <div className="input-group-addon">/ { tableLength }</div>
-                            </div>
-                        </div>
-                    </span>
-                </div>
                 <DataTablePaginationButton
                     direction={ 'next' }
                     tableLength={ tableLength }
-                    currentPosition={ maxPosition }
+                    currentPosition={ currentPosition + shownRowsAmount }
                     nextClicked={ this.onNextButtonClicked }
                 />
             </div>

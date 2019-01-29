@@ -1,11 +1,3 @@
-/* 
-    DataTableHeaderField
-    ------------------------------------------
-    - Render DataTableHeaderField
-    - Define sorting
-    - Determine width of DataTableHeaderField
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
