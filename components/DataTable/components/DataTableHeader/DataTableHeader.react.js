@@ -13,6 +13,11 @@ import './DataTableHeader.less';
 
 export default class DataTableHeader extends Components.ContextComponent
 {
+    constructor(props)
+    {
+        super(props);
+    }
+    
     static propTypes =
     {
         headerData: PropTypes.array.isRequired,
@@ -26,11 +31,6 @@ export default class DataTableHeader extends Components.ContextComponent
         headerData: [  ],
         position: 'top',
         sorting: 'ascd'
-    }
-
-    constructor(props)
-    {
-        super(props);
     }
 
     changeSorted = (index) =>

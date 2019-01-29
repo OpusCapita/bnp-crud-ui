@@ -14,10 +14,17 @@ import './DataTablePagination.less';
 
 export default class DataTablePagination extends Components.ContextComponent
 {
-    state =
+    constructor(props, context)
     {
-        shownRowsAmount: this.props.shownRowsAmount,
-        currentPage: 1
+        super(props);
+
+        this.state =
+        {
+            shownRowsAmount: this.props.shownRowsAmount,
+            currentPage: 1
+        }
+
+        context.i18n.register('CrudUI', translations);
     }
 
     static propTypes =
@@ -37,13 +44,6 @@ export default class DataTablePagination extends Components.ContextComponent
         shownRowsAmount: 10,
         currentPosition: 0,
         currentPage: 1
-    }
-
-    constructor(props, context)
-    {
-        super(props);
-
-        context.i18n.register('CrudUI', translations);
     }
 
     onShownRowsChanged = (event) =>

@@ -15,15 +15,20 @@ import './DataTableField.less';
 
 export default class DataTableField extends Components.ContextComponent
 {   
-    state =
+    constructor(props)
     {
-        editable: this.props.editable,
-        disabled: this.props.disabled,
-        hasBeenEdited: false,
-        hasError: false,
-        originalContent: this.props.content,
-        currentContent: this.props.content,
-        fieldType: this.props.fieldType
+        super(props);
+
+        this.state =
+        {
+            editable: this.props.editable,
+            disabled: this.props.disabled,
+            hasBeenEdited: false,
+            hasError: false,
+            originalContent: this.props.content,
+            currentContent: this.props.content,
+            fieldType: this.props.fieldType
+        }
     }
 
     static propTypes =
@@ -50,11 +55,6 @@ export default class DataTableField extends Components.ContextComponent
         editable: true,
         lockedColumns: [  ],
         notEmptyColumns: [  ]
-    }
-
-    constructor(props)
-    {
-        super(props);
     }
 
     checkIfShouldBeDisabled = () =>

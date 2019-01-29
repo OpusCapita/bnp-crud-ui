@@ -11,12 +11,17 @@ import './DataTable.less';
 
 export default class DataTable extends Components.ContextComponent
 {
-    state =
+    constructor(props, context)
     {
-        tableData: [  ],
-        showNumberOfRows: this.props.shownRows,
-        currentPosition: 0,
-        currentSorting: this.props.initiallySortedColumn
+        super(props);
+        
+        this.state =
+        {
+            tableData: [  ],
+            showNumberOfRows: this.props.shownRows,
+            currentPosition: 0,
+            currentSorting: this.props.initiallySortedColumn
+        }
     }
 
     static propTypes =
@@ -39,11 +44,6 @@ export default class DataTable extends Components.ContextComponent
         lockedRows: [  ],
         lockedColumns: [  ],
         notEmptyColumns: [  ]
-    }
-
-    constructor(props, context)
-    {
-        super(props);
     }
 
     loadData = () =>

@@ -39,14 +39,19 @@ import './DataTableRow.less';
 
 export default class DataTableRow extends Components.ContextComponent
 {
-    state =
+    constructor(props, context)
     {
-        rowStateClass: '',
-        isSelected: true,
-        isLocked: this.props.isLocked,
-        isEdited: false,
-        isError: false,
-        rowData: {  }
+        super(props);
+        
+        this.state =
+        {
+            rowStateClass: '',
+            isSelected: true,
+            isLocked: this.props.isLocked,
+            isEdited: false,
+            isError: false,
+            rowData: {  }
+        }
     }
 
     static propTypes =
@@ -68,12 +73,7 @@ export default class DataTableRow extends Components.ContextComponent
         lockedColumns: [  ],
         notEmptyColumns: [  ]
     }
-
-    constructor(props, context)
-    {
-        super(props);
-    }
-
+    
     componentDidMount = () =>
     {
         this.setState({

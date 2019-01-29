@@ -14,10 +14,15 @@ import './DataTableheaderField.less';
 
 export default class DataTableHeaderField extends Components.ContextComponent
 {
-    state =
+    constructor(props)
     {
-        headerFieldNumber: this.props.fieldNum,
-        direction: this.props.direction
+        super(props);
+
+        this.state =
+        {
+            headerFieldNumber: this.props.fieldNum,
+            direction: this.props.direction
+        }
     }
 
     static propTypes =
@@ -37,11 +42,6 @@ export default class DataTableHeaderField extends Components.ContextComponent
         direction: '',
         sorted: false,
         position: 'top'
-    }
-
-    constructor(props)
-    {
-        super(props);
     }
 
     checkSorting = () =>

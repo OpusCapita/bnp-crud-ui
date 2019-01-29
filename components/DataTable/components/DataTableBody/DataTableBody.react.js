@@ -15,12 +15,17 @@ import './DataTableBody.less';
 
 export default class DataTableBody extends Components.ContextComponent
 {
-    state =
+    constructor(props)
     {
-        sortedTableData: this.props.tableData,
-        position: this.props.position,
-        lockedRowField: this.props.lockedRows.field,
-        lockedRowValues: this.props.lockedRows.value
+        super(props);
+
+        this.state =
+        {
+            sortedTableData: this.props.tableData,
+            position: this.props.position,
+            lockedRowField: this.props.lockedRows.field,
+            lockedRowValues: this.props.lockedRows.value
+        }
     }
 
     static propTypes =
@@ -43,11 +48,6 @@ export default class DataTableBody extends Components.ContextComponent
         lockedRows: [ { field: "id", value: [  ] } ],
         lockedColumns: [  ],
         notEmptyColumns: [  ]
-    }
-
-    constructor(props)
-    {
-        super(props);
     }
 
     sortData = (dataKey, dataSorting) => 
