@@ -7,26 +7,47 @@
 */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableRow from '../DataTableRow';
-
 import './DataTableBody.less';
 
-class DataTableBody extends Components.ContextComponent
+export default class DataTableBody extends Components.ContextComponent
 {
+    state =
+    {
+        sortedTableData: this.props.tableData,
+        position: this.props.position,
+        lockedRowField: this.props.lockedRows.field,
+        lockedRowValues: this.props.lockedRows.value
+    }
+
+    static propTypes =
+    {
+        currentlySorted: PropTypes.string.isRequired,
+        tableData: PropTypes.array.isRequired,
+        numberOfRows: PropTypes.number.isRequired,
+        position: PropTypes.number.isRequired,
+        lockedRows: PropTypes.object.isRequired,
+        lockedColumns: PropTypes.array.isRequired,
+        notEmptyColumns: PropTypes.array.isRequired
+    }
+
+    static defaultProps =
+    {
+        currentlySorted: [  ],
+        tableData: [  ],
+        numberOfRows: 10,
+        position: 0,
+        lockedRows: [ { field: "id", value: [  ] } ],
+        lockedColumns: [  ],
+        notEmptyColumns: [  ]
+    }
+
     constructor(props)
     {
         super(props);
-
-        this.state =
-        {
-            sortedTableData: this.props.tableData || [  ],
-            position: this.props.position || 0,
-            lockedRowField: this.props.lockedRows.field || "id",
-            lockedRowValues: this.props.lockedRows.value || [  ]
-        }
     }
 
     sortData = (dataKey, dataSorting) => 
@@ -69,7 +90,14 @@ class DataTableBody extends Components.ContextComponent
 
     render()
     {
-        const checkShowingAmount = this.props.position + this.props.numberOfRows;
+        const {
+            position,
+            numberOfRows,
+            lockedColumns,
+            notEmptyColumns
+        } = this.props;
+
+        const checkShowingAmount = position + numberOfRows;
 
         const sortedData = this.state.sortedTableData;
 
@@ -84,9 +112,9 @@ class DataTableBody extends Components.ContextComponent
                                 rowNum={ i }
                                 rowData={ row }
                                 isLocked={ (this.state.lockedRowValues.indexOf(row[ this.state.lockedRowField ]) != -1) ? true : false }
-                                isHidden={ (i >= this.props.position) && (i < checkShowingAmount) ? false : true }
-                                lockedColumns={ this.props.lockedColumns }
-                                notEmptyColumns={ this.props.notEmptyColumns }
+                                isHidden={ (i >= position) && (i < checkShowingAmount) ? false : true }
+                                lockedColumns={ lockedColumns }
+                                notEmptyColumns={ notEmptyColumns }
                             />
                         )
                     })
@@ -95,5 +123,3 @@ class DataTableBody extends Components.ContextComponent
         )
     }
 }
-
-export default DataTableBody;

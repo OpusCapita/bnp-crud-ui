@@ -7,22 +7,41 @@
 */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import './DataTableheaderField.less';
 
-class DataTableHeaderField extends Components.ContextComponent
+export default class DataTableHeaderField extends Components.ContextComponent
 {
+    state =
+    {
+        headerFieldNumber: this.props.fieldNum,
+        direction: this.props.direction
+    }
+
+    static propTypes =
+    {
+        fieldNum: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        direction: PropTypes.string,
+        sorted: PropTypes.bool,
+        position: PropTypes.string.isRequired,
+        onCheckSorting: PropTypes.func
+    }
+
+    static defaultProps =
+    {
+        fieldNum: 0,
+        title: '',
+        direction: '',
+        sorted: false,
+        position: 'top'
+    }
+
     constructor(props)
     {
         super(props);
-
-        this.state =
-        {
-            headerFieldNumber: this.props.fieldNum || 0,
-            direction: this.props.direction || ''
-        }
     }
 
     checkSorting = () =>
@@ -58,24 +77,28 @@ class DataTableHeaderField extends Components.ContextComponent
 
     render()
     {
-        const headerFieldTitle = this.props.title;
-        const headerFieldNumber = this.state.headerFieldNumber;
+        const { 
+            title, 
+            fieldNum, 
+            sorted, 
+            position 
+        } = this.props;
 
         return(
-            <th id={ `header_${ headerFieldNumber }` } className="dataTableHeaderField">
+            <th id={ `header_${ fieldNum }` } className="dataTableHeaderField">
                 {
-                    (headerFieldNumber !== 0 && headerFieldNumber !== 1) ? (
+                    (fieldNum !== 0 && fieldNum !== 1) ? (
                         <span
-                            className={ this.props.sorted ? `${ this.props.position } ${ this.state.direction }-${ this.getFieldType() }` : `${ this.props.position } unsorted` }
+                            className={ sorted ? `${ position } ${ this.state.direction }-${ this.getFieldType() }` : `${ position } unsorted` }
                             onClick={ this.checkSorting }
                         >
-                            {headerFieldTitle}&nbsp;
+                            { title }&nbsp;
                         </span>
                     )
                     :
                     (
-                        <span className={ `${this.props.position}` }>
-                            { headerFieldTitle }&nbsp;
+                        <span className={ `${ position}` }>
+                            { title }&nbsp;
                         </span>
                     )
                 }
@@ -83,5 +106,3 @@ class DataTableHeaderField extends Components.ContextComponent
         )
     }
 }
-
-export default DataTableHeaderField;

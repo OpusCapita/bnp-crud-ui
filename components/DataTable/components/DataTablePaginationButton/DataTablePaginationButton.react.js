@@ -5,21 +5,37 @@
 */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import './DataTablePaginationButton.less';
 
-class DataTablePaginationButton extends Components.ContextComponent
+export default class DataTablePaginationButton extends Components.ContextComponent
 {
+    state =
+    {
+        direction: this.props.direction
+    }
+
+    static propTypes =
+    {
+        direction: PropTypes.string.isRequired,
+        tableLength: PropTypes.number.isRequired,
+        currentPosition: PropTypes.number.isRequired,
+        nextClicked: PropTypes.func,
+        prevClicked: PropTypes.func
+    }
+
+    static defaultProps =
+    {
+        direction: 'prev',
+        tableLength: 50,
+        currentPosition: 1
+    }
+
     constructor(props)
     {
         super(props);
-
-        this.state =
-        {
-            direction: this.props.direction || 'prev' // prev | next
-        }
     }
 
     prevButtonClicked = () =>
@@ -34,9 +50,15 @@ class DataTablePaginationButton extends Components.ContextComponent
 
     createArrowButton = () =>
     {
-        if(this.props.direction === 'prev')
+        const { 
+            tableLength, 
+            currentPosition, 
+            direction 
+        } = this.props;
+
+        if(direction === 'prev')
         {
-            const usable = (Math.min(this.props.tableLength, Math.max(this.props.currentPosition, 0)) > 0);
+            const usable = (Math.min(tableLength, Math.max(currentPosition, 0)) > 0);
 
             return (
                 <div 
@@ -47,9 +69,9 @@ class DataTablePaginationButton extends Components.ContextComponent
                 </div>
             )
         }
-        else if(this.props.direction === 'next')
+        else if(direction === 'next')
         {
-            const usable = (Math.min(this.props.tableLength, Math.max(this.props.currentPosition, 0)) < (this.props.tableLength));
+            const usable = (Math.min(tableLength, Math.max(currentPosition, 0)) < (tableLength));
 
             return (
                 <div
@@ -71,5 +93,3 @@ class DataTablePaginationButton extends Components.ContextComponent
         )
     }
 }
-
-export default DataTablePaginationButton;

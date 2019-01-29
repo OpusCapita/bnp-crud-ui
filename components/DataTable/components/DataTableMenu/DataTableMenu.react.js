@@ -6,13 +6,13 @@
 */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
-import translations from '../../i18n';
 
+import translations from '../../i18n';
 import './DataTableMenu.less';
 
-class DataTableMenu extends Components.ContextComponent
+export default class DataTableMenu extends Components.ContextComponent
 {
     constructor(props, context)
     {
@@ -47,5 +47,3 @@ class DataTableMenu extends Components.ContextComponent
         )
     }
 }
-
-export default DataTableMenu;

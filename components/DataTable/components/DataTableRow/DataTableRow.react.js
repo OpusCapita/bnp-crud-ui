@@ -31,28 +31,47 @@
 */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableField from '../DataTableField';
-
 import './DataTableRow.less';
 
-class DataTableRow extends Components.ContextComponent
+export default class DataTableRow extends Components.ContextComponent
 {
+    state =
+    {
+        rowStateClass: '',
+        isSelected: true,
+        isLocked: this.props.isLocked,
+        isEdited: false,
+        isError: false,
+        rowData: {  }
+    }
+
+    static propTypes =
+    {
+        rowNum: PropTypes.number.isRequired,
+        rowData: PropTypes.object.isRequired,
+        isLocked: PropTypes.bool.isRequired,
+        isHidden: PropTypes.bool.isRequired,
+        lockedColumns: PropTypes.array.isRequired,
+        notEmptyColumns: PropTypes.array.isRequired
+    }
+
+    static defaultProps =
+    {
+        rowNum: 0,
+        rowData: [  ],
+        isLocked: false,
+        isHidden: false,
+        lockedColumns: [  ],
+        notEmptyColumns: [  ]
+    }
+
     constructor(props, context)
     {
         super(props);
-
-        this.state =
-        {
-            rowStateClass: '',
-            isSelected: true,
-            isLocked: this.props.isLocked || false,
-            isEdited: false,
-            isError: false,
-            rowData: {  }
-        }
     }
 
     componentDidMount = () =>
@@ -136,11 +155,17 @@ class DataTableRow extends Components.ContextComponent
 
     render()
     {
+        const { 
+            rowNum, 
+            isHidden, 
+            lockedColumns, 
+            notEmptyColumns 
+        } = this.props;
+
         const rowDataFields = this.getFields();
-        const rowNum = this.props.rowNum;
 
         return(
-            <tr className={ `dataTableRow ${ this.state.rowStateClass } ${ this.state.isLocked ? 'unselectable' : '' } ${ this.props.isHidden ? 'hidden' : '' }` }>
+            <tr className={ `dataTableRow ${ this.state.rowStateClass } ${ this.state.isLocked ? 'unselectable' : '' } ${ isHidden ? 'hidden' : '' }` }>
                 <td id={ `field_${ rowNum }-0` } className="selector dataTableField">
                 {
                     (this.state.isLocked === false) &&
@@ -153,7 +178,7 @@ class DataTableRow extends Components.ContextComponent
                 </td>
                 <td id={ `field_${ rowNum }-1` } className="num dataTableField">
                 {
-                    (this.props.rowNum + 1)
+                    (rowNum + 1)
                 }
                 </td>
             {
@@ -170,8 +195,8 @@ class DataTableRow extends Components.ContextComponent
                             editable={ this.state.isSelected ? false : true }
                             columnEdited={ this.onColumnEdited.bind(this) }
                             columnError={ this.onColumnError.bind(this) }
-                            lockedColumns={ this.props.lockedColumns }
-                            notEmptyColumns={ this.props.notEmptyColumns }
+                            lockedColumns={ lockedColumns }
+                            notEmptyColumns={ notEmptyColumns }
                         />
                     )
                 })
@@ -180,5 +205,3 @@ class DataTableRow extends Components.ContextComponent
         )
     }
 }
-
-export default DataTableRow;

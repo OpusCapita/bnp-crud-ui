@@ -5,20 +5,32 @@
 */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableHeaderField from '../DataTableHeaderField';
-
 import './DataTableHeader.less';
 
-class DataTableHeader extends Components.ContextComponent
+export default class DataTableHeader extends Components.ContextComponent
 {
+    static propTypes =
+    {
+        headerData: PropTypes.array.isRequired,
+        position: PropTypes.string.isRequired,
+        sorting: PropTypes.string.isRequired,
+        sortingChange: PropTypes.func.isRequired
+    }
+
+    static defaultProps =
+    {
+        headerData: [  ],
+        position: 'top',
+        sorting: 'ascd'
+    }
+
     constructor(props)
     {
         super(props);
-
-        this.state = {  }
     }
 
     changeSorted = (index) =>
@@ -28,23 +40,27 @@ class DataTableHeader extends Components.ContextComponent
 
     render()
     {
-        const rowDataFields = this.props.headerData;
+        const {
+            headerData,
+            sorting,
+            position
+        } = this.props;
 
         return(
             <thead className="dataTableHeader unselectable">
                 <tr className="dataTableHeaderRow">
                     <DataTableHeaderField
-                        position={ this.props.position }
+                        position={ position }
                         fieldNum={ 0 }
                         title={ '' }
                     />
                     <DataTableHeaderField
-                        position={ this.props.position }
+                        position={ position }
                         fieldNum={ 1 }
                         title={ '#' }
                     />
                     {
-                        rowDataFields.map((data, i) =>
+                        headerData.map((data, i) =>
                         {
                             return (
                                 <DataTableHeaderField
@@ -52,9 +68,9 @@ class DataTableHeader extends Components.ContextComponent
                                     fieldNum={ i + 2 }
                                     title={ data.field }
                                     direction={ 'ascd' }
-                                    sorted={ (data.field === this.props.sorting) ? true : false }
+                                    sorted={ (data.field === sorting) ? true : false }
                                     onCheckSorting={ this.changeSorted.bind(this, data.field) }
-                                    position={ this.props.position }
+                                    position={ position }
                                 />
                             )
                         })
@@ -64,5 +80,3 @@ class DataTableHeader extends Components.ContextComponent
         )
     }
 }
-
-export default DataTableHeader;

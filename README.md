@@ -1,26 +1,6 @@
 # bnp-crud-ui
 
-## Roadmap (Open for discussion)
-### API:
-- Connect component to API for creating
-- Connect component to API for reading ✓
-- Connect component to API for updating
-- Connect component to API for deleting
+## Overview
 
-### TABLE:
-- Make fields changable ✓
-- Show changes in fields ✓
-- Show if fields has been edited ✓
-- Show if fields has errors ✓
-- Make table rows selectable ✓
-- Lock predefined fields ✓
-- Lock predefined rows ✓
-- Make table scrollable ✓
-- Make header fixed ✓
-- Make table searchable
+bnp-crud-ui is a reusable React component with general CRUD functionality that aims to make viewing, editing and creating entries on OpusCapita microservices easy and accessible.
 
-### PAGINATION:
-- Make page-element-amount changable ✓
-- Previous and next page buttons ✓
-- Show current page ✓
-- Create component for pagination ✓

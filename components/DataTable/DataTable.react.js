@@ -1,28 +1,49 @@
 import React from 'react';
 import request from 'superagent';
-
+import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import DataTableBody from './components/DataTableBody';
 import DataTableHeader from './components/DataTableHeader';
 import DataTableMenu from './components/DataTableMenu';
 import DataTablePagination from './components/DataTablePagination';
-
 import './DataTable.less';
 
-class DataTable extends Components.ContextComponent
+export default class DataTable extends Components.ContextComponent
 {
+    state =
+    {
+        tableData: [  ],
+        showNumberOfRows: this.props.shownRows,
+        currentPosition: 0,
+        currentSorting: this.props.initiallySortedColumn
+    }
+
+    static propTypes =
+    {
+        dataUrl: PropTypes.string.isRequired,
+        styles: PropTypes.object.isRequired,
+        shownRows: PropTypes.number.isRequired,
+        initiallySortedColumn: PropTypes.string.isRequired,
+        lockedRows: PropTypes.object.isRequired,
+        lockedColumns: PropTypes.array.isRequired,
+        notEmptyColumns: PropTypes.array.isRequired
+    }
+
+    static defaultProps =
+    {
+        dataUrl: '',
+        styles: [  ],
+        shownRows: 10,
+        initiallySortedColumn: 'id',
+        lockedRows: [  ],
+        lockedColumns: [  ],
+        notEmptyColumns: [  ]
+    }
+
     constructor(props, context)
     {
         super(props);
-
-        this.state =
-        {
-            tableData: [  ],
-            showNumberOfRows: this.props.shownRows || 10,
-            currentPosition: 0,
-            currentSorting: this.props.initiallySortedColumn || 'id'
-        }
     }
 
     loadData = () =>
@@ -87,6 +108,13 @@ class DataTable extends Components.ContextComponent
 
     render = () =>
     {
+        const { 
+            styles, 
+            lockedRows, 
+            lockedColumns, 
+            notEmptyColumns 
+        } = this.props;
+
         const tableData = this.state.tableData;
 
         return(
@@ -98,8 +126,8 @@ class DataTable extends Components.ContextComponent
                         <table
                             className={ 
                                 `table 
-                                ${ this.props.styles.striped ? 'table-striped' : '' } 
-                                ${ this.props.styles.hovered ? 'table-hover' : '' } 
+                                ${ styles.striped ? 'table-striped' : '' } 
+                                ${ styles.hovered ? 'table-hover' : '' } 
                                 table-bordered dataTableView` 
                             }
                         >
@@ -114,9 +142,9 @@ class DataTable extends Components.ContextComponent
                                 tableData={ tableData }
                                 numberOfRows={ this.state.showNumberOfRows }
                                 position={ this.state.currentPosition }
-                                lockedRows={ this.props.lockedRows }
-                                lockedColumns={ this.props.lockedColumns }
-                                notEmptyColumns={ this.props.notEmptyColumns }
+                                lockedRows={ lockedRows }
+                                lockedColumns={ lockedColumns }
+                                notEmptyColumns={ notEmptyColumns }
                             />
                             <DataTableHeader
                                 headerData={ this.transformData(tableData[ 0 ]) }
@@ -142,5 +170,3 @@ class DataTable extends Components.ContextComponent
         );
     }
 }
-
-export default DataTable;

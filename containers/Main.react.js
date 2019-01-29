@@ -1,10 +1,9 @@
 import React from 'react';
-
 import { Components } from '@opuscapita/service-base-ui';
 
 import { DataTable } from '../components/DataTable';
 
-class Main extends Components.ContextComponent
+export default class Main extends Components.ContextComponent
 {
     render()
     {
@@ -37,5 +36,3 @@ class Main extends Components.ContextComponent
         );
     }
 }
-
-export default Main;

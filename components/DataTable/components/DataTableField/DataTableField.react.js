@@ -8,27 +8,53 @@
 */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import './DataTableField.less';
 
-class DataTableField extends Components.ContextComponent
+export default class DataTableField extends Components.ContextComponent
 {   
+    state =
+    {
+        editable: this.props.editable,
+        disabled: this.props.disabled,
+        hasBeenEdited: false,
+        hasError: false,
+        originalContent: this.props.content,
+        currentContent: this.props.content,
+        fieldType: this.props.fieldType
+    }
+
+    static propTypes =
+    {
+        rowNum: PropTypes.number.isRequired,
+        fieldNum: PropTypes.number.isRequired,
+        content: PropTypes.string.isRequired,
+        fieldType: PropTypes.string.isRequired,
+        locked: PropTypes.bool.isRequired,
+        editable: PropTypes.bool.isRequired,
+        columnEdited: PropTypes.func.isRequired,
+        columnError: PropTypes.func.isRequired,
+        lockedColumns: PropTypes.array.isRequired,
+        notEmptyColumns: PropTypes.array.isRequired
+    }
+
+    static defaultProps =
+    {
+        rowNum: 0,
+        fieldNum: 0,
+        content: '',
+        fieldType: '',
+        locked: false,
+        editable: true,
+        lockedColumns: [  ],
+        notEmptyColumns: [  ]
+    }
+
     constructor(props)
     {
         super(props);
-
-        this.state =
-        {
-            editable: this.props.editable || false,
-            disabled: this.props.disabled || false,
-            hasBeenEdited: false,
-            hasError: false,
-            originalContent: this.props.content || [  ],
-            currentContent: this.props.content || '',
-            fieldType: this.props.fieldType || ''
-        }
     }
 
     checkIfShouldBeDisabled = () =>
@@ -74,8 +100,12 @@ class DataTableField extends Components.ContextComponent
     render()
     {
         let content = this.props.content;
-        const rowNum = this.props.rowNum;
-        const fieldNum = this.props.fieldNum;
+
+        const {
+            rowNum,
+            fieldNum,
+            editable
+        } = this.props;
 
         if(this.state.currentContent !== this.state.originalContent)
         {
@@ -92,7 +122,7 @@ class DataTableField extends Components.ContextComponent
                 }
             >
                 {
-                    (this.props.editable === true && this.checkIfShouldBeDisabled() === true) &&
+                    (editable === true && this.checkIfShouldBeDisabled() === true) &&
                     <input
                         type="text"
                         className="form-control"
@@ -101,7 +131,7 @@ class DataTableField extends Components.ContextComponent
                     />
                 }
                 {
-                    (this.props.editable === false || this.checkIfShouldBeDisabled() === false) &&
+                    (editable === false || this.checkIfShouldBeDisabled() === false) &&
                     <p className="form-control-static">
                         { content }
                     </p>
@@ -110,5 +140,3 @@ class DataTableField extends Components.ContextComponent
         )
     }
 }
-
-export default DataTableField;

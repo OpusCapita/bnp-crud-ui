@@ -5,24 +5,43 @@
 */
 
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
+
 import translations from '../../i18n';
-
 import DataTablePaginationButton from '../DataTablePaginationButton';
-
 import './DataTablePagination.less';
 
-class DataTablePagination extends Components.ContextComponent
+export default class DataTablePagination extends Components.ContextComponent
 {
+    state =
+    {
+        shownRowsAmount: this.props.shownRowsAmount,
+        currentPage: 1
+    }
+
+    static propTypes =
+    {
+        tableLength: PropTypes.number.isRequired,
+        shownRowsAmount: PropTypes.number.isRequired,
+        currentPosition: PropTypes.number.isRequired,
+        currentPage: PropTypes.number,
+        prevButtonClicked: PropTypes.func.isRequired,
+        nextButtonClicked: PropTypes.func.isRequired,
+        shownRowsAmountChanged: PropTypes.func.isRequired
+    }
+
+    static defaultProps =
+    {
+        tableLength: 50,
+        shownRowsAmount: 10,
+        currentPosition: 0,
+        currentPage: 1
+    }
+
     constructor(props, context)
     {
         super(props);
-
-        this.state = {
-            shownRowsAmount: this.props.shownRowsAmount || 10,
-            currentPage: 1
-        }
 
         context.i18n.register('CrudUI', translations);
     }
@@ -72,10 +91,12 @@ class DataTablePagination extends Components.ContextComponent
     render()
     {
         const { i18n } = this.context;
-        
-        const tableLength = this.props.tableLength;
+        const { 
+            tableLength, 
+            currentPosition 
+        } = this.props;
+
         const shownRows = this.state.shownRowsAmount;
-        const currentPosition = this.props.currentPosition;
         const minPosition = currentPosition + 1;
         const maxPosition = currentPosition + shownRows;
         const availiblePages = tableLength / shownRows;
@@ -124,5 +145,3 @@ class DataTablePagination extends Components.ContextComponent
         )
     }
 }
-
-export default DataTablePagination;
