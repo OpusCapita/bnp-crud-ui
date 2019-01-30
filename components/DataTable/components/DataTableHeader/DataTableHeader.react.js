@@ -27,7 +27,7 @@ export default class DataTableHeader extends Components.ContextComponent
         sorting: 'ascd'
     }
 
-    changeSorted = (index) =>
+    changeSorted = (index, direction) =>
     {
         this.props.sortingChange(index);
     }
@@ -59,7 +59,7 @@ export default class DataTableHeader extends Components.ContextComponent
                                     title={ data.field }
                                     direction={ 'ascd' }
                                     sorted={ (data.field === sorting) ? true : false }
-                                    onCheckSorting={ this.changeSorted.bind(this, data.field) }
+                                    onCheckSorting={ this.changeSorted.bind(this, data.field, 'mmmm') }
                                     position={ position }
                                 />
                             )

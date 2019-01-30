@@ -22,7 +22,8 @@ export default class DataTable extends Components.ContextComponent
             tableHeaderData: [  ],
             showNumberOfRows: this.props.shownRows,
             currentPosition: 0,
-            currentSorting: this.props.initiallySorted
+            currentSorting: this.props.initiallySorted,
+            sortingDirection: 'ascd'
         }
     }
 
@@ -95,7 +96,9 @@ export default class DataTable extends Components.ContextComponent
         }
 
         this.setState({
-            sortedTableData: dataList
+            sortedTableData: dataList,
+            currentSorting: dataKey,
+            sortingDirection: dataSorting
         });
     }
 
@@ -133,7 +136,7 @@ export default class DataTable extends Components.ContextComponent
     render = () =>
     {
         const { styles, lockedRows, lockedColumns, notEmptyColumns } = this.props;
-        const { currentSorting, currentPosition, showNumberOfRows } = this.state;
+        const { currentSorting, currentPosition, showNumberOfRows, sortingDirection } = this.state;
 
         let isLocked = false;
 
