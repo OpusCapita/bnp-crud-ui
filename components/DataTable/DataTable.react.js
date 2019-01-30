@@ -22,7 +22,7 @@ export default class DataTable extends Components.ContextComponent
             tableHeaderData: [  ],
             showNumberOfRows: this.props.shownRows,
             currentPosition: 0,
-            currentSorting: this.props.initiallySortedColumn
+            currentSorting: this.props.initiallySorted
         }
     }
 
@@ -31,7 +31,7 @@ export default class DataTable extends Components.ContextComponent
         dataUrl: PropTypes.string.isRequired,
         styles: PropTypes.object.isRequired,
         shownRows: PropTypes.number.isRequired,
-        initiallySortedColumn: PropTypes.string.isRequired,
+        initiallySorted: PropTypes.string.isRequired,
         lockedRows: PropTypes.object.isRequired,
         lockedColumns: PropTypes.array.isRequired,
         notEmptyColumns: PropTypes.array.isRequired
@@ -42,7 +42,7 @@ export default class DataTable extends Components.ContextComponent
         dataUrl: '',
         styles: [  ],
         shownRows: 10,
-        initiallySortedColumn: 'id',
+        initiallySorted: 'id',
         lockedRows: [  ],
         lockedColumns: [  ],
         notEmptyColumns: [  ]
@@ -135,6 +135,8 @@ export default class DataTable extends Components.ContextComponent
         const { styles, lockedRows, lockedColumns, notEmptyColumns } = this.props;
         const { currentSorting, currentPosition, showNumberOfRows } = this.state;
 
+        let isLocked = false;
+
         if(!this.state.sortedTableData)
         {
             this.loadData();
@@ -169,15 +171,20 @@ export default class DataTable extends Components.ContextComponent
                             {    
                                 sortedTableData.map((row, i) =>
                                 {
+                                    if(lockedRows.value && lockedRows.field) {
+                                        isLocked = (lockedRows.value.indexOf(row[ lockedRows.field ]) != -1) ? true : false;
+                                    }
+                                    
                                     return(
                                         <DataTableRow
                                             key={ i }
                                             rowNumber={ i }
                                             rowData={ row }
-                                            isLocked={ (lockedRows.value.indexOf(row[ lockedRows.field ]) != -1) ? true : false }
-                                            isHidden={ (i >= currentPosition) && (i < checkShowingAmount) ? false : true }
                                             lockedColumns={ lockedColumns }
                                             notEmptyColumns={ notEmptyColumns }
+                                            isLocked={ isLocked }
+                                            isUnselectable={ lockedRows.unSelectable }
+                                            isHidden={ (i >= currentPosition) && (i < checkShowingAmount) ? false : true }
                                         />
                                     )
                                 })

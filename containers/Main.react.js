@@ -23,7 +23,8 @@ export default class Main extends Components.ContextComponent
                 lockedRows={
                     {
                         field: 'customerId',
-                        value: [ 'acme_us', 'acme_de' ]
+                        value: [ 'OC001' ],
+                        unSelectable: true
                     }
                 }
                 lockedColumns={

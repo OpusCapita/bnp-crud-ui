@@ -89,7 +89,7 @@ export default class DataTableRow extends Components.ContextComponent
 
     render()
     {
-        const { rowNumber, isHidden, lockedColumns, notEmptyColumns, isLocked } = this.props;
+        const { rowNumber, isHidden, lockedColumns, isUnselectable, notEmptyColumns, isLocked } = this.props;
         const { isSelected } = this.state;
 
         const rowDataFields = this.state.rowDataFields;
@@ -98,7 +98,7 @@ export default class DataTableRow extends Components.ContextComponent
             <tr 
                 className={ `dataTableRow 
                 ${ (isLocked ? 'active' : '' || isSelected ? 'info' : '') }
-                ${ isLocked ? 'unselectable' : '' } 
+                ${ isLocked && isUnselectable ? 'unselectable' : '' } 
                 ${ isHidden ? 'hidden' : '' }` }
             >
                 <td 
