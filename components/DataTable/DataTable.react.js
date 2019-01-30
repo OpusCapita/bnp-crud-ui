@@ -14,7 +14,7 @@ export default class DataTable extends Components.ContextComponent
     constructor(props, context)
     {
         super(props);
-        
+
         this.state =
         {
             tableData: [  ],
@@ -84,7 +84,7 @@ export default class DataTable extends Components.ContextComponent
         .keys(dataBody)
         .filter(key => dataBody[ key ][ dataKey ])
         .map(key => dataBody[ key ]);
-        
+
         if(dataSorting === "ascd")
         {
             dataList.sort((a, b) => a[ dataKey ].localeCompare(b[ dataKey ]));
@@ -174,7 +174,7 @@ export default class DataTable extends Components.ContextComponent
                                     if(lockedRows.value && lockedRows.field) {
                                         isLocked = (lockedRows.value.indexOf(row[ lockedRows.field ]) != -1) ? true : false;
                                     }
-                                    
+
                                     return(
                                         <DataTableRow
                                             key={ i }
@@ -202,7 +202,7 @@ export default class DataTable extends Components.ContextComponent
                 </section>
             <br />
             <DataTablePagination
-                tableLength={ tableData.length }
+                tableLength={ sortedTableData.length }
                 shownRowsAmount={ showNumberOfRows }
                 currentPosition={ currentPosition }
                 prevButtonClicked={ this.showPrevPage.bind(this) }
