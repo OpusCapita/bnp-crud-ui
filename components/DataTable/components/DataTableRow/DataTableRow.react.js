@@ -89,7 +89,15 @@ export default class DataTableRow extends Components.ContextComponent
 
     render()
     {
-        const { rowNumber, isHidden, lockedColumns, isUnselectable, notEmptyColumns, isLocked } = this.props;
+        const {
+            rowNumber,
+            isHidden,
+            lockedColumns,
+            isUnselectable,
+            notEmptyColumns,
+            isLocked
+        } = this.props;
+        
         const { isSelected } = this.state;
 
         const rowDataFields = this.state.rowDataFields;
@@ -118,9 +126,7 @@ export default class DataTableRow extends Components.ContextComponent
                     id={ `field_${ rowNumber }-1` } 
                     className="num dataTableField"
                 >
-                {
-                    (rowNumber + 1)
-                }
+                { rowNumber + 1 }
                 </td>
                 {
                 rowDataFields.map((data, i) =>

@@ -27,14 +27,18 @@ export default class DataTableHeader extends Components.ContextComponent
         sorting: 'ascd'
     }
 
-    changeSorted = (index, direction) =>
+    changeSorted = (index) =>
     {
         this.props.sortingChange(index);
     }
 
     render()
     {
-        const { headerData, sorting, position } = this.props;
+        const {
+            headerData,
+            sorting,
+            position
+        } = this.props;
 
         return(
             <thead className="dataTableHeader unselectable">
@@ -59,7 +63,7 @@ export default class DataTableHeader extends Components.ContextComponent
                                     title={ data.field }
                                     direction={ 'ascd' }
                                     sorted={ (data.field === sorting) ? true : false }
-                                    onCheckSorting={ this.changeSorted.bind(this, data.field, 'mmmm') }
+                                    onCheckSorting={ this.changeSorted.bind(this, data.field) }
                                     position={ position }
                                 />
                             )

@@ -82,8 +82,16 @@ export default class DataTablePagination extends Components.ContextComponent
     render()
     {
         const { i18n } = this.context;
-        const { tableLength, currentPosition } = this.props;
-        const { shownRowsAmount, currentPage } = this.state;
+        
+        const {
+            tableLength,
+            currentPosition
+        } = this.props;
+
+        const {
+            shownRowsAmount,
+            currentPage
+        } = this.state;
 
         const availiblePages = tableLength / shownRowsAmount;
         const minPosition = Math.min(tableLength, Math.max(currentPosition + 1, 0));

@@ -69,7 +69,13 @@ export default class DataTableHeaderField extends Components.ContextComponent
 
     render()
     {
-        const { title, fieldNum, sorted, position } = this.props
+        const {
+            title,
+            fieldNum,
+            sorted,
+            position
+        } = this.props
+
         const { direction } = this.state;
 
         return(

@@ -135,8 +135,18 @@ export default class DataTable extends Components.ContextComponent
 
     render = () =>
     {
-        const { styles, lockedRows, lockedColumns, notEmptyColumns } = this.props;
-        const { currentSorting, currentPosition, showNumberOfRows, sortingDirection } = this.state;
+        const {
+            styles,
+            lockedRows,
+            lockedColumns,
+            notEmptyColumns
+        } = this.props;
+
+        const {
+            currentSorting,
+            currentPosition,
+            showNumberOfRows 
+        } = this.state;
 
         let isLocked = false;
 
