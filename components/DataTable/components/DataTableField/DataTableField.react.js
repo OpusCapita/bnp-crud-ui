@@ -28,7 +28,6 @@ export default class DataTableField extends Components.ContextComponent
         fieldNum: PropTypes.number.isRequired,
         content: PropTypes.string.isRequired,
         fieldType: PropTypes.string.isRequired,
-        locked: PropTypes.bool.isRequired,
         editable: PropTypes.bool.isRequired,
         columnEdited: PropTypes.func.isRequired,
         columnError: PropTypes.func.isRequired,
@@ -42,7 +41,6 @@ export default class DataTableField extends Components.ContextComponent
         fieldNum: 0,
         content: '',
         fieldType: '',
-        locked: false,
         editable: true,
         lockedColumns: [  ],
         notEmptyColumns: [  ]

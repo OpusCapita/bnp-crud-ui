@@ -1,16 +1,3 @@
-/* 
-    ╔═╡ ROW STATES ╞═╤═════════════════╤═════════════════════╗
-    ║ state-name     │ state-color     │ bootstrap-class     ║
-    ╠════════════════╪═════════════════╪═════════════════════╣
-    ║ saved          │ green           │ success             ║
-    ║ error          │ red             │ danger              ║
-    ║ active         │ blue            │ info                ║
-    ║ edited         │ yellow          │ warning             ║
-    ║ locked         │ grey            │ active              ║
-    ║ default        │ white           │ default             ║
-    ╚════════════════╧═════════════════╧═════════════════════╝
-*/
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
@@ -24,86 +11,52 @@ export default class DataTableRow extends Components.ContextComponent
     {
         super(props);
         
-        this.state =
-        {
-            rowStateClass: '',
-            isSelected: true,
-            isLocked: this.props.isLocked,
+        this.state = {
+            rowDataFields: [  ],
+            isSelected: false,
+            isLocked: false,
             isEdited: false,
             isError: false,
-            rowData: {  }
         }
     }
 
     static propTypes =
     {
-        rowNum: PropTypes.number.isRequired,
+        rowNumber: PropTypes.number.isRequired,
         rowData: PropTypes.object.isRequired,
         isLocked: PropTypes.bool.isRequired,
-        isHidden: PropTypes.bool.isRequired,
         lockedColumns: PropTypes.array.isRequired,
-        notEmptyColumns: PropTypes.array.isRequired
+        notEmptyColumns: PropTypes.array.isRequired,
+        isHidden: PropTypes.bool.isRequired,
     }
 
     static defaultProps =
     {
-        rowNum: 0,
+        rowNumber: 0,
         rowData: [  ],
         isLocked: false,
         isHidden: false,
         lockedColumns: [  ],
         notEmptyColumns: [  ]
     }
-    
+
     componentDidMount = () =>
     {
         this.setState({
-            rowData: this.props.rowData
+            rowDataFields: this.getFields(this.props.rowData)
         });
+    }
 
-        if (this.state.isLocked === true)
-        {
-            this.changeRowEditState('locked');
-        }
+    componentWillReceiveProps = (nextprops) =>
+    {
+        this.setState({
+            rowDataFields: this.getFields(nextprops.rowData)
+        });
     }
 
     handleSelectionChange = (event) =>
     {
         this.setState({isSelected: !this.state.isSelected});
-
-        if((this.state.isSelected === true))
-        {
-            this.changeRowEditState('active');
-        }
-        else
-        {
-            this.changeRowEditState('default');
-        }
-    }
-
-    changeRowEditState = (state) =>
-    {
-        switch(state)
-        {
-            case 'saved':
-                this.setState({ rowStateClass: 'success' });
-                break;
-            case 'error':
-                this.setState({ rowStateClass: 'danger' });
-                break;
-            case 'active':
-                this.setState({ rowStateClass: 'info' });
-                break;
-            case 'edited':
-                this.setState({ rowStateClass: 'warning' });
-                break;
-            case 'locked':
-                this.setState({ rowStateClass: 'active' });
-                break;
-            case 'default':
-            default:
-                this.setState({ rowStateClass: '' });
-        }
     }
 
     onColumnEdited = () =>
@@ -120,14 +73,14 @@ export default class DataTableRow extends Components.ContextComponent
         })
     }
 
-    getFields = () =>
+    getFields = (data) =>
     {
         let result = [];
 
-        for(let field in this.state.rowData) 
+        for(let field in data) 
         {
             result.push({
-                field, value: (this.state.rowData[field] || '').toString()
+                field, value: (data[field] || '').toString()
             });
         }
 
@@ -136,15 +89,20 @@ export default class DataTableRow extends Components.ContextComponent
 
     render()
     {
-        const { rowNum, isHidden, lockedColumns, notEmptyColumns } = this.props;
-        const { rowStateClass, isLocked, isSelected } = this.state;
+        const { rowNumber, isHidden, lockedColumns, notEmptyColumns, isLocked } = this.props;
+        const { isSelected } = this.state;
 
-        const rowDataFields = this.getFields();
+        const rowDataFields = this.state.rowDataFields;
 
-        return(
-            <tr className={ `dataTableRow ${ rowStateClass } ${ isLocked ? 'unselectable' : '' } ${ isHidden ? 'hidden' : '' }` }>
+        return (
+            <tr 
+                className={ `dataTableRow 
+                ${ (isLocked ? 'active' : '' || isSelected ? 'info' : '') }
+                ${ isLocked ? 'unselectable' : '' } 
+                ${ isHidden ? 'hidden' : '' }` }
+            >
                 <td 
-                    id={ `field_${ rowNum }-0` } 
+                    id={ `field_${ rowNumber }-0` }
                     className="selector dataTableField"
                 >
                 {
@@ -157,25 +115,24 @@ export default class DataTableRow extends Components.ContextComponent
                 }
                 </td>
                 <td 
-                    id={ `field_${ rowNum }-1` } 
+                    id={ `field_${ rowNumber }-1` } 
                     className="num dataTableField"
                 >
                 {
-                    (rowNum + 1)
+                    (rowNumber + 1)
                 }
                 </td>
-            {
+                {
                 rowDataFields.map((data, i) =>
                 {
-                    return (
+                    return(
                         <DataTableField
                             key={ i }
-                            rowNum={ rowNum }
+                            rowNum={ rowNumber }
                             fieldNum={ i }
                             content={ data.value }
                             fieldType={ data.field }
-                            locked={ false }
-                            editable={ isSelected ? false : true }
+                            editable={ isSelected ? true : false }
                             columnEdited={ this.onColumnEdited.bind(this) }
                             columnError={ this.onColumnError.bind(this) }
                             lockedColumns={ lockedColumns }
@@ -183,7 +140,7 @@ export default class DataTableRow extends Components.ContextComponent
                         />
                     )
                 })
-            }
+                }
             </tr>
         )
     }

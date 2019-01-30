@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import translations from '../../i18n';
-import DataTablePaginationButton from '../DataTablePaginationButton';
-import DataTablePaginationPosition from '../DataTablePaginationPosition';
 import './DataTablePagination.less';
 
 export default class DataTablePagination extends Components.ContextComponent
@@ -27,7 +25,6 @@ export default class DataTablePagination extends Components.ContextComponent
         tableLength: PropTypes.number.isRequired,
         shownRowsAmount: PropTypes.number.isRequired,
         currentPosition: PropTypes.number.isRequired,
-        currentPage: PropTypes.number,
         prevButtonClicked: PropTypes.func.isRequired,
         nextButtonClicked: PropTypes.func.isRequired,
         shownRowsAmountChanged: PropTypes.func.isRequired
@@ -38,7 +35,21 @@ export default class DataTablePagination extends Components.ContextComponent
         tableLength: 50,
         shownRowsAmount: 10,
         currentPosition: 0,
-        currentPage: 1
+    }
+
+    shownRowsOptions = () =>
+    {
+        let options = [  ];
+
+        for(let i = 25; i < this.props.tableLength; i*=2)
+        {
+            options.push( <option key={ i } value={ i }>{ i }</option>);
+        }
+
+        options.unshift(<option key={ 0 } value={ 10 }>{ 10 }</option>);
+        options.push(<option key={ 99999 } value={ this.props.tableLength }>All</option>);
+        
+        return options;
     }
 
     onShownRowsChanged = (event) =>
@@ -70,32 +81,61 @@ export default class DataTablePagination extends Components.ContextComponent
 
     render()
     {
+        const { i18n } = this.context;
         const { tableLength, currentPosition } = this.props;
         const { shownRowsAmount, currentPage } = this.state;
 
+        const availiblePages = tableLength / shownRowsAmount;
+        const minPosition = Math.min(tableLength, Math.max(currentPosition + 1, 0));
+        const maxPosition = Math.min(tableLength, Math.max(currentPosition + shownRowsAmount, 0)) 
+        const canBrowsePrev = (Math.min(availiblePages, Math.max(currentPage, 0)) > 1);
+        const canBrowseNext = (Math.min(availiblePages, Math.max(currentPage, 0)) < (availiblePages));
+
         return (
             <div className="dataTablePagination unselectable">
-                <DataTablePaginationButton
-                    direction={ 'prev' }
-                    tableLength={ tableLength }
-                    currentPosition={ currentPosition }
-                    prevClicked={ this.onPrevButtonClicked }
-                />
-                
-                <DataTablePaginationPosition
-                    tableLength={ tableLength }
-                    currentPage={ currentPage }
-                    currentPosition={ currentPosition }
-                    shownRowsAmount={ shownRowsAmount }
-                    shownRowsAmountChanged={ this.onShownRowsChanged.bind(this) }
-                />
 
-                <DataTablePaginationButton
-                    direction={ 'next' }
-                    tableLength={ tableLength }
-                    currentPosition={ currentPosition + shownRowsAmount }
-                    nextClicked={ this.onNextButtonClicked }
-                />
+                <div
+                    className={ `leftArrow ${ canBrowsePrev ? '' : 'inactive' }` }
+                    onClick={ canBrowsePrev ? this.onPrevButtonClicked : '' }
+                >
+                    <i className="glyphicon glyphicon-chevron-left"></i>
+                </div>
+
+                <div className="position">
+                    <span className="form-inline">
+                        <div className="form-group">
+                            <div className="input-group">
+                                <div className="input-group-addon">
+                                    <span>
+                                    <b>
+                                        { i18n.getMessage('CrudUI.Pagination.Page') }&nbsp;
+                                        { Math.round(currentPage) }&nbsp;
+                                        { i18n.getMessage('CrudUI.Pagination.Of') }&nbsp;
+                                        { Math.round(availiblePages) }
+                                    </b>&nbsp;
+                                        ({ minPosition } - { maxPosition })
+                                    </span>
+                                </div>
+                                <select
+                                    className="form-control"
+                                    value={ shownRowsAmount }
+                                    onChange={ this.onShownRowsChanged }
+                                >
+                                    { this.shownRowsOptions() }
+                                </select>
+                                <div className="input-group-addon">/ { tableLength }</div>
+                            </div>
+                        </div>
+                    </span>
+                </div>
+
+                <div
+                    className={ `rightArrow ${ canBrowseNext ? '' : 'inactive' }` }
+                    onClick={ canBrowseNext ? this.onNextButtonClicked : '' }
+                >
+                    <i className="glyphicon glyphicon-chevron-right"></i>
+                </div>
+
             </div>
         )
     }

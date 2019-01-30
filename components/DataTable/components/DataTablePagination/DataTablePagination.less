@@ -22,6 +22,36 @@
     {
         width: 0;
     }
+
+    & .position
+    {
+        display: inline-block;
+        height: 25px;
+    }
+
+    & .leftArrow,
+    & .rightArrow
+    {
+        height: 34px;
+        width: 34px;
+        text-align: center;
+        line-height: 30px;
+        color: #777;
+        display: inline-block;
+
+        &:hover
+        {
+            color: #000;
+            cursor: pointer;
+        }
+
+        &.inactive,
+        &.inactive:hover
+        {
+            color: #ccc;
+            cursor: default;
+        }
+    }
 }
 
 @media (min-width: 860px)
