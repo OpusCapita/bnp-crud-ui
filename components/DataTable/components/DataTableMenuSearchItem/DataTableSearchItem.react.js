@@ -14,7 +14,7 @@ export default class DataTableSearchItem extends Components.ContextComponent
         {
             selected: false,
             field: '',
-            id: this.props.id
+            id: this.props.field.id
         }
     }
 
@@ -28,12 +28,17 @@ export default class DataTableSearchItem extends Components.ContextComponent
         options: [  ],
     }
 
-    handleChange = (event) =>
+    handleOptionChange = (event) =>
     {
         this.setState({
             selected: true,
             field: event.target.value
         });   
+    }
+
+    handleValueChange = (event) =>
+    {
+        this.props.changeSearchItem({id: this.state.id, field: this.state.field, value: event.target.value});
     }
 
     deleteSearchItem = () =>
@@ -52,15 +57,25 @@ export default class DataTableSearchItem extends Components.ContextComponent
                 selected ? 
                 (
                     <span>
-                        <input type="text" className="form-control input" placeholder={`${field}`} aria-describedby="sizing-addon" autoFocus />
-                        <span className="glyphicon glyphicon-remove remove-button" aria-hidden="true" onClick={this.deleteSearchItem}></span>
+                        <input
+                            type="text"
+                            className="form-control input"
+                            placeholder={ `${ field }` }
+                            aria-describedby="sizing-addon"
+                            autoFocus onChange={ this.handleValueChange }
+                        />
+                        <span
+                            className="glyphicon glyphicon-remove remove-button"
+                            aria-hidden="true"
+                            onClick={ this.deleteSearchItem }
+                        ></span>
                     </span>
                 )
                 :
                 (
                     <select
                        className="form-control options"
-                       onChange={ this.handleChange }
+                       onChange={ this.handleOptionChange }
                     >
                         <option>Select...</option>
                         {

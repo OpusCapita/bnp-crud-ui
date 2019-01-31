@@ -43,14 +43,25 @@ export default class DataTableMenu extends Components.ContextComponent
         }))
     }
 
-    changeSearchItem = () =>
-    {
+    changeSearchItem = (searchItemValues) =>
+    {   
+        let itemList = this.state.searchItems;
 
+        itemList.map(function (item) {
+            if (item['id'] == searchItemValues.id) {
+                item['field'] = searchItemValues.field;
+                item['value'] = searchItemValues.value;
+            }
+        });
+
+        this.setState({
+            searchItems: itemList
+        });
     }
 
     deleteSearchItem = (deleteItemId) =>
     {
-        let searchItems = this.state.searchItems.filter(function(item) { return item.id != deleteItemId});
+        let searchItems = this.state.searchItems.filter(function(item) { return item.id != deleteItemId });
         
         this.setState({ searchItems: searchItems });
     }
@@ -72,7 +83,10 @@ export default class DataTableMenu extends Components.ContextComponent
                         <div className="search-bar">
                             
                             <div className="input-group">
-                                <span className="input-group-addon" id="sizing-addon2">
+                                <span
+                                    className="input-group-addon"
+                                    id="sizing-addon2"
+                                >
                                     { i18n.getMessage('CrudUI.Menu.SearchBar.SearchFor') }:
                                 </span>
 
@@ -86,8 +100,8 @@ export default class DataTableMenu extends Components.ContextComponent
                                                     key={ i }
                                                     options={ options }
                                                     field={ item }
-                                                    id={ item.id }
-                                                    deleteSearchItem={this.deleteSearchItem.bind(this, item.id)}
+                                                    deleteSearchItem={ this.deleteSearchItem.bind(this, item.id) }
+                                                    changeSearchItem={ this.changeSearchItem.bind(this) }
                                                 />
                                             )
                                         }
@@ -108,7 +122,6 @@ export default class DataTableMenu extends Components.ContextComponent
                                 }
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
