@@ -1,6 +1,6 @@
 {
     "CrudUI.Pagination.Page": "Page",
     "CrudUI.Pagination.Of": "of",
-    "CrudUI.Menu.SearchBar.Placeholder": "Search for...",
+    "CrudUI.Menu.SearchBar.SearchFor": "Search",
     "CrudUI.Menu.Create": "Create entry"
 }

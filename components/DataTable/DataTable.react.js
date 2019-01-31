@@ -162,16 +162,19 @@ export default class DataTable extends Components.ContextComponent
 
         return(
             <div>
-                <DataTableMenu />
+                <DataTableMenu 
+                    options={ this.transformData(tableData[ 0 ]) }
+                />
+
                 <section className="dataTableContainer">
                 {
                     <div className="dataTableContent">
                         <table
-                            className={ 
-                                `table 
-                                ${ styles.striped ? 'table-striped' : '' } 
-                                ${ styles.hovered ? 'table-hover' : '' } 
-                                table-bordered dataTableView` 
+                            className={
+                                `table
+                                ${ styles.striped ? 'table-striped' : '' }
+                                ${ styles.hovered ? 'table-hover' : '' }
+                                table-bordered dataTableView`
                             }
                         >
                             <DataTableHeader
