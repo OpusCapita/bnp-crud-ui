@@ -73,8 +73,6 @@ export default class DataTableMenu extends Components.ContextComponent
         
         let options = this.props.options;
 
-        console.log(searchItems);
-
         return (
             <div className="dataTableMenu">
                 <div className="form-inline">

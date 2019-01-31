@@ -101,6 +101,35 @@ export default class DataTable extends Components.ContextComponent
             sortingDirection: dataSorting
         });
     }
+    
+    filterData(filterData)
+    {
+        const demoFilterData = [
+            {field: "customerId", value: "OC001"},
+            {field: "createdBy", value: "ocadmin"}
+        ]
+
+        for(let i = 0; i < demoFilterData.length; i++)
+        {
+            
+        }
+
+        const searchField = "customerId";
+        const searchValue = "OC001";
+
+        let filteredItems = [  ];
+
+        for (let item in this.state.sortedTableData) {
+            if (this.state.sortedTableData[item][searchField] === searchValue)
+            {
+                filteredItems.push(this.state.sortedTableData[item]);
+            }
+        }
+
+        this.setState({
+            sortedTableData: filteredItems
+        });
+    }
 
     handleAmountChange = (event) =>
     {
@@ -126,6 +155,7 @@ export default class DataTable extends Components.ContextComponent
     sortingChange = (index) => 
     {
         this.sortData(index, "ascd");
+        this.filterData();
     }
     
     componentDidMount = () =>
