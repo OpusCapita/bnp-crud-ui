@@ -109,8 +109,8 @@ export default class DataTableMenu extends Components.ContextComponent
                                 {
                                     searchItems.length <= 4 &&
                                     <span className="input-group-btn">
-                                        <button 
-                                            className="btn btn-default" 
+                                        <button
+                                            className="btn btn-default"
                                             type="button"
                                             onClick={this.addSearchItem}
                                         >

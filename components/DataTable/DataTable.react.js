@@ -107,17 +107,17 @@ export default class DataTable extends Components.ContextComponent
         const demoFilterData = [
             {field: "customerId", value: "OC001"},
             {field: "createdBy", value: "ocadmin"}
-        ]
-
-        for(let i = 0; i < demoFilterData.length; i++)
-        {
-            
-        }
+        ];
 
         const searchField = "customerId";
         const searchValue = "OC001";
 
         let filteredItems = [  ];
+
+        for(let i = 0; i < demoFilterData.length; i++)
+        {
+
+        }
 
         for (let item in this.state.sortedTableData) {
             if (this.state.sortedTableData[item][searchField] === searchValue)
@@ -155,7 +155,7 @@ export default class DataTable extends Components.ContextComponent
     sortingChange = (index) => 
     {
         this.sortData(index, "ascd");
-        this.filterData();
+        //this.filterData();
     }
     
     componentDidMount = () =>

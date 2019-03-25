@@ -46,22 +46,6 @@ export default class DataTableField extends Components.ContextComponent
         notEmptyColumns: [  ]
     }
 
-    checkIfShouldBeDisabled = () =>
-    {
-        let status = '';
-
-        if(this.props.lockedColumns.indexOf(this.state.fieldType) != -1)
-        {
-            status = false;
-        }
-        else
-        {
-            status = true;
-        }
-
-        return status;
-    }
-
     checkIfHasBeenEdited = (event) =>
     {
         if(this.props.notEmptyColumns.indexOf(this.state.fieldType) != -1 && event.target.value == '')
@@ -108,6 +92,8 @@ export default class DataTableField extends Components.ContextComponent
             content = currentContent;
         }
 
+        const  checkDisabled = this.props.lockedColumns.indexOf(this.state.fieldType) != -1;
+
         return(
             <td 
                 id={ `field_${ rowNum }-${ fieldNum + 2 }` } 
@@ -118,16 +104,14 @@ export default class DataTableField extends Components.ContextComponent
                 }
             >
                 {
-                    (editable === true && this.checkIfShouldBeDisabled() === true) &&
+                    (editable && checkDisabled) ?
                     <input
                         type="text"
                         className="form-control"
                         defaultValue={ content }
                         onChange={ this.checkIfHasBeenEdited }
                     />
-                }
-                {
-                    (editable === false || this.checkIfShouldBeDisabled() === false) &&
+                    :
                     <p className="form-control-static">
                         { content }
                     </p>
