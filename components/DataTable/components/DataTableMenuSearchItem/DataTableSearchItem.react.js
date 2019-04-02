@@ -15,46 +15,46 @@ export default class DataTableSearchItem extends Components.ContextComponent
             selected: false,
             field: '',
             id: this.props.field.id
-        }
-    }
+        };
+    };
 
     static propTypes =
     {
-        options: PropTypes.array.isRequired,
-    }
+        options: PropTypes.array.isRequired
+    };
 
-    static defaultProps = 
+    static defaultProps =
     {
-        options: [  ],
-    }
+        options: [  ]
+    };
 
     handleOptionChange = (event) =>
     {
         this.setState({
             selected: true,
             field: event.target.value
-        });   
-    }
+        });
+    };
 
     handleValueChange = (event) =>
     {
         this.props.changeSearchItem({id: this.state.id, field: this.state.field, value: event.target.value});
-    }
+    };
 
     deleteSearchItem = () =>
     {
         this.props.deleteSearchItem();
-    }
+    };
 
     render()
     {
-
         const { options } = this.props;
         const { selected, field } = this.state;
+
         return (
             <span className="dataTableSearchItem">
                 {
-                selected ? 
+                selected ?
                 (
                     <span>
                         <input
@@ -82,7 +82,7 @@ export default class DataTableSearchItem extends Components.ContextComponent
                             options.map((option, i) =>
                             {
                                 return(
-                                    <option 
+                                    <option
                                         key={ i }
                                         value={ option.field }
                                     >
@@ -95,6 +95,6 @@ export default class DataTableSearchItem extends Components.ContextComponent
                 )
             }
             </span>
-        )
-    }
+        );
+    };
 }

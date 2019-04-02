@@ -5,7 +5,7 @@ import { Components } from '@opuscapita/service-base-ui';
 import './DataTableField.less';
 
 export default class DataTableField extends Components.ContextComponent
-{   
+{
     constructor(props)
     {
         super(props);
@@ -19,8 +19,8 @@ export default class DataTableField extends Components.ContextComponent
             originalContent: this.props.content,
             currentContent: this.props.content,
             fieldType: this.props.fieldType
-        }
-    }
+        };
+    };
 
     static propTypes =
     {
@@ -33,7 +33,7 @@ export default class DataTableField extends Components.ContextComponent
         columnError: PropTypes.func.isRequired,
         lockedColumns: PropTypes.array.isRequired,
         notEmptyColumns: PropTypes.array.isRequired
-    }
+    };
 
     static defaultProps =
     {
@@ -44,11 +44,11 @@ export default class DataTableField extends Components.ContextComponent
         editable: true,
         lockedColumns: [  ],
         notEmptyColumns: [  ]
-    }
+    };
 
     checkIfHasBeenEdited = (event) =>
     {
-        if(this.props.notEmptyColumns.indexOf(this.state.fieldType) != -1 && event.target.value == '')
+        if(this.props.notEmptyColumns.indexOf(this.state.fieldType) !== -1 && event.target.value === '')
         {
             this.setState({
                 hasError: true
@@ -68,7 +68,7 @@ export default class DataTableField extends Components.ContextComponent
                 hasBeenEdited: true
             });
         }
-    }
+    };
 
     render()
     {
@@ -84,7 +84,7 @@ export default class DataTableField extends Components.ContextComponent
             hasBeenEdited,
             hasError
         } = this.state;
-        
+
         let content = this.props.content;
 
         if(currentContent !== originalContent)
@@ -92,15 +92,15 @@ export default class DataTableField extends Components.ContextComponent
             content = currentContent;
         }
 
-        const  checkDisabled = this.props.lockedColumns.indexOf(this.state.fieldType) != -1;
+        const  checkDisabled = this.props.lockedColumns.indexOf(this.state.fieldType) !== -1;
 
         return(
-            <td 
-                id={ `field_${ rowNum }-${ fieldNum + 2 }` } 
-                className={ 
-                    `dataTableField 
-                    ${ hasBeenEdited ? 'edited' : '' } 
-                    ${ hasError ? 'error' : '' }` 
+            <td
+                id={ `field_${ rowNum }-${ fieldNum + 2 }` }
+                className={
+                    `dataTableField
+                    ${ hasBeenEdited ? 'edited' : '' }
+                    ${ hasError ? 'error' : '' }`
                 }
             >
                 {
@@ -117,6 +117,6 @@ export default class DataTableField extends Components.ContextComponent
                     </p>
                 }
             </td>
-        )
-    }
+        );
+    };
 }

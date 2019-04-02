@@ -35,5 +35,5 @@ export default class Main extends Components.ContextComponent
                 }
             />
         );
-    }
+    };
 }

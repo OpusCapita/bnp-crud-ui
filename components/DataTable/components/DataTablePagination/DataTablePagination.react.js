@@ -15,10 +15,10 @@ export default class DataTablePagination extends Components.ContextComponent
         {
             shownRowsAmount: this.props.shownRowsAmount,
             currentPage: 1
-        }
+        };
 
         context.i18n.register('CrudUI', translations);
-    }
+    };
 
     static propTypes =
     {
@@ -28,14 +28,14 @@ export default class DataTablePagination extends Components.ContextComponent
         prevButtonClicked: PropTypes.func.isRequired,
         nextButtonClicked: PropTypes.func.isRequired,
         shownRowsAmountChanged: PropTypes.func.isRequired
-    }
+    };
 
     static defaultProps =
     {
         tableLength: 50,
         shownRowsAmount: 10,
-        currentPosition: 0,
-    }
+        currentPosition: 0
+    };
 
     shownRowsOptions = () =>
     {
@@ -48,9 +48,9 @@ export default class DataTablePagination extends Components.ContextComponent
 
         options.unshift(<option key={ 0 } value={ 10 }>{ 10 }</option>);
         options.push(<option key={ 99999 } value={ this.props.tableLength }>All</option>);
-        
+
         return options;
-    }
+    };
 
     onShownRowsChanged = (event) =>
     {
@@ -59,7 +59,7 @@ export default class DataTablePagination extends Components.ContextComponent
         });
 
         this.props.shownRowsAmountChanged(event);
-    }
+    };
 
     onPrevButtonClicked = () =>
     {
@@ -68,8 +68,8 @@ export default class DataTablePagination extends Components.ContextComponent
         });
 
         this.props.prevButtonClicked();
-    }
-    
+    };
+
     onNextButtonClicked = () =>
     {
         this.setState({
@@ -77,12 +77,12 @@ export default class DataTablePagination extends Components.ContextComponent
         });
 
         this.props.nextButtonClicked();
-    }
+    };
 
     render()
     {
         const { i18n } = this.context;
-        
+
         const {
             tableLength,
             currentPosition
@@ -95,7 +95,7 @@ export default class DataTablePagination extends Components.ContextComponent
 
         const availiblePages = tableLength / shownRowsAmount;
         const minPosition = Math.min(tableLength, Math.max(currentPosition + 1, 0));
-        const maxPosition = Math.min(tableLength, Math.max(currentPosition + shownRowsAmount, 0)) 
+        const maxPosition = Math.min(tableLength, Math.max(currentPosition + shownRowsAmount, 0));
         const canBrowsePrev = (Math.min(availiblePages, Math.max(currentPage, 0)) > 1);
         const canBrowseNext = (Math.min(availiblePages, Math.max(currentPage, 0)) < (availiblePages));
 
@@ -145,6 +145,6 @@ export default class DataTablePagination extends Components.ContextComponent
                 </div>
 
             </div>
-        )
-    }
+        );
+    };
 }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Components } from '@opuscapita/service-base-ui';
 
 import translations from '../../i18n';
-import DataTableMenuSearchItem from '../DataTableMenuSearchItem'
+import DataTableMenuSearchItem from '../DataTableMenuSearchItem';
 import './DataTableMenu.less';
 
 export default class DataTableMenu extends Components.ContextComponent
@@ -16,39 +16,39 @@ export default class DataTableMenu extends Components.ContextComponent
 
         this.state = {
             searchItems: [  ]
-        }
-    }
+        };
+    };
 
     static propTypes =
     {
-        options: PropTypes.array.isRequired,
-    }
+        options: PropTypes.array.isRequired
+    };
 
-    static defaultProps = 
+    static defaultProps =
     {
-        options: [  ],
-    }
+        options: [  ]
+    };
 
-    componentDidMount = () => 
+    componentDidMount = () =>
     {
         this.addSearchItem();
-    }
+    };
 
     addSearchItem = () =>
     {
-        const itemId = Math.floor(Math.random() * (10000 - 0));
+        const itemId = Math.floor(Math.random() * (10000));
 
         this.setState(prevState => ({
             searchItems: [ ...prevState.searchItems, {id: itemId, field: "", value: ""} ]
         }))
-    }
+    };
 
     changeSearchItem = (searchItemValues) =>
-    {   
+    {
         let itemList = this.state.searchItems;
 
         itemList.map(function (item) {
-            if (item['id'] == searchItemValues.id) {
+            if (item['id'] === searchItemValues.id) {
                 item['field'] = searchItemValues.field;
                 item['value'] = searchItemValues.value;
             }
@@ -57,20 +57,20 @@ export default class DataTableMenu extends Components.ContextComponent
         this.setState({
             searchItems: itemList
         });
-    }
+    };
 
     deleteSearchItem = (deleteItemId) =>
     {
-        let searchItems = this.state.searchItems.filter(function(item) { return item.id != deleteItemId });
-        
+        let searchItems = this.state.searchItems.filter(function(item) { return item.id !== deleteItemId });
+
         this.setState({ searchItems: searchItems });
-    }
+    };
 
     render()
     {
         const { i18n } = this.context;
         const { searchItems } = this.state;
-        
+
         let options = this.props.options;
 
         return (
@@ -79,7 +79,7 @@ export default class DataTableMenu extends Components.ContextComponent
                     <div className="form-group">
 
                         <div className="search-bar">
-                            
+
                             <div className="input-group">
                                 <span
                                     className="input-group-addon"
@@ -123,6 +123,6 @@ export default class DataTableMenu extends Components.ContextComponent
                     </div>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 }

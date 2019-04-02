@@ -10,15 +10,15 @@ export default class DataTableRow extends Components.ContextComponent
     constructor(props, context)
     {
         super(props);
-        
+
         this.state = {
             rowDataFields: [  ],
             isSelected: false,
             isLocked: false,
             isEdited: false,
             isError: false,
-        }
-    }
+        };
+    };
 
     static propTypes =
     {
@@ -27,8 +27,8 @@ export default class DataTableRow extends Components.ContextComponent
         isLocked: PropTypes.bool.isRequired,
         lockedColumns: PropTypes.array.isRequired,
         notEmptyColumns: PropTypes.array.isRequired,
-        isHidden: PropTypes.bool.isRequired,
-    }
+        isHidden: PropTypes.bool.isRequired
+    };
 
     static defaultProps =
     {
@@ -38,46 +38,46 @@ export default class DataTableRow extends Components.ContextComponent
         isHidden: false,
         lockedColumns: [  ],
         notEmptyColumns: [  ]
-    }
+    };
 
     componentDidMount = () =>
     {
         this.setState({
             rowDataFields: this.getFields(this.props.rowData)
         });
-    }
+    };
 
     componentWillReceiveProps = (nextprops) =>
     {
         this.setState({
             rowDataFields: this.getFields(nextprops.rowData)
         });
-    }
+    };
 
     handleSelectionChange = (event) =>
     {
         this.setState({isSelected: !this.state.isSelected});
-    }
+    };
 
     onColumnEdited = () =>
     {
         this.setState({
             isEdited: true
         })
-    }
+    };
 
     onColumnError = () =>
     {
         this.setState({
             isError: true
         })
-    }
+    };
 
     getFields = (data) =>
     {
         let result = [];
 
-        for(let field in data) 
+        for(let field in data)
         {
             result.push({
                 field, value: (data[field] || '').toString()
@@ -85,7 +85,7 @@ export default class DataTableRow extends Components.ContextComponent
         }
 
         return result;
-    }
+    };
 
     render()
     {
@@ -97,19 +97,19 @@ export default class DataTableRow extends Components.ContextComponent
             notEmptyColumns,
             isLocked
         } = this.props;
-        
+
         const { isSelected } = this.state;
 
         const rowDataFields = this.state.rowDataFields;
 
         return (
-            <tr 
-                className={ `dataTableRow 
+            <tr
+                className={ `dataTableRow
                 ${ (isLocked ? 'active' : '' || isSelected ? 'info' : '') }
-                ${ isLocked && isUnselectable ? 'unselectable' : '' } 
+                ${ isLocked && isUnselectable ? 'unselectable' : '' }
                 ${ isHidden ? 'hidden' : '' }` }
             >
-                <td 
+                <td
                     id={ `field_${ rowNumber }-0` }
                     className="selector dataTableField"
                 >
@@ -122,32 +122,32 @@ export default class DataTableRow extends Components.ContextComponent
                     />
                 }
                 </td>
-                <td 
-                    id={ `field_${ rowNumber }-1` } 
+                <td
+                    id={ `field_${ rowNumber }-1` }
                     className="num dataTableField"
                 >
                 { rowNumber + 1 }
                 </td>
                 {
-                rowDataFields.map((data, i) =>
-                {
-                    return(
-                        <DataTableField
-                            key={ i }
-                            rowNum={ rowNumber }
-                            fieldNum={ i }
-                            content={ data.value }
-                            fieldType={ data.field }
-                            editable={ isSelected ? true : false }
-                            columnEdited={ this.onColumnEdited.bind(this) }
-                            columnError={ this.onColumnError.bind(this) }
-                            lockedColumns={ lockedColumns }
-                            notEmptyColumns={ notEmptyColumns }
-                        />
-                    )
-                })
+                    rowDataFields.map((data, i) =>
+                    {
+                        return(
+                            <DataTableField
+                                key={ i }
+                                rowNum={ rowNumber }
+                                fieldNum={ i }
+                                content={ data.value }
+                                fieldType={ data.field }
+                                editable={ !!isSelected }
+                                columnEdited={ this.onColumnEdited.bind(this) }
+                                columnError={ this.onColumnError.bind(this) }
+                                lockedColumns={ lockedColumns }
+                                notEmptyColumns={ notEmptyColumns }
+                            />
+                        )
+                    })
                 }
             </tr>
-        )
-    }
+        );
+    };
 }

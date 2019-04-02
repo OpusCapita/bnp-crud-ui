@@ -14,8 +14,8 @@ export default class DataTableHeaderField extends Components.ContextComponent
         {
             headerFieldNumber: this.props.fieldNum,
             direction: this.props.direction
-        }
-    }
+        };
+    };
 
     static propTypes =
     {
@@ -25,7 +25,7 @@ export default class DataTableHeaderField extends Components.ContextComponent
         sorted: PropTypes.bool,
         position: PropTypes.string.isRequired,
         onCheckSorting: PropTypes.func
-    }
+    };
 
     static defaultProps =
     {
@@ -34,7 +34,7 @@ export default class DataTableHeaderField extends Components.ContextComponent
         direction: '',
         sorted: false,
         position: 'top'
-    }
+    };
 
     checkSorting = () =>
     {
@@ -44,7 +44,7 @@ export default class DataTableHeaderField extends Components.ContextComponent
         {
             this.changeDirection();
         }
-    }
+    };
 
     changeDirection = () =>
     {
@@ -60,12 +60,12 @@ export default class DataTableHeaderField extends Components.ContextComponent
                 direction: 'ascd'
             });
         }
-    }
+    };
 
     getFieldType = () =>
     {
         return 'string';
-    }
+    };
 
     render()
     {
@@ -74,13 +74,13 @@ export default class DataTableHeaderField extends Components.ContextComponent
             fieldNum,
             sorted,
             position
-        } = this.props
+        } = this.props;
 
         const { direction } = this.state;
 
         return(
-            <th 
-                id={ `header_${ fieldNum }` } 
+            <th
+                id={ `header_${ fieldNum }` }
                 className="dataTableHeaderField"
             >
                 {
@@ -100,6 +100,6 @@ export default class DataTableHeaderField extends Components.ContextComponent
                     )
                 }
             </th>
-        )
-    }
+        );
+    };
 }

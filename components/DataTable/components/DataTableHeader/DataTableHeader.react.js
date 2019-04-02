@@ -10,27 +10,27 @@ export default class DataTableHeader extends Components.ContextComponent
     constructor(props)
     {
         super(props);
-    }
-    
+    };
+
     static propTypes =
     {
         headerData: PropTypes.array.isRequired,
         position: PropTypes.string.isRequired,
         sorting: PropTypes.string.isRequired,
         sortingChange: PropTypes.func.isRequired
-    }
+    };
 
     static defaultProps =
     {
         headerData: [  ],
         position: 'top',
         sorting: 'ascd'
-    }
+    };
 
     changeSorted = (index) =>
     {
         this.props.sortingChange(index);
-    }
+    };
 
     render()
     {
@@ -62,7 +62,7 @@ export default class DataTableHeader extends Components.ContextComponent
                                     fieldNum={ i + 2 }
                                     title={ data.field }
                                     direction={ 'ascd' }
-                                    sorted={ (data.field === sorting) ? true : false }
+                                    sorted={ (data.field === sorting) }
                                     onCheckSorting={ this.changeSorted.bind(this, data.field) }
                                     position={ position }
                                 />
@@ -71,6 +71,6 @@ export default class DataTableHeader extends Components.ContextComponent
                     }
                 </tr>
             </thead>
-        )
-    }
+        );
+    };
 }

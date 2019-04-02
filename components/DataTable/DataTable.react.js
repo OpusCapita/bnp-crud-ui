@@ -24,8 +24,8 @@ export default class DataTable extends Components.ContextComponent
             currentPosition: 0,
             currentSorting: this.props.initiallySorted,
             sortingDirection: 'ascd'
-        }
-    }
+        };
+    };
 
     static propTypes =
     {
@@ -36,7 +36,7 @@ export default class DataTable extends Components.ContextComponent
         lockedRows: PropTypes.object.isRequired,
         lockedColumns: PropTypes.array.isRequired,
         notEmptyColumns: PropTypes.array.isRequired
-    }
+    };
 
     static defaultProps =
     {
@@ -47,7 +47,7 @@ export default class DataTable extends Components.ContextComponent
         lockedRows: [  ],
         lockedColumns: [  ],
         notEmptyColumns: [  ]
-    }
+    };
 
     loadData = () =>
     {
@@ -61,7 +61,7 @@ export default class DataTable extends Components.ContextComponent
             });
         })
         .catch(errors => null);
-    }
+    };
 
     transformData = (content) =>
     {
@@ -75,16 +75,16 @@ export default class DataTable extends Components.ContextComponent
         }
 
         return result;
-    }
+    };
 
-    sortData = (dataKey, dataSorting) => 
+    sortData = (dataKey, dataSorting) =>
     {
         const dataBody = this.state.tableData;
 
         let dataList = Object
-        .keys(dataBody)
-        .filter(key => dataBody[ key ][ dataKey ])
-        .map(key => dataBody[ key ]);
+            .keys(dataBody)
+            .filter(key => dataBody[ key ][ dataKey ])
+            .map(key => dataBody[ key ]);
 
         if(dataSorting === "ascd")
         {
@@ -100,8 +100,8 @@ export default class DataTable extends Components.ContextComponent
             currentSorting: dataKey,
             sortingDirection: dataSorting
         });
-    }
-    
+    };
+
     filterData(filterData)
     {
         const demoFilterData = [
@@ -129,39 +129,39 @@ export default class DataTable extends Components.ContextComponent
         this.setState({
             sortedTableData: filteredItems
         });
-    }
+    };
 
     handleAmountChange = (event) =>
     {
         this.setState({
             showNumberOfRows: parseInt(event.target.value)
         });
-    }
+    };
 
     showPrevPage = () =>
     {
         this.setState({
             currentPosition: this.state.currentPosition - this.state.showNumberOfRows
         });
-    }
-    
+    };
+
     showNextPage = () =>
     {
         this.setState({
             currentPosition: this.state.currentPosition + this.state.showNumberOfRows
         });
-    }
+    };
 
-    sortingChange = (index) => 
+    sortingChange = (index) =>
     {
         this.sortData(index, "ascd");
         //this.filterData();
-    }
-    
+    };
+
     componentDidMount = () =>
     {
         this.loadData();
-    }
+    };
 
     render = () =>
     {
@@ -175,7 +175,7 @@ export default class DataTable extends Components.ContextComponent
         const {
             currentSorting,
             currentPosition,
-            showNumberOfRows 
+            showNumberOfRows
         } = this.state;
 
         let isLocked = false;
@@ -192,7 +192,7 @@ export default class DataTable extends Components.ContextComponent
 
         return(
             <div>
-                <DataTableMenu 
+                <DataTableMenu
                     options={ this.transformData(tableData[ 0 ]) }
                 />
 
@@ -214,11 +214,11 @@ export default class DataTable extends Components.ContextComponent
                                 sortingChange={ this.sortingChange.bind(this) }
                             />
                             <tbody>
-                            {    
+                            {
                                 sortedTableData.map((row, i) =>
                                 {
                                     if(lockedRows.value && lockedRows.field) {
-                                        isLocked = (lockedRows.value.indexOf(row[ lockedRows.field ]) != -1) ? true : false;
+                                        isLocked = (lockedRows.value.indexOf(row[lockedRows.field]) !== -1);
                                     }
 
                                     return(
@@ -230,7 +230,7 @@ export default class DataTable extends Components.ContextComponent
                                             notEmptyColumns={ notEmptyColumns }
                                             isLocked={ isLocked }
                                             isUnselectable={ lockedRows.unSelectable }
-                                            isHidden={ (i >= currentPosition) && (i < checkShowingAmount) ? false : true }
+                                            isHidden={ !((i >= currentPosition) && (i < checkShowingAmount)) }
                                         />
                                     )
                                 })
@@ -257,5 +257,5 @@ export default class DataTable extends Components.ContextComponent
             />
         </div>
         );
-    }
+    };
 }
